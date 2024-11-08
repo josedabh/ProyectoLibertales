@@ -69,7 +69,7 @@ public class RegistrarseControlador {
         
         registro.crearLector(lector);
         
-        Alerta.mostrarConfirmacion("Registro Exitoso", "Usuario registrado correctamente.");
+        Alerta.mostrarInformacion("Registro Exitoso", "Usuario registrado correctamente.");
         try {
             App.setRoot("iniciarsesion");
         } catch (IOException e) {

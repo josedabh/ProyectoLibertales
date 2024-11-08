@@ -1,6 +1,7 @@
 package dto;
 
 public class Favorito {
+	
     private int idLector;
     private int idLibro;
     

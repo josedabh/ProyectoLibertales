@@ -19,13 +19,14 @@ public class Alerta {
 		mostrarAlerta(title, content, AlertType.ERROR);
 	}
 	
-	//Metodo para mostrar un error
+	//Metodo para mostrar un informacion
 	public static void mostrarInformacion(String title,String content) {
 		mostrarAlerta(title, content, AlertType.INFORMATION);
 	}
 	
-	//Metodo para mostrar un error
+	//Metodo para mostrar un confirmacion
 	public static void mostrarConfirmacion(String title,String content) {
 		mostrarAlerta(title, content, AlertType.CONFIRMATION);
 	}
+	
 }
