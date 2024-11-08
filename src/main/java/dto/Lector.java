@@ -28,9 +28,6 @@ public class Lector {
 		this.contrasenia = contrasenia;
 	}
 
-
-
-
 	// Getters y Setters
     public int getIdLector() {
         return idLector;
