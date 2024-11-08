@@ -1,0 +1,14 @@
+dto\Lector.class
+dto\Administrador.class
+Conexion\ConexionBD.class
+Alertas\Alerta.class
+libreria\LiberTales\App.class
+dao\UsuarioDAO.class
+Conexion\CerrarConexion.class
+dto\Usuario.class
+libreria\LiberTales\RegistrarseControlador.class
+libreria\LiberTales\PaginaPrincipalControlador.class
+libreria\LiberTales\IniciarSesionControlador.class
+dao\LectorDAO.class
+libreria\LiberTales\AdministracionControlador.class
+dao\AdministradorDAO.class
