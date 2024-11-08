@@ -29,8 +29,7 @@ public class UsuarioDAO {
             pst.setString(3, usuario.getTipo());
             pst.executeUpdate();
             
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -49,8 +48,7 @@ public class UsuarioDAO {
             pst.setInt(4, usuario.getIdUsuario());
             pst.executeUpdate();
             
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,8 +64,7 @@ public class UsuarioDAO {
             pst.setInt(1, id);
             pst.executeUpdate();
             
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,8 +86,7 @@ public class UsuarioDAO {
                 usuario = new Usuario(rs.getInt("id_usuario"), rs.getString("email"), rs.getString("contrasenia"), rs.getString("tipo"));
             }
             
-            CerrarConexion cc = new CerrarConexion(conn, pst, rs);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, rs);
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -110,6 +106,8 @@ public class UsuarioDAO {
             while (rs.next()) {
                 usuarios.add(new Usuario(rs.getInt("id_usuario"), rs.getString("email"), rs.getString("contrasenia"), rs.getString("tipo")));
             }
+            
+            CerrarConexion.cerrar(conn, pst, rs);
         } catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -131,24 +129,12 @@ public class UsuarioDAO {
 		        usuario = new Usuario(rs.getInt("id_usuario"), rs.getString("email"), rs.getString("contrasenia"), rs.getString("tipo"));
 		    }
 		     
-		     CerrarConexion cc = new CerrarConexion(conn, pst, rs);
-		     cc.cerrar();
+		     CerrarConexion.cerrar(conn, pst, rs);
          } catch (SQLException e) {
  			e.printStackTrace();
  		}
          
         return usuario;
     }
-    
-    public static void main(String[] args) {
-		UsuarioDAO us = new UsuarioDAO();
-		Usuario user = us.autenticarUsuario("josedabh@gmail.com", "1234567");
-		System.out.println(user.toString());
-		if(user.getTipo().equals("administrador")) {
-			System.out.println("Funciona");
-		} else {
-			System.out.println("No funciona");
-		}
-	}
 }
 

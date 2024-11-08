@@ -31,8 +31,7 @@ public class AdministradorDAO {
             pst.setString(4, administrador.getContrasenia());
             pst.executeUpdate();
             
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,8 +51,7 @@ public class AdministradorDAO {
             pst.setInt(4, administrador.getIdAdmin());
             pst.executeUpdate();
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,8 +67,7 @@ public class AdministradorDAO {
             pst.setInt(1, id);
             pst.executeUpdate();
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -97,8 +94,7 @@ public class AdministradorDAO {
                 );
             }
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, rs);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, rs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,16 +120,11 @@ public class AdministradorDAO {
                         rs.getString("contrasenia")));
             }
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, rs);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, rs);;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return administradores;
     }
     
-    public static void main(String[] args) {
-		AdministradorDAO admin = new AdministradorDAO();
-		admin.crearAdministrador(new Administrador(0, 0, "joseda", "josedabh@gmail.com", "1234567"));
-	}
 }

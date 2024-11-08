@@ -23,10 +23,10 @@ public class CestaDAO {
             stmt.setInt(2, idLibro);
             stmt.executeUpdate();
             System.out.println("Libro agregado a la cesta.");
+            
+            CerrarConexion.cerrar(con, stmt, null);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            new CerrarConexion(con, stmt, null).cerrar();
         }
     }
 
@@ -42,11 +42,11 @@ public class CestaDAO {
             stmt.setInt(1, idLector);
             stmt.setInt(2, idLibro);
             stmt.executeUpdate();
+            
+            CerrarConexion.cerrar(con, stmt, null);
             System.out.println("Libro eliminado de la cesta.");
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            new CerrarConexion(con, stmt, null).cerrar();
         }
     }
 
@@ -68,10 +68,10 @@ public class CestaDAO {
                 int idLibro = rs.getInt("id_libro");
                 cesta.add(new Cesta(idLector, idLibro));
             }
+            
+            CerrarConexion.cerrar(con, stmt, rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            new CerrarConexion(con, stmt, rs).cerrar();
         }
         return cesta;
     }
@@ -94,10 +94,10 @@ public class CestaDAO {
             if (rs.next()) {
                 enCesta = rs.getInt(1) > 0;
             }
+            
+            CerrarConexion.cerrar(con, stmt, rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            new CerrarConexion(con, stmt, rs).cerrar();
         }
         return enCesta;
     }

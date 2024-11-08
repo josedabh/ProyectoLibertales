@@ -1,5 +1,9 @@
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\CestaDAO.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Favorito.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\CestaControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\Alertas\Alerta.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\LectorDAO.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\FavoritoControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Lector.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Usuario.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\AdministracionControlador.java
@@ -8,7 +12,9 @@ C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Administrador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\App.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\RegistrarseControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\Conexion\ConexionBD.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Cesta.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\PaginaPrincipalControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\Conexion\CerrarConexion.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\FavoritoDAO.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\AdministradorDAO.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\IniciarSesionControlador.java

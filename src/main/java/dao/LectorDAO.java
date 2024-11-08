@@ -33,8 +33,7 @@ public class LectorDAO {
             pst.setString(6, lector.getContrasenia());
             pst.executeUpdate();
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,8 +54,7 @@ public class LectorDAO {
             pst.setInt(6, lector.getIdLector());
             pst.executeUpdate();
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -72,8 +70,7 @@ public class LectorDAO {
             pst.setInt(1, id);
             pst.executeUpdate();
             
-            CerrarConexion cc = new CerrarConexion(conn, pst, null);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,8 +91,7 @@ public class LectorDAO {
                 lector = new Lector(rs.getInt("id_lector"), rs.getInt("id_usuario"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("email"), rs.getString("contrasenia"));
             }
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, rs);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, rs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -117,8 +113,7 @@ public class LectorDAO {
                 lectores.add(lector);
             }
 
-            CerrarConexion cc = new CerrarConexion(conn, pst, rs);
-            cc.cerrar();
+            CerrarConexion.cerrar(conn, pst, rs);;
         } catch (SQLException e) {
             e.printStackTrace();
         }
