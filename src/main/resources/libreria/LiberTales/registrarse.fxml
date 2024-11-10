@@ -74,12 +74,14 @@
            <rowConstraints>
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
                <TextField fx:id="telefonoField" prefHeight="26.0" prefWidth="200.0" promptText="Telefono" style="-fx-font-size: 15px;" />
                   <TextField fx:id="emailField" prefHeight="26.0" prefWidth="200.0" promptText="Email" style="-fx-font-size: 15px;" GridPane.columnIndex="1" />
-                  <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-font-size: 15px;" GridPane.rowIndex="1" />
-               <PasswordField fx:id="verifyPasswordField" promptText="Verificar Contraseña" style="-fx-font-size: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-font-size: 15px;" GridPane.rowIndex="2" />
+               <PasswordField fx:id="verifyPasswordField" promptText="Verificar Contraseña" style="-fx-font-size: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <Label fx:id="telefonoErrorLabel" text="El telefono tiene que tener 10 digitos" visible="false" GridPane.rowIndex="1" />
             </children>
          </GridPane>
          <Separator prefWidth="200.0" />
