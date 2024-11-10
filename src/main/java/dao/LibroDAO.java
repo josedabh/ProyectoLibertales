@@ -15,7 +15,7 @@ public class LibroDAO {
 
     private Connection connection;
 
-    public LibroDAO(Connection connection) {
+    public LibroDAO() {
         this.connection = connection;
     }
 
@@ -132,5 +132,45 @@ public class LibroDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    // Método para obtener el título de un libro por su id
+    public String obtenerTituloPorId(int idLibro) {
+        String titulo = null;
+
+        try (Connection conn = ConexionBD.dameConexion()) {
+            String query = "SELECT titulo FROM libros WHERE id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, idLibro);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    titulo = rs.getString("titulo");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return titulo != null ? titulo : "Título no disponible";
+    }
+
+    // Método para obtener la URL de la imagen del libro por su id
+    public String obtenerImagenUrlPorId(int idLibro) {
+        String imagenUrl = null;
+        try (Connection conn = ConexionBD.dameConexion()) {
+            String query = "SELECT imagen_url FROM libros WHERE id = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setInt(1, idLibro);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    imagenUrl = rs.getString("imagen_url");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return imagenUrl != null ? imagenUrl : "@../../libros/default.png";
+    
+    
+    
     }
 }
