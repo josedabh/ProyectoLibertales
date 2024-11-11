@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.FavoritoControlador">
+    <children>
+        <!-- Logo -->
+        <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+            <image>
+                <Image url="@../../images/logo.png" />
+            </image>
+        </ImageView>
+
+        <!-- Barra de búsqueda -->
+        <HBox layoutX="155.0" layoutY="48.0" spacing="10">
+            <TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
+            <Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+        </HBox>
+
+        <!-- Iconos de usuario, carrito y mensaje -->
+        <HBox layoutX="617.0" layoutY="41.0" spacing="20">
+            <!-- Button de usuario con ContextMenu -->
+            <Button fx:id="userButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="👤" />
+
+            <Button fx:id="cartButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/cesta.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="messageButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/notificaciones.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <!-- Separador superior -->
+        <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+
+        <!-- Etiqueta de Favoritos -->
+        <Label layoutX="47.0" layoutY="135.0" prefHeight="31.0" prefWidth="156.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Favoritos" />
+
+        <!-- Sección de Favoritos -->
+        <VBox layoutX="47.0" layoutY="180.0" spacing="10">
+            <!-- Cada libro será un HBox con imagen y título -->
+            <HBox prefHeight="141.0" prefWidth="619.0" spacing="10">
+                <ImageView fitHeight="141.0" fitWidth="121.0">
+                    <image>
+                        <Image url="@../../libros/robinsonn-1.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px;" text="Título del Libro 1" />
+            </HBox>
+
+            <HBox spacing="10">
+                <ImageView fitHeight="163.0" fitWidth="129.0">
+                    <image>
+              			<Image url="@../../libros/ultimon.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px;" text="Título del Libro 2" />
+            </HBox>
+            <!-- Agrega más HBox similares para otros libros -->
+        </VBox>
+
+        <!-- Footer con texto y versión -->
+        <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+    </children>
+</AnchorPane>

@@ -23,5 +23,6 @@ public class ConexionBD {
         
         return con;
     }
+	
 }
 

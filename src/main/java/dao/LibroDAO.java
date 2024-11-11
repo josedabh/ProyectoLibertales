@@ -21,7 +21,7 @@ public class LibroDAO {
 
     // Método para insertar un nuevo libro en la base de datos
     public void insertarLibro(Libro libro) {
-        String query = "INSERT INTO libros (id_libro, titulo, autor, editorial, anio_publicacion, precioCompra, precioAlquiler, sinopsis, rutaImagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO libro (id_libro, titulo, autor, editorial, anio_publicacion, precioCompra, precioAlquiler, sinopsis, rutaImagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         	Connection conn = ConexionBD.dameConexion();
         	PreparedStatement stmt = conn.prepareStatement(query);
@@ -43,7 +43,7 @@ public class LibroDAO {
 
     // Método para obtener un libro por su ID
     public Libro obtenerLibroPorId(int id_libro) {
-        String query = "SELECT * FROM libros WHERE id_libro = ?";
+        String query = "SELECT * FROM libro WHERE id_libro = ?";
         try {
         	Connection conn = ConexionBD.dameConexion();
         	PreparedStatement stmt = conn.prepareStatement(query);
@@ -73,7 +73,7 @@ public class LibroDAO {
     // Método para obtener todos los libros
     public List<Libro> obtenerTodosLosLibros() {
         List<Libro> libros = new ArrayList<>();
-        String query = "SELECT * FROM libros";
+        String query = "SELECT * FROM libro";
         try {
         	Connection conn = ConexionBD.dameConexion();
         	PreparedStatement stmt = conn.prepareStatement(query);
@@ -100,7 +100,7 @@ public class LibroDAO {
 
     // Método para actualizar un libro existente
     public void actualizarLibro(Libro libro) {
-        String query = "UPDATE libros SET titulo = ?, autor = ?, editorial = ?, anio_publicacion = ?, precioCompra = ?, precioAlquiler = ?, sinopsis = ?, rutaImagen = ? WHERE id_libro = ?";
+        String query = "UPDATE libro SET titulo = ?, autor = ?, editorial = ?, anio_publicacion = ?, precioCompra = ?, precioAlquiler = ?, sinopsis = ?, rutaImagen = ? WHERE id_libro = ?";
         try {
         	Connection conn = ConexionBD.dameConexion();
         	PreparedStatement stmt = conn.prepareStatement(query);
@@ -122,7 +122,7 @@ public class LibroDAO {
 
     // Método para eliminar un libro por su ID
     public void eliminarLibro(int id_libro) {
-        String query = "DELETE FROM libros WHERE id_libro = ?";
+        String query = "DELETE FROM libro WHERE id_libro = ?";
         try {
         	Connection conn = ConexionBD.dameConexion();
         	PreparedStatement stmt = conn.prepareStatement(query);

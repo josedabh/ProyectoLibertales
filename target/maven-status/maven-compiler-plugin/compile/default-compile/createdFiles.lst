@@ -19,6 +19,7 @@ libreria\LiberTales\PaginaPrincipalControlador.class
 dao\FavoritoDAO.class
 libreria\LiberTales\IniciarSesionControlador.class
 libreria\LiberTales\AdminLibrosController.class
+libreria\LiberTales\CardsLibros.class
 libreria\LiberTales\FavoritoControlador.class
 dao\LectorDAO.class
 libreria\LiberTales\AdministracionControlador.class
