@@ -172,4 +172,36 @@ public class LibroDAO {
     
     
     }
+    
+ // Método en LibroDAO para buscar libros por título
+    public List<Libro> buscarLibrosPorTitulo(String titulo) {
+        List<Libro> libros = new ArrayList<>();
+        String query = "SELECT * FROM libro WHERE titulo LIKE ?"; // Usamos LIKE para búsqueda parcial
+
+        try (Connection conn = ConexionBD.dameConexion();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, "%" + titulo + "%"); // Agrega comodines para búsqueda parcial
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Libro libro = new Libro(
+                    rs.getInt("id_libro"),
+                    rs.getString("titulo"),
+                    rs.getString("autor"),
+                    rs.getString("editorial"),
+                    rs.getInt("anio_publicacion"),
+                    rs.getDouble("precioCompra"),
+                    rs.getDouble("precioAlquiler"),
+                    rs.getString("sinopsis"),
+                    rs.getString("rutaImagen")
+                );
+                libros.add(libro);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return libros;
+    }
+
 }
