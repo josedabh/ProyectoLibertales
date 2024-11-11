@@ -27,6 +27,16 @@ public class PaginaPrincipalControlador {
 	private void switchtoLogin() throws IOException{
 		App.setRoot("iniciarsesion");
 	}
+	
+	@FXML
+	private void switchToCesta() throws IOException {
+	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+	}
+	
+	@FXML
+	private void switchToFavorito() throws IOException {
+	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+	}
 
 	public void initialize() {
 		cargarCartas();
@@ -34,7 +44,7 @@ public class PaginaPrincipalControlador {
 	
 	private void cargarCartas() {
 		try {
-			LibroDAO libroDAO = new LibroDAO(ConexionBD.dameConexion());
+			LibroDAO libroDAO = new LibroDAO();
             List<Libro> listaLibros = libroDAO.obtenerTodosLosLibros();
             
             for(Libro libro: listaLibros) {

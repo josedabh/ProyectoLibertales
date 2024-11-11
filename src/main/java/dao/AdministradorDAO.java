@@ -127,4 +127,9 @@ public class AdministradorDAO {
         return administradores;
     }
     
+    public static void main(String[] args) {
+		AdministradorDAO admin = new AdministradorDAO();
+		admin.crearAdministrador(new Administrador(0, 0, "ale", "ale@gmail.com", "1234567"));
+	}
+    
 }

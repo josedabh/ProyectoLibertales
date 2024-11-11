@@ -49,6 +49,32 @@ public class CestaDAO {
             e.printStackTrace();
         }
     }
+    
+ // Método para alquilar un libro en la cesta de un lector
+    public void alquilarLibro(int idLector, int idLibro) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        try {
+            con = ConexionBD.dameConexion();
+            String query = "UPDATE Cesta SET estado = 'alquilado' WHERE id_lector = ? AND id_libro = ?";
+            stmt = con.prepareStatement(query);
+            stmt.setInt(1, idLector);
+            stmt.setInt(2, idLibro);
+            int filasActualizadas = stmt.executeUpdate();
+
+            if (filasActualizadas > 0) {
+                System.out.println("Libro alquilado correctamente.");
+            } else {
+                System.out.println("El libro no estaba en la cesta del lector.");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CerrarConexion.cerrar(con, stmt, null);
+        }
+    }
 
     // Método para obtener todos los libros en la cesta de un lector
     public List<Cesta> obtenerCesta(int idLector) {
