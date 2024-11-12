@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 
 public class PaginaPrincipalControlador {
 	
@@ -23,7 +24,7 @@ public class PaginaPrincipalControlador {
     private TilePane tilePaneCartas;
     
 	@FXML
-	private HBox contenedorCartas;
+	private VBox contenedorCartas;
 	
 	@FXML
     private TextField searchField; // Campo de texto para ingresar la búsqueda
@@ -54,11 +55,11 @@ public class PaginaPrincipalControlador {
             
             for(Libro libro: listaLibros) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cardslibros.fxml"));
-                HBox carta = loader.load();
+                VBox carta = loader.load();
 
                 // Obtener el controlador de la carta y pasar los datos
                 CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo(),libro.getSinopsis());
+                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo(), libro.getSinopsis());
 
                 // Agregar la carta al contenedor
                 tilePaneCartas.getChildren().add(carta);
@@ -73,7 +74,6 @@ public class PaginaPrincipalControlador {
         addButton.setOnAction(event -> buscarLibros()); // Asocia el botón al método de búsqueda
         cargarLibros(null); // Carga todos los libros al iniciar la aplicación
     }
-    // Método para cargar libros en la interfaz, recibe un parámetro de texto de búsqueda opcional
     private void cargarLibros(String searchText) {
         tilePaneCartas.getChildren().clear(); // Limpia el contenedor antes de agregar resultados
 
@@ -89,9 +89,9 @@ public class PaginaPrincipalControlador {
         for (Libro libro : listaLibros) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cardslibros.fxml"));
-                HBox carta = loader.load();
+                VBox carta = loader.load();
                 
-                // Obtener el controlador de la carta y establecer datos del libro
+                // Obtener el controlador de la carta y establecer los datos del libro
                 CardsLibros controladorCarta = loader.getController();
                 controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo(), libro.getSinopsis());
 
