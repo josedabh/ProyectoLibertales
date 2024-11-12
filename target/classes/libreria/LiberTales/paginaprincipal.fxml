@@ -25,7 +25,7 @@
 		<!-- Barra de búsqueda -->
 		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
 			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
-			<Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+			<Button fx:id="searchButton" onAction="#switchToBusqueda" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
 		</HBox>
 
 		<!-- Iconos de usuario, carrito y mensaje -->

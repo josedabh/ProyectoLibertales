@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import dao.CestaDAO;
 import dto.Cesta;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CestaControlador {
@@ -63,6 +64,25 @@ public class CestaControlador {
         }
     }
 
+    @FXML
+	private void switchtoLogin() throws IOException{
+		App.setRoot("iniciarsesion");
+	}
+	
+	@FXML
+	private void switchToCesta() throws IOException {
+	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+	}
+	
+	@FXML
+	private void switchToFavorito() throws IOException {
+	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+	}
+	
+	@FXML
+    private void switchToPagina() throws IOException {
+        App.setRoot("paginaPrincipal");
+    }
     // Método para comprar un libro
     private void comprarLibro(Cesta itemCesta) {
         cestaDAO.agregarALaCesta(itemCesta.getIdLector(), itemCesta.getIdLibro());

@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.util.List;
 
 public class FavoritoControlador {
@@ -82,6 +83,26 @@ public class FavoritoControlador {
             favoritosVBox.getChildren().add(libroHBox);
         }
     }
+    
+    @FXML
+   	private void switchtoLogin() throws IOException{
+   		App.setRoot("iniciarsesion");
+   	}
+   	
+   	@FXML
+   	private void switchToCesta() throws IOException {
+   	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+   	}
+   	
+   	@FXML
+   	private void switchToFavorito() throws IOException {
+   	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+   	}
+   	
+   	@FXML
+       private void switchToPagina() throws IOException {
+           App.setRoot("paginaPrincipal");
+       }
 
     // Método para obtener el título del libro por su id
     private String obtenerTituloPorId(int idLibro) {

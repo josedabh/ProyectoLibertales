@@ -91,4 +91,24 @@ public class IniciarSesionControlador{
     private void switchToRegistarse() throws IOException {
 		App.setRoot("registrarse");
 	}
+    
+    @FXML
+    private void switchToOlvidarse() throws IOException {
+		App.setRoot("olvidar");
+	}
+    @FXML
+   	private void switchtoLogin() throws IOException{
+   		App.setRoot("iniciarsesion");
+   	}
+   	
+   	@FXML
+   	private void switchToCesta() throws IOException {
+   	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+   	}
+   	
+   	@FXML
+   	private void switchToFavorito() throws IOException {
+   	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+   	}
+   	
 }
