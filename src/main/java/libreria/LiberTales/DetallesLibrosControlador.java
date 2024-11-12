@@ -1,5 +1,8 @@
 package libreria.LiberTales;
 
+import java.io.IOException;
+
+import dto.Libro;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,11 +21,26 @@ public class DetallesLibrosControlador {
     private Text sinopsisText;
     
     // Este método se invoca para establecer los detalles del libro
-    public void setDetalles(String rutaImagen, String titulo, String sinopsis) {
-        Image image = new Image(rutaImagen);
+    public void setDetalles(Libro libro) {
+        Image image = new Image(libro.getRutaImagen());
         detalleImage.setImage(image);
-        tituloLabel.setText(titulo);
-        sinopsisText.setText(sinopsis);
+        tituloLabel.setText(libro.getTitulo());
+        sinopsisText.setText(libro.getSinopsis());
     }
+    
+    @FXML
+	private void switchtoLogin() throws IOException{
+		App.setRoot("iniciarsesion");
+	}
+	
+	@FXML
+	private void switchToCesta() throws IOException {
+	    App.setRoot("cesta");
+	}
+	
+	@FXML
+	private void switchToFavorito() throws IOException {
+	    App.setRoot("favorito");
+	}
 
 }

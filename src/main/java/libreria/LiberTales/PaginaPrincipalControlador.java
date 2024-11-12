@@ -30,7 +30,7 @@ public class PaginaPrincipalControlador {
     private TextField searchField; // Campo de texto para ingresar la búsqueda
     
     @FXML
-    private Button addButton; 
+    private Button searchButton; 
     
 	@FXML
 	private void switchtoLogin() throws IOException{
@@ -59,7 +59,7 @@ public class PaginaPrincipalControlador {
 
                 // Obtener el controlador de la carta y pasar los datos
                 CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo(), libro.getSinopsis());
+                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo());
 
                 // Agregar la carta al contenedor
                 tilePaneCartas.getChildren().add(carta);
@@ -71,7 +71,7 @@ public class PaginaPrincipalControlador {
 
     public void initialize() {
     	cargarCartas();
-        addButton.setOnAction(event -> buscarLibros()); // Asocia el botón al método de búsqueda
+        searchButton.setOnAction(event -> buscarLibros()); // Asocia el botón al método de búsqueda
         cargarLibros(null); // Carga todos los libros al iniciar la aplicación
     }
     private void cargarLibros(String searchText) {
@@ -93,7 +93,7 @@ public class PaginaPrincipalControlador {
                 
                 // Obtener el controlador de la carta y establecer los datos del libro
                 CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo(), libro.getSinopsis());
+                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo());
 
                 tilePaneCartas.getChildren().add(carta);
             } catch (IOException e) {

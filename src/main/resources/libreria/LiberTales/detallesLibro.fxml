@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.DetallesLibrosControlador">
-    <ImageView fx:id="detalleImage" fitHeight="300.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
-    <Label fx:id="tituloLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-    <Text fx:id="sinopsisText" style="-fx-font-size: 14px;"/>
-</VBox>
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.DetallesLibrosControlador">
+   <children>
+      <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+         <image>
+            <Image url="@../../images/logo.png" />
+         </image>
+      </ImageView>
+      <HBox layoutX="155.0" layoutY="48.0" spacing="10">
+         <children>
+            <TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
+            <Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+         </children>
+      </HBox>
+      <HBox layoutX="617.0" layoutY="41.0" spacing="20">
+         <children>
+            <Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../iconos/avatar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../iconos/cesta.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../iconos/notificaciones.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+
+      <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+      <ImageView fx:id="detalleImage" fitHeight="300.0" fitWidth="200.0" layoutX="55.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="tituloLabel" layoutX="319.0" layoutY="147.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Libro" />
+      <Text fx:id="sinopsisText" layoutX="316.0" layoutY="224.0" style="-fx-font-size: 14px;" text="Sinopsis" />
+   </children>
+</AnchorPane>
