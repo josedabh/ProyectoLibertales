@@ -8,5 +8,5 @@
 <VBox spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CardsLibros">
   <ImageView fx:id="libroImage" fitHeight="191.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
    <Label fx:id="nombreLabel" text="Label" />
-   <Button mnemonicParsing="false" onAction="#switchTodetallesLibros" text="Más detalles" />
+   <Button fx:id="detallesButton" mnemonicParsing="false" onAction="#switchTodetallesLibros" text="Más detalles" />
 </VBox>

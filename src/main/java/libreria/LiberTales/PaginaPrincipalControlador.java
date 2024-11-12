@@ -59,7 +59,7 @@ public class PaginaPrincipalControlador {
 
                 // Obtener el controlador de la carta y pasar los datos
                 CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo());
+                controladorCarta.setDatos(libro);
 
                 // Agregar la carta al contenedor
                 tilePaneCartas.getChildren().add(carta);
@@ -93,7 +93,7 @@ public class PaginaPrincipalControlador {
                 
                 // Obtener el controlador de la carta y establecer los datos del libro
                 CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo());
+                controladorCarta.setDatos(libro);
 
                 tilePaneCartas.getChildren().add(carta);
             } catch (IOException e) {
