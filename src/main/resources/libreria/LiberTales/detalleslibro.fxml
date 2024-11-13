@@ -62,5 +62,7 @@
       <ImageView fx:id="detalleImage" fitHeight="300.0" fitWidth="200.0" layoutX="55.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="tituloLabel" layoutX="316.0" layoutY="148.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Libro" />
       <Text fx:id="sinopsisText" layoutX="316.0" layoutY="224.0" style="-fx-font-size: 14px;" text="Sinopsis" />
+      <Button fx:id="comprarButton" layoutX="326.0" layoutY="312.0" onAction="#switchToAlaCesta" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="Comprar" />
+      <Button fx:id="favoritoButton" layoutX="515.0" layoutY="312.0" onAction="#switchToaFavorito" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="Favorito" />
    </children>
 </AnchorPane>

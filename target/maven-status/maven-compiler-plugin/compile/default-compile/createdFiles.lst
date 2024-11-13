@@ -30,5 +30,6 @@ dao\UsuarioDAO.class
 dto\Transacciones.class
 dto\Usuario.class
 libreria\LiberTales\RegistrarseControlador.class
+dao\DetallesLibroDAO.class
 libreria\LiberTales\CardsLibros.class
 libreria\LiberTales\AdministracionControlador.class
