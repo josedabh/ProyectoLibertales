@@ -37,7 +37,7 @@ public class CestaDAO {
 
         try {
             con = ConexionBD.dameConexion();
-            String query = "DELETE FROM Cesta WHERE id_lector = ? AND id_libro = ?";
+            String query = "DELETE FROM cesta WHERE id_lector = ? AND id_libro = ?";
             stmt = con.prepareStatement(query);
             stmt.setInt(1, idLector);
             stmt.setInt(2, idLibro);

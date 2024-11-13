@@ -6,6 +6,7 @@ import java.util.List;
 import dao.LibroDAO;
 import dto.Busqueda;
 import dto.Libro;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -30,21 +31,6 @@ public class BusquedaLibrosControlador {
     
     private Busqueda busqueda;
     
-    @FXML
-	private void switchtoLogin() throws IOException{
-		App.setRoot("iniciarsesion");
-	}
-	
-	@FXML
-	private void switchToCesta() throws IOException {
-	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
-	}
-	
-	@FXML
-	private void switchToFavorito() throws IOException {
-	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
-	}
-	
 	@FXML
 	private void switchToBusqueda() throws IOException {
 //	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
@@ -96,7 +82,7 @@ public class BusquedaLibrosControlador {
                 VBox carta = loader.load();
 
                 CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro.getRutaImagen(), libro.getTitulo());
+                controladorCarta.setDatos(libro);
 
                 tilePaneBusqueda.getChildren().add(carta);
             } catch (IOException e) {
@@ -112,4 +98,20 @@ public class BusquedaLibrosControlador {
             cargarLibros(busqueda.getBuscar());
         }
     }
+    
+    @FXML
+	private void switchtoLogin() throws IOException {
+         App.setRoot("iniciarsesion");
+	}
+	
+	@FXML
+	private void switchToCesta() throws IOException {
+	    App.setRoot("cesta"); 
+	}
+	
+	@FXML
+	private void switchToFavorito() throws IOException {
+	    App.setRoot("favorito"); 
+	}
+	
 }
