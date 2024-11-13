@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CestaControlador">
+    <children>
+    
+        <!-- Logo -->
+        <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+            <image>
+                <Image url="@../../images/logo.png" />
+            </image>
+        </ImageView>
+
+        <!-- Barra de búsqueda -->
+        <HBox layoutX="155.0" layoutY="48.0" spacing="10">
+            <TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
+            <Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+        </HBox>
+
+        <!-- Iconos de usuario, carrito y mensaje -->
+        <HBox layoutX="617.0" layoutY="41.0" spacing="20">
+            <Button fx:id="userButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="👤" />
+            <Button fx:id="cartButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/cesta.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="messageButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/notificaciones.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <!-- Separador superior -->
+        <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+
+        <!-- Título de la sección Cesta -->
+        <Label layoutX="47.0" layoutY="160.0" prefHeight="31.0" prefWidth="156.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Cesta" />
+		<VBox fx:id="cestaVBox" layoutX="47.0" layoutY="200.0" prefWidth="753.0" spacing="10">
+        <!-- Aquí van los elementos dinámicos de la cesta -->
+    	</VBox>
+        <!-- Sección de la Cesta -->
+        <VBox layoutX="47.0" layoutY="200.0" prefWidth="753.0" spacing="10">
+            <!-- Cada libro en la cesta estará representado por un HBox -->
+            <HBox spacing="10" style="-fx-background-color: #FFFFFF; -fx-padding: 10; -fx-border-color: #D3D3D3; -fx-border-radius: 5;">
+                <!-- Imagen del libro -->
+                <ImageView fitHeight="142.0" fitWidth="119.0">
+                    <image>
+                       <Image url="@../../libros/robinsonn-1.png" />
+                    </image>
+                </ImageView>
+                
+                <!-- Título del libro -->
+                <Label style="-fx-font-size: 16px;" text="Título del Libro 1" />
+
+                <!-- Botones de acciones -->
+                <HBox alignment="CENTER_RIGHT" layoutX="500.0" spacing="10">
+                   <Button style="-fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Comprar" />
+					<Button style="-fx-background-color: #FFA500; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Alquilar" />
+					<Button style="-fx-background-color: #FF6347; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Eliminar" />
+                   
+                </HBox>
+            </HBox>
+
+            <!-- Añadir más libros con la misma estructura HBox para la lista -->
+            <HBox spacing="10" style="-fx-background-color: #FFFFFF; -fx-padding: 10; -fx-border-color: #D3D3D3; -fx-border-radius: 5;">
+                <ImageView fitHeight="153.0" fitWidth="122.0">
+                    <image>
+                        <Image url="@../../libros/ultimon.png" />
+                    </image>
+                </ImageView>
+                <Label style="-fx-font-size: 16px;" text="Título del Libro 2" />
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button style="-fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Comprar" />
+                    <Button style="-fx-background-color: #FFA500; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Alquilar" />
+                    <Button style="-fx-background-color: #FF6347; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Eliminar" />
+                </HBox>
+            </HBox>
+
+        </VBox>
+
+        <!-- Footer con texto y versión -->
+        <Label layoutX="254.0" layoutY="570.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+    </children>
+</AnchorPane>
