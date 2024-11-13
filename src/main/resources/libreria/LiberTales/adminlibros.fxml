@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.AdminLibrosController">
+    <children>
+        <!-- Logo -->
+        <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+            <image>
+            <Image url="@../../images/logo.png" />
+            </image>
+        </ImageView>
+
+        <!-- Barra de búsqueda -->
+        <HBox layoutX="155.0" layoutY="48.0" spacing="10">
+            <TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
+            <Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+        </HBox>
+
+        <!-- Iconos de usuario, carrito y mensaje -->
+        <HBox layoutX="617.0" layoutY="41.0" spacing="20">
+            <!-- Button de usuario con ContextMenu -->
+            <Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="👤">
+            <contextMenu>
+               <ContextMenu>
+                 <items>
+                 	    <MenuItem fx:id="registerItem" text="Registrarse" />
+                        <MenuItem fx:id="loginItem" text="Iniciar sesión" />
+                        <MenuItem fx:id="userInfoItem" text="Información usuario" />
+                        <MenuItem fx:id="favoritesItem" text="Favoritos" />
+                 </items>
+               </ContextMenu>
+            </contextMenu>
+            </Button>
+
+            <Button fx:id="cartButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/cesta.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="messageButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/notificaciones.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <!-- Separador superior -->
+        <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+
+        <!-- Footer con texto y versión -->
+        <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+      <Button fx:id="backButton" layoutX="35.0" layoutY="160.0" onAction="#switchtoAdministracion" style="-fx-font-size: 15px; -fx-background-color: #FFFFFF; -fx-background-radius: 80px;" text="← Volver Atrás" />
+      <Label layoutX="567.0" layoutY="163.0" style="-fx-font-size: 16;" text="Añadir Libro" />
+      <AnchorPane layoutX="15.0" layoutY="204.0" prefHeight="298.0" prefWidth="790.0">
+         <children>
+            <ImageView fitHeight="109.0" fitWidth="155.0" layoutX="36.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="25.0" layoutY="140.0" text="Sinopsis" />
+            <TextField fx:id="campoSinopsis" layoutX="19.0" layoutY="156.0" prefHeight="74.0" prefWidth="752.0" />
+            <TextField fx:id="campoPrecioCompra" layoutX="39.0" layoutY="259.0" />
+            <TextField fx:id="campoPrecioAlquiler" layoutX="260.0" layoutY="259.0" />
+            <Label layoutX="39.0" layoutY="242.0" text="Precio Compra" />
+            <Label layoutX="260.0" layoutY="242.0" prefWidth="87.0" text="Precio Alquiler" />
+            <Button fx:id="botonAnadirLibro" layoutX="544.0" layoutY="239.0" mnemonicParsing="false" onAction="#addBookToDatabase" prefHeight="46.0" prefWidth="218.0" text="Añadir Libro" />
+            <Button layoutX="213.0" layoutY="32.0" mnemonicParsing="false" text="Añadir Imagen" />
+            <VBox layoutX="438.0" layoutY="25.0" prefHeight="100.0" prefWidth="140.0">
+               <children>
+                  <Label text="Título" />
+                  <TextField fx:id="campoTitulo" />
+                  <Label text="Editorial" />
+                  <TextField fx:id="campoEditorial" />
+               </children>
+            </VBox>
+            <VBox layoutX="587.0" layoutY="25.0" prefHeight="100.0" prefWidth="140.0">
+               <children>
+                  <Label text="Año Publicación" />
+                  <TextField fx:id="campoAnio_publicacion" />
+                  <Label text="Autor" />
+                  <TextField fx:id="campoAutor" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
