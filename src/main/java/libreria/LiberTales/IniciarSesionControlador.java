@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Alertas.Alerta;
+import dao.LectorDAO;
 import dao.UsuarioDAO;
+import dto.SesionUsuario;
 import dto.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,6 +56,7 @@ public class IniciarSesionControlador{
          String password = passwordField.getText();
          
          UsuarioDAO us = new UsuarioDAO();
+         LectorDAO ldao = new LectorDAO();
          
          if (email.isEmpty() || password.isEmpty()) {
              Alerta.mostrarError("Error al iniciar sesión", "Por favor, rellena los campos vacios");
@@ -64,18 +67,21 @@ public class IniciarSesionControlador{
          
          if(usuario==null) {
         	 Alerta.mostrarError("Error al iniciar sesión", "Email o contraseña incorrectos.");
+        	 
          } else if(usuario.getTipo().equals("administrador")){
-        	 System.out.println("Funciona admin");
         	 try {
         		 App.setRoot("administracion");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
          } else if(usuario.getTipo().equals("lector")){
-        	 System.out.println("Funciona Lec");
         	 try {
-        		 App.setRoot("paginaprincipal");
-			} catch (IOException e) {
+        	    // Guarda el idLector en la sesión
+        	    SesionUsuario.getInstancia().setIdLector(ldao.buscarLectorPorId(usuario.getIdUsuario()));
+        	    System.out.println(SesionUsuario.getInstancia().getIdLector());
+        	    // Cambia a la página principal
+        	    App.setRoot("paginaprincipal"); 
+        	 }catch (IOException e) {
 				e.printStackTrace();
 			}
          }
@@ -91,4 +97,24 @@ public class IniciarSesionControlador{
     private void switchToRegistarse() throws IOException {
 		App.setRoot("registrarse");
 	}
+    
+    @FXML
+    private void switchToOlvidarse() throws IOException {
+		App.setRoot("olvidar");
+	}
+    @FXML
+   	private void switchtoLogin() throws IOException{
+   		App.setRoot("iniciarsesion");
+   	}
+   	
+   	@FXML
+   	private void switchToCesta() throws IOException {
+   	    App.setRoot("cesta"); 
+   	}
+   	
+   	@FXML
+   	private void switchToFavorito() throws IOException {
+   	    App.setRoot("favorito");
+   	}
+   	
 }

@@ -29,11 +29,6 @@ public class Libro {
 	}
 	
 	
-	public Libro() {
-		// TODO Auto-generated constructor stub
-	}
-
-
 	// Getters Y Setters
 	public int getId_libro() {
 		return id_libro;

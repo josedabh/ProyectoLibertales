@@ -169,8 +169,6 @@ public class LibroDAO {
         }
         return imagenUrl != null ? imagenUrl : "@../../images/logo.png";
     
-    
-    
     }
     
  // Método en LibroDAO para buscar libros por título

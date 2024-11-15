@@ -16,19 +16,15 @@ public class CerrarConexion {
     public static void cerrar(Connection con, PreparedStatement sentencia, ResultSet resultado) {
         try {
             if (resultado != null) {
-                resultado.close();  
-                System.out.println("ResultSet cerrado");
+                resultado.close();
             }
             if (sentencia != null) {
-                sentencia.close();  
-                System.out.println("Sentencia cerrada");
+                sentencia.close();
             }
             if (con != null) {
-                con.close();  
-                System.out.println("Conexión cerrada");
+                con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error al cerrar la conexión");
             e.printStackTrace();
         }
     }

@@ -1,3 +1,4 @@
+dto\Busqueda.class
 dto\Lector.class
 libreria\LiberTales\CestaControlador.class
 Conexion\ConexionBD.class
@@ -8,6 +9,7 @@ dto\SesionUsuario.class
 dao\CestaDAO.class
 libreria\LiberTales\App.class
 dao\LibroDAO.class
+libreria\LiberTales\BusquedaLibrosControlador.class
 Conexion\CerrarConexion.class
 libreria\LiberTales\PaginaPrincipalControlador.class
 dao\FavoritoDAO.class
@@ -24,11 +26,13 @@ dto\Administrador.class
 dto\Favorito.class
 libreria\LiberTales\AdminTransaccionesController.class
 libreria\LiberTales\CardsCesta.class
+libreria\LiberTales\OlvidarControlador.class
 dao\UsuarioDAO.class
 libreria\LiberTales\CambiarContraseñaController.class
 dto\Transacciones.class
 libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class
 libreria\LiberTales\RegistrarseControlador.class
+dao\DetallesLibroDAO.class
 libreria\LiberTales\CardsLibros.class
 libreria\LiberTales\AdministracionControlador.class

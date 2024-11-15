@@ -39,6 +39,30 @@ public class LectorDAO {
         }
     }
 
+ // Método para buscar un Lector por id_usuario
+    public int buscarLectorPorId(int idUsuario) {
+        String sql = "SELECT id_lector FROM lector WHERE id_usuario = ?";
+        int id = 0;
+
+        try {
+            Connection conn = ConexionBD.dameConexion();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, idUsuario);
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            CerrarConexion.cerrar(conn, pst, rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
     // Método para modificar un Lector
     public void modificarLector(Lector lector) {
         String sql = "UPDATE lector SET nombre = ?, direccion = ?, telefono = ?, email = ?, contrasenia = ? WHERE id_lector = ?";

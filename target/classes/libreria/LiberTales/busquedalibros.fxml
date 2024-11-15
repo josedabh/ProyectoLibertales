@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.TilePane?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.DetallesLibrosControlador">
-   <children>
-      <!-- Logo -->
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.BusquedaLibrosControlador">
+	<children>
+		<!-- Logo -->
 		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
 			<image>
 				<Image url="@../../images/logo.png" />
@@ -22,7 +24,7 @@
 		<!-- Barra de búsqueda -->
 		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
 			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
-			<Button fx:id="searchButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+			<Button fx:id="searchButton" onAction="#switchToBusqueda" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
 		</HBox>
 
 		<!-- Iconos de usuario, carrito y mensaje -->
@@ -56,13 +58,20 @@
 				</graphic>
 			</Button>
 		</HBox>
-      <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
 
-      <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-      <ImageView fx:id="detalleImage" fitHeight="300.0" fitWidth="200.0" layoutX="55.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="tituloLabel" layoutX="316.0" layoutY="148.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Libro" />
-      <Text fx:id="sinopsisText" layoutX="316.0" layoutY="224.0" style="-fx-font-size: 14px;" text="Sinopsis" />
-      <Button fx:id="comprarButton" layoutX="326.0" layoutY="312.0" onAction="#switchToAlaCesta" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="Comprar" />
-      <Button fx:id="favoritoButton" layoutX="515.0" layoutY="312.0" onAction="#switchToaFavorito" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;" text="Favorito" />
-   </children>
+		<!-- Separador superior -->
+		<Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+
+		<!-- Footer con texto y versión -->
+		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+			<ScrollPane fx:id="scrollBusqueda" fitToWidth="true" hbarPolicy="NEVER" layoutX="2.0" layoutY="123.0" maxHeight="500.0" prefHeight="377.0" prefWidth="841.0" vbarPolicy="AS_NEEDED">
+         <content>
+            <TilePane fx:id="tilePaneBusqueda" hgap="10.0" prefColumns="6" prefHeight="374.0" prefRows="8" prefWidth="840.0" vgap="10.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TilePane>
+         </content>
+			</ScrollPane>
+	</children>
 </AnchorPane>
