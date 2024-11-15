@@ -13,7 +13,7 @@
       <HBox alignment="CENTER_RIGHT" layoutX="500.0" spacing="10">
          <children>
             <Button onAction="#switchToAnadiraCesta" style="-fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Añadir cesta" />
-            <Button style="-fx-background-color: #FF6347; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Eliminar" />
+            <Button onAction="#switchToEliminarDeLaCesta" style="-fx-background-color: #FF6347; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Eliminar" />
          </children>
       </HBox>
    </children>

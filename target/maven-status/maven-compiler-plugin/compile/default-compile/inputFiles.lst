@@ -1,5 +1,6 @@
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\BusquedaLibrosControlador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\UsuarioDAO.java
+C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Compra.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Transacciones.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Usuario.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\LectorDAO.java
@@ -18,6 +19,7 @@ C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTal
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\AdminTransaccionesController.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\App.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\PaginaPrincipalControlador.java
+C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\CompraDAO.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\AdminLibrosController.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\CardsFavorito.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\FavoritoDAO.java

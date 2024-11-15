@@ -11,6 +11,7 @@ libreria\LiberTales\App.class
 dao\LibroDAO.class
 libreria\LiberTales\BusquedaLibrosControlador.class
 Conexion\CerrarConexion.class
+dto\Compra.class
 libreria\LiberTales\PaginaPrincipalControlador.class
 dao\FavoritoDAO.class
 libreria\LiberTales\IniciarSesionControlador.class
@@ -28,6 +29,7 @@ libreria\LiberTales\CardsCesta.class
 libreria\LiberTales\OlvidarControlador.class
 dao\UsuarioDAO.class
 dto\Transacciones.class
+dao\CompraDAO.class
 libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class
 libreria\LiberTales\RegistrarseControlador.class

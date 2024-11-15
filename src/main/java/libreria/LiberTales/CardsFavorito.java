@@ -3,6 +3,7 @@ package libreria.LiberTales;
 import java.io.IOException;
 
 import dao.CestaDAO;
+import dao.FavoritoDAO;
 import dao.LibroDAO;
 import dto.Favorito;
 import dto.Libro;
@@ -51,4 +52,13 @@ public class CardsFavorito {
 		public void setLibro(Libro libro) {
 			this.libro = libro;
 		}
+	    // Método que se ejecuta al hacer clic en el botón de favorito
+	    @FXML
+	    private void switchToEliminarDeLaCesta() throws IOException {
+	        // Agregar el libro a la cesta
+	        Libro libro = getLibro();
+	        FavoritoDAO favoritoDAO = new FavoritoDAO();
+	        // Obtener el libro que se está viendo
+	        favoritoDAO.eliminarDeFavorito(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());//Quitar el id de libro
+	    }
 }
