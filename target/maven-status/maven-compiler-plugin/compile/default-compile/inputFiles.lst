@@ -1,30 +1,33 @@
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\LibroDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\AdminLibrosController.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\TransaccionesDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\CardsLibros.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\IniciarSesionControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Favorito.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\Alertas\Alerta.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\AdministradorDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\UsuarioDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Transacciones.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Lector.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\Conexion\CerrarConexion.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\FavoritoControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\CestaDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\CestaControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\ModificarUsuarioControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Administrador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\AdminTransaccionesController.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\Conexion\ConexionBD.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Usuario.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\App.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\DetallesLibrosControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\LectorDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\FavoritoDAO.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\CambiarContraseñaController.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Cesta.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\RegistrarseControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\AdministracionControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\PaginaPrincipalControlador.java
-C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Libro.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Usuario.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Favorito.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\TransaccionesDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\UsuarioDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\SesionUsuario.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Administrador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\Conexion\ConexionBD.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Transacciones.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\AdminTransaccionesController.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\Conexion\CerrarConexion.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\CardsFavorito.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Lector.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\LibroDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\AdministracionControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\AdminLibrosController.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\PaginaPrincipalControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\CardsCesta.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\LectorDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\CestaControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\IniciarSesionControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\FavoritoDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Libro.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\RegistrarseControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\DetallesLibrosControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\AdministradorDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dto\Cesta.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\FavoritoControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\App.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\ModificarUsuarioControlador.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\CardsLibros.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\libreria\LiberTales\CambiarContraseñaController.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\dao\CestaDAO.java
+C:\Users\pfran\git\ProyectoLibertales-Mi version\src\main\java\Alertas\Alerta.java

@@ -138,7 +138,7 @@ public class LibroDAO {
         String titulo = null;
 
         try (Connection conn = ConexionBD.dameConexion()) {
-            String query = "SELECT titulo FROM libros WHERE id = ?";
+            String query = "SELECT titulo FROM libro WHERE id = ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, idLibro);
                 ResultSet rs = stmt.executeQuery();
@@ -156,7 +156,7 @@ public class LibroDAO {
     public String obtenerImagenUrlPorId(int idLibro) {
         String imagenUrl = null;
         try (Connection conn = ConexionBD.dameConexion()) {
-            String query = "SELECT imagen_url FROM libros WHERE id = ?";
+            String query = "SELECT imagen_url FROM libro WHERE id = ?";
             try (PreparedStatement stmt = conn.prepareStatement(query)) {
                 stmt.setInt(1, idLibro);
                 ResultSet rs = stmt.executeQuery();

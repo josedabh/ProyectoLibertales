@@ -2,86 +2,100 @@ package libreria.LiberTales;
 
 import dao.LibroDAO;
 import dao.CestaDAO;
+import dao.FavoritoDAO;
 import dto.Cesta;
+import dto.Favorito;
+import dto.SesionUsuario;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.util.List;
 
-public class FavoritoControlador {
+import Alertas.Alerta;
 
+public class FavoritoControlador {
+	@FXML
+	private TilePane  TilePaneFavorito;
+	@FXML
+	private HBox contenedorFavorito;
     @FXML
     private VBox favoritosVBox;  // VBox en FXML donde se mostrarán los favoritos
     @FXML
     private Label favoritosLabel;  // Etiqueta para mostrar "Favoritos"
 
-    private CestaDAO cestaDAO;
+    private FavoritoDAO favoritoDAO;
     private LibroDAO libroDAO;  // Asegúrate de tener este DAO para consultar los detalles de los libros
     private int idLector;  // ID del lector, puede ser obtenido de sesión o login
 
     public FavoritoControlador() {
         // Inicialización de los DAOs
-        cestaDAO = new CestaDAO();
+        favoritoDAO = new FavoritoDAO();
         libroDAO = new LibroDAO();  // Suponiendo que tienes este DAO para obtener libros
     }
 
     @FXML
     public void initialize() {
-        // Configuración inicial del controlador
-        // Por ejemplo, obtener el ID del lector desde sesión o de un login
-        idLector = 1;  // Asignar un ID de lector de prueba o obtenerlo desde sesión
-
+        //Verificar si el usuario esta registrado
+    	Integer idLector = SesionUsuario.getInstancia().getIdLector();
+        if (idLector != null) {
+            System.out.println("ID del lector en la sesión: " + idLector);
+            
+        } else {
+        	Alerta.mostrarError("Error al cargar la cesta", "Se requiere iniciar sesión primero");
+            System.out.println("No hay ID de lector en la sesión.");
+        } 
         // Cargar los libros favoritos (en la cesta del lector)
         cargarFavoritos();
     }
-
+    //ERROR AL CARGAR LA IMAGEN
     // Método para cargar los libros en la cesta del lector (favoritos)
     private void cargarFavoritos() {
         // Obtener los libros de la cesta del lector
-        List<Cesta> cesta = cestaDAO.obtenerCesta(idLector);
+       try {
+    	   List<Favorito> Listafavorito = favoritoDAO.obtenerFavoritos(SesionUsuario.getInstancia().getIdLector());
 
-        // Limpiar el VBox antes de agregar nuevos elementos
-        favoritosVBox.getChildren().clear();
+           for(Favorito itemFavorito : Listafavorito) {
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("cardsfavorito.fxml"));
+               HBox carta = loader.load();
 
-        // Recorrer los libros de la cesta y agregarlos al VBox
-        for (Cesta item : cesta) {
-            // Obtener el idLibro para obtener el título y la imagen del libro
-            int idLibro = item.getIdLibro();
-            String titulo = obtenerTituloPorId(idLibro);
-            String imagenUrl = obtenerImagenUrlPorId(idLibro);
+               // Obtener el controlador de la carta y pasar los datos
+               CardsFavorito controladorFavorito = loader.getController();
+               controladorFavorito.setDatos(itemFavorito);
 
-            // Crear un HBox para cada libro en la cesta
-            HBox libroHBox = new HBox(10);  // Espacio entre la imagen y el título
-            libroHBox.setStyle("-fx-padding: 10;");
-
-            // Crear la imagen del libro
-            ImageView imageView = new ImageView();
-            imageView.setFitHeight(141);
-            imageView.setFitWidth(121);
-
-            try {
-                // Intentar cargar la imagen
-                imageView.setImage(new Image(imagenUrl));
-            } catch (Exception e) {
-                // Si ocurre un error, se carga una imagen por defecto
-                imageView.setImage(new Image("@../../libros/islan.png"));
-            }
-
-            // Crear el título del libro
-            Label tituloLabel = new Label(titulo);
-            tituloLabel.setStyle("-fx-font-size: 16px;");
-
-            // Añadir la imagen y el título al HBox
-            libroHBox.getChildren().addAll(imageView, tituloLabel);
-
-            // Agregar el HBox al VBox
-            favoritosVBox.getChildren().add(libroHBox);
-        }
+               // Agregar la carta al contenedor
+               TilePaneFavorito.getChildren().add(carta);
+           }
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
     }
+    
+    @FXML
+   	private void switchtoLogin() throws IOException{
+   		App.setRoot("iniciarsesion");
+   	}
+   	
+   	@FXML
+   	private void switchToCesta() throws IOException {
+   	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+   	}
+   	
+   	@FXML
+   	private void switchToFavorito() throws IOException {
+   	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
+   	}
+   	
+   	@FXML
+       private void switchToPagina() throws IOException {
+           App.setRoot("paginaPrincipal");
+       }
 
     // Método para obtener el título del libro por su id
     private String obtenerTituloPorId(int idLibro) {

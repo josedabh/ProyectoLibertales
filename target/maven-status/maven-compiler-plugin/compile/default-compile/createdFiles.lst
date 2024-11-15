@@ -4,6 +4,7 @@ Conexion\ConexionBD.class
 dao\TransaccionesDAO.class
 dto\Transacciones$tipo_transaccion.class
 Alertas\Alerta.class
+dto\SesionUsuario.class
 dao\CestaDAO.class
 libreria\LiberTales\App.class
 dao\LibroDAO.class
@@ -22,9 +23,11 @@ dto\Libro.class
 dto\Administrador.class
 dto\Favorito.class
 libreria\LiberTales\AdminTransaccionesController.class
+libreria\LiberTales\CardsCesta.class
 dao\UsuarioDAO.class
 libreria\LiberTales\CambiarContraseñaController.class
 dto\Transacciones.class
+libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class
 libreria\LiberTales\RegistrarseControlador.class
 libreria\LiberTales\CardsLibros.class
