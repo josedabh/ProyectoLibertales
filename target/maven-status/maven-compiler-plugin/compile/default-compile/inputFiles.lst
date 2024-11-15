@@ -13,6 +13,7 @@ C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\ma
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\FavoritoControlador.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\CestaDAO.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\CestaControlador.java
+C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\ModificarUsuarioControlador.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Administrador.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\AdminTransaccionesController.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\Conexion\ConexionBD.java
@@ -21,6 +22,7 @@ C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\ma
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\DetallesLibrosControlador.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\LectorDAO.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dao\FavoritoDAO.java
+C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\CambiarContraseñaController.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\dto\Cesta.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\RegistrarseControlador.java
 C:\Users\pfran\Downloads\ProyectoLibertales-main2\ProyectoLibertales-main\src\main\java\libreria\LiberTales\AdministracionControlador.java
