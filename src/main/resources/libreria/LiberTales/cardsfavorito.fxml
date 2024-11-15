@@ -12,7 +12,7 @@
       <Label fx:id="tituloLabel" style="-fx-font-size: 16px;" text="Título del Libro 1" />
       <HBox alignment="CENTER_RIGHT" layoutX="500.0" spacing="10">
          <children>
-            <Button style="-fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Añadir cesta" />
+            <Button onAction="#switchToAnadiraCesta" style="-fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Añadir cesta" />
             <Button style="-fx-background-color: #FF6347; -fx-text-fill: #FFFFFF; -fx-font-size: 14px;" text="Eliminar" />
          </children>
       </HBox>
