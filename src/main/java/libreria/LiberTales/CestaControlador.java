@@ -49,16 +49,21 @@ public class CestaControlador {
         }
         cargarCesta();
     }
+    // Metodo para cargar cesta
     private void cargarCesta() {
 		try {
+			//Lista que recoge los libros de cesta y con SesionUsuario.getInstancia().getIdLector() recoge el idLector
 			List<Cesta> librosEnCesta = cestaDAO.obtenerCesta(SesionUsuario.getInstancia().getIdLector());
             
             for(Cesta itemCesta : librosEnCesta) {
+            	//Se lo mandas las lista a cardscesta
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cardscesta.fxml"));
+                //Cargas el Hbox o vbox que hayas colocado en cardscesta
                 HBox carta = loader.load();
 
                 // Obtener el controlador de la carta y pasar los datos
                 CardsCesta controladorCesta = loader.getController();
+                //Le pasas la informacion de la cesta en setDatos que lo coje de CardsCesta
                 controladorCesta.setDatos(itemCesta);
 
                 // Agregar la carta al contenedor

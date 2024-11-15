@@ -28,6 +28,7 @@ libreria\LiberTales\CardsCesta.class
 libreria\LiberTales\OlvidarControlador.class
 dao\UsuarioDAO.class
 dto\Transacciones.class
+libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class
 libreria\LiberTales\RegistrarseControlador.class
 dao\DetallesLibroDAO.class
