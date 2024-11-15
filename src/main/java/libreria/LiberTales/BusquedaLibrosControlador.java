@@ -114,4 +114,9 @@ public class BusquedaLibrosControlador {
 	    App.setRoot("favorito"); 
 	}
 	
+	@FXML
+    private void switchToPagina() throws IOException {
+        App.setRoot("paginaPrincipal");
+    }
+	
 }

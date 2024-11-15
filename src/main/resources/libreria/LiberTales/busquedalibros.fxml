@@ -52,7 +52,7 @@
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
-							<Image url="@../../iconos/notificaciones.png" />
+							<Image url="@../../iconos/favorito.png" />
 						</image>
 					</ImageView>
 				</graphic>
@@ -61,12 +61,15 @@
 
 		<!-- Separador superior -->
 		<Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+		
+		<!-- Botón de Volver Atrás -->
+        <Button fx:id="backButton" layoutX="16.0" layoutY="120.0" onAction="#switchToPagina" style="-fx-font-size: 15px; -fx-background-color: #FFFFFF; -fx-background-radius: 80px;" text="← Volver Atrás" />
 
 		<!-- Footer con texto y versión -->
 		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-			<ScrollPane fx:id="scrollBusqueda" fitToWidth="true" hbarPolicy="NEVER" layoutX="2.0" layoutY="123.0" maxHeight="500.0" prefHeight="377.0" prefWidth="841.0" vbarPolicy="AS_NEEDED">
+			<ScrollPane fx:id="scrollBusqueda" fitToWidth="true" hbarPolicy="NEVER" layoutX="3.0" layoutY="155.0" maxHeight="500.0" prefHeight="346.0" prefWidth="841.0" vbarPolicy="AS_NEEDED">
          <content>
-            <TilePane fx:id="tilePaneBusqueda" hgap="10.0" prefColumns="6" prefHeight="374.0" prefRows="8" prefWidth="840.0" vgap="10.0">
+            <TilePane fx:id="tilePaneBusqueda" hgap="10.0" prefColumns="6" prefHeight="343.0" prefRows="8" prefWidth="776.0" vgap="10.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
