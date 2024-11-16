@@ -11,53 +11,57 @@
 
 <AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.AdministracionControlador">
     <children>
+      <!-- Logo -->
+		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+			<image>
+				<Image url="@../../images/logo.png" />
+			</image>
+		</ImageView>
+
+		<!-- Barra de búsqueda -->
+		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
+			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
+			<Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+		</HBox>
+
+		<!-- Iconos de usuario, carrito y mensaje -->
+		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
+			<!-- Button de usuario con ContextMenu -->
+			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+				<graphic>
+					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@../../iconos/avatar.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+				<graphic>
+					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@../../iconos/cesta.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+				<graphic>
+					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@../../iconos/favorito.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+		</HBox>
 
         <!-- Separador superior -->
         <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+      <Button fx:id="botonLibros" layoutX="104.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchtoAdminLibros" prefHeight="200.0" prefWidth="300.0" text="Libros" />
+      <Button fx:id="botonTransacciones" layoutX="466.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchtoAdminTransacciones" prefHeight="200.0" prefWidth="300.0" text="Transacciones" />
 
         <!-- Footer con texto y versión -->
         <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-      <Button fx:id="botonUsuarios" layoutX="378.0" layoutY="189.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Usuarios" />
-      <Button fx:id="botonLibros" layoutX="378.0" layoutY="243.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Libros" />
-      <Button fx:id="botonTransacciones" layoutX="378.0" layoutY="296.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Transacciones" />
-      <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="24.0" layoutY="12.0">
-         <image>
-            <Image url="@../../images/logo.png" />
-         </image>
-      </ImageView>
-      <HBox layoutX="174.0" layoutY="23.0" spacing="10" />
-      <HBox layoutX="616.0" layoutY="39.0" spacing="20">
-         <children>
-            <Button fx:id="userButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../iconos/avatar.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="cartButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../iconos/cesta.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="messageButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../iconos/favorito.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </HBox>
-      <TextField fx:id="searchField" layoutX="144.0" layoutY="50.0" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
-      <Button fx:id="addButton" layoutX="555.0" layoutY="49.0" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
     </children>
 </AnchorPane>

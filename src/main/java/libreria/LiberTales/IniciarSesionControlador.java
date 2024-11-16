@@ -74,23 +74,34 @@ public class IniciarSesionControlador{
         	 
          } else if(usuario.getTipo().equals("administrador")){
         	 try {
-        		 App.setRoot("administracion");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+ 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
+ 		        Parent root = loader.load();
+ 		        Stage stage = (Stage) messageButton.getScene().getWindow();
+ 		        stage.setScene(new Scene(root));
+ 		        stage.show();
+ 		    } catch (IOException e) {
+ 		        e.printStackTrace();
+ 		    }
          } else if(usuario.getTipo().equals("lector")){
-        	 try {
+        	 
         	    // Guarda el idLector en la sesión
         	    SesionUsuario.getInstancia().setIdLector(ldao.buscarLectorPorId(usuario.getIdUsuario()));
         	    System.out.println(SesionUsuario.getInstancia().getIdLector());
         	    // Cambia a la página principal
-        	    App.setRoot("paginaprincipal"); 
-        	 }catch (IOException e) {
-				e.printStackTrace();
+        	    try {
+    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+    		        Parent root = loader.load();
+    		        Stage stage = (Stage) messageButton.getScene().getWindow();
+    		        stage.setScene(new Scene(root));
+    		        stage.show();
+    		    } catch (IOException e) {
+    		        e.printStackTrace();
+    		    }
+        	
 			}
          }
 
-	}
+	
     
     @FXML
     private void switchToPagina() throws IOException {

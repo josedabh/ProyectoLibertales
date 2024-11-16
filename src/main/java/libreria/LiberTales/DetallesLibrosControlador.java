@@ -131,10 +131,7 @@ public class DetallesLibrosControlador {
     private void switchToAlaCesta() throws IOException {
         // Agregar el libro a la cesta
         Libro libro = getLibro();  // Obtener el libro que se está viendo
-        detallesLibroDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());//Quitar el id de libro
-        
-        // Cambiar la vista a la cesta
-        App.setRoot("cesta");
+        detallesLibroDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
     }
     
     // Método que se ejecuta al hacer clic en el botón de favoritos
@@ -143,9 +140,6 @@ public class DetallesLibrosControlador {
         // Agregar el libro a los favoritos
         Libro libro = getLibro();  // Obtener el libro que se está viendo
         detallesLibroDAO.agregarAFavoritos(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
-        
-        // Cambiar la vista a los favoritos
-        App.setRoot("favorito");
     }
 
 	public Libro getLibro() {

@@ -17,26 +17,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AdminLibrosController {
-
+public class ModificarUsuarioControlador {
+	
 	@FXML
-	private TextField campoidLibro;
+	private TextField campoNombre;
 	@FXML
-	private TextField campoTitulo;
+	private TextField campoDireccion;
 	@FXML
-	private TextField campoAutor;
-	@FXML
-	private TextField campoEditorial;
-	@FXML
-	private TextField campoAnio_publicacion;
-	@FXML
-	private TextField campoPrecioCompra;
-	@FXML
-	private TextField campoPrecioAlquiler;
-	@FXML
-	private TextField campoSinopsis;
-	@FXML
-	private TextField campoRutaImagen;
+	private TextField campoTelefono;
+	
+	private int idLector;
 	@FXML
     private Button userButton;
     @FXML
@@ -47,52 +37,64 @@ public class AdminLibrosController {
     private Button backButton;
 
 	@FXML
-	private void addBookToDatabase() {
-		// Obtener valores del formulario
-		String titulo = campoTitulo.getText();
-		String autor = campoAutor.getText();
-		String editorial = campoEditorial.getText();
-		int anioPublicacion = Integer.parseInt(campoAnio_publicacion.getText());
-		double precioCompra = Double.parseDouble(campoPrecioCompra.getText());
-		double precioAlquiler = Double.parseDouble(campoPrecioAlquiler.getText());
-		String sinopsis = campoSinopsis.getText();
+	private void ingresarDatosbbdd() {
+		this.idLector = idLector;
 
-		String titulosql = "SELECT COUNT(*) FROM Libro WHERE titulo = ?";
-		String sql = "INSERT INTO Libro (titulo, autor, editorial, anio_publicacion, precioCompra, precioAlquiler, sinopsis) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "SELECT nombre, direccion, telefono FROM Lector WHERE id_lector = ?";
+
 		try (Connection conn = ConexionBD.dameConexion();
-				PreparedStatement Stmt1 = conn.prepareStatement(titulosql);
-				PreparedStatement Stmt2 = conn.prepareStatement(sql)) {
-			// Verificar si el titulo del libro ya existe en la base de datos
-			Stmt1.setString(1, titulo);
-			ResultSet resultSet = Stmt1.executeQuery();
-			resultSet.next();
-			int count = resultSet.getInt(1);
+			PreparedStatement stmt = conn.prepareStatement(sql)){
 
-			if (count > 0) {
-				// Si el ID ya existe, mostrar un mensaje de error
-				System.out.println("Ese libro ya existe");
-				return;
+			stmt.setInt(1, idLector);
+			ResultSet resultado = stmt.executeQuery();
+
+			if (resultado.next()) {
+				campoNombre.setText(resultado.getString("nombre"));
+				campoDireccion.setText(resultado.getString("direccion"));
+				campoTelefono.setText(resultado.getString("telefono"));
 			}
-
-			// Si el titulo no existe, hacer inserción
-			Stmt2.setString(1, titulo);
-			Stmt2.setString(2, autor);
-			Stmt2.setString(3, editorial);
-			Stmt2.setInt(4, anioPublicacion);
-			Stmt2.setDouble(5, precioCompra);
-			Stmt2.setDouble(6, precioAlquiler);
-			Stmt2.setString(7, sinopsis);
-
-			int rowsInserted = Stmt2.executeUpdate();
-			if (rowsInserted > 0) {
-				System.out.println("Libro añadido correctamente");
-			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	@FXML
+	private void guardarCambios() {
+		String nombre = campoNombre.getText();
+		String direccion = campoDireccion.getText();
+		String telefono = campoTelefono.getText();
+
+		String sql = "UPDATE Lector SET nombre = ?, direccion = ?, telefono = ? WHERE id_lector = ?";
+
+		try (Connection conn = ConexionBD.dameConexion();
+			PreparedStatement stmt = conn.prepareStatement(sql)) {
+	            
+	            stmt.setString(1, nombre);
+	            stmt.setString(2, direccion);
+	            stmt.setString(3, telefono);
+	            stmt.setInt(4, idLector);
+	            
+	            int filasActualizadas = stmt.executeUpdate();
+	            
+	            if (filasActualizadas > 0) {
+	                System.out.println("Datos del lector actualizados correctamente.");
+	            } else {
+	                System.out.println("No se encontró el lector con el ID especificado.");
+	            }
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void switchtoModificarUsuario() throws IOException {
+		App.setRoot("modificarusuario");
+	}
+	
+	private void switchtoIniciarSesion() throws IOException{
+		App.setRoot("iniciarsesion");
+	}
 	@FXML
 	private void switchtoLogin() throws IOException {
     	if(SesionUsuario.getInstancia().getIdLector()==null) {
@@ -153,11 +155,11 @@ public class AdminLibrosController {
 		}
 		
 	}
-
+   	
 	@FXML
-	private void switchtoAdministracion() throws IOException {
+    private void switchToPagina() throws IOException {
 		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
 	        Parent root = loader.load();
 	        Stage stage = (Stage) backButton.getScene().getWindow();
 	        stage.setScene(new Scene(root));
@@ -165,5 +167,5 @@ public class AdminLibrosController {
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	}
+    }
 }

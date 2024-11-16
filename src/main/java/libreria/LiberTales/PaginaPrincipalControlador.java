@@ -39,7 +39,11 @@ public class PaginaPrincipalControlador {
     private Button searchButton; 
     
     @FXML
+    private Button userButton;
+    @FXML
     private Button cartButton;
+    @FXML
+    private Button messageButton;
     
 	@FXML
 	private VBox contenedorCartas;
@@ -60,10 +64,26 @@ public class PaginaPrincipalControlador {
 	
 	@FXML
 	private void switchtoLogin() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()==null) {
-			App.setRoot("iniciarsesion");
+    	if(SesionUsuario.getInstancia().getIdLector()==null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 		} else {
-			App.setRoot("modificarUsuario");
+			try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 		}
 	}
 	
@@ -91,7 +111,20 @@ public class PaginaPrincipalControlador {
 	
 	@FXML
 	private void switchToFavorito() throws IOException {
-	    App.setRoot("favorito");
+		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+			try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) messageButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		} else {
+			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
+		}
+		
 	}
 	
 	@FXML

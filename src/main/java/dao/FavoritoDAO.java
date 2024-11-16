@@ -108,4 +108,34 @@ public class FavoritoDAO {
         }
         return enFavoritos;
     }
+    
+    // Método para eliminar un libro de la cesta
+    public void eliminarDeFavorito(int idLector, int idLibro) {
+        Connection conexion = null;
+        PreparedStatement pst = null;
+        try {
+            // Establecer la conexión a la base de datos
+            conexion = ConexionBD.dameConexion();
+
+            // SQL para eliminar un libro de la cesta del usuario
+            String sql = "DELETE FROM favoritos WHERE id_lector = ? AND id_libro = ?";
+            pst = conexion.prepareStatement(sql);
+
+            // Establecer los parámetros de la consulta
+            pst.setInt(1, idLector);
+            pst.setInt(2, idLibro);
+
+            // Ejecutar la consulta
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar el libro de favorito: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }
 }
