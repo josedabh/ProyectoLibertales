@@ -3,6 +3,7 @@ package libreria.LiberTales;
 import java.io.IOException;
 import java.util.List;
 
+import Alertas.Alerta;
 import Conexion.ConexionBD;
 import dao.LectorDAO;
 import dao.LibroDAO;
@@ -68,17 +69,24 @@ public class PaginaPrincipalControlador {
 	
 	@FXML
 	private void switchToCesta() throws IOException {
-	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
-	    Parent root = loader.load();
+		
+		if(SesionUsuario.getInstancia().getIdLector()==null) {
+			
+			Alerta.mostrarError("Error al cargar cesta", "Primero, hay que iniciar sesion");
+		} else {
+			// Crear una instancia de FXMLLoader y cargar el archivo FXML
+		    FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
+		    Parent root = loader.load();
+		    
+		    // Obtener el controlador de la vista cargada
+		    CestaControlador controller = loader.getController();
+		    
+		    // Mostrar la nueva escena
+		    Stage stage = (Stage) cartButton.getScene().getWindow();
+		    stage.setScene(new Scene(root));
+		    stage.show();
+		}
 	    
-	    // Obtener el controlador de la vista cargada
-	    CestaControlador controller = loader.getController();
-	    
-	    // Mostrar la nueva escena
-	    Stage stage = (Stage) cartButton.getScene().getWindow();
-	    stage.setScene(new Scene(root));
-	    stage.show();
 	}
 	
 	@FXML

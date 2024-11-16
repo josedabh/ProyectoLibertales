@@ -44,7 +44,6 @@ public class CestaControlador {
             
             // Aquí puedes usar idLector para cargar datos específicos
         } else {
-        	Alerta.mostrarError("Error al cargar la cesta", "Se requiere iniciar sesión primero");
             System.out.println("No hay ID de lector en la sesión.");
         }
         cargarCesta();

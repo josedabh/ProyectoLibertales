@@ -8,12 +8,16 @@ import dto.Favorito;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +29,14 @@ public class FavoritoControlador {
 	private TilePane  TilePaneFavorito;
 	@FXML
 	private HBox contenedorFavorito;
+	@FXML
+    private Button userButton;
+    @FXML
+    private Button cartButton;
+    @FXML
+    private Button messageButton;
+    @FXML
+    private Button backButton;
     @FXML
     private VBox favoritosVBox;  // VBox en FXML donde se mostrarán los favoritos
     @FXML
@@ -32,8 +44,6 @@ public class FavoritoControlador {
 
     private FavoritoDAO favoritoDAO;
     private LibroDAO libroDAO;  // Asegúrate de tener este DAO para consultar los detalles de los libros
-    private int idLector;  // ID del lector, puede ser obtenido de sesión o login
-
     public FavoritoControlador() {
         // Inicialización de los DAOs
         favoritoDAO = new FavoritoDAO();
@@ -78,35 +88,77 @@ public class FavoritoControlador {
     }
     
     @FXML
-   	private void switchtoLogin() throws IOException{
-   		App.setRoot("iniciarsesion");
-   	}
+	private void switchtoLogin() throws IOException {
+    	if(SesionUsuario.getInstancia().getIdLector()==null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		} else {
+			try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		}
+	}
+	
+    @FXML
+	private void switchToCesta() throws IOException {
+		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+			try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) cartButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		} else {
+			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
+		}
+		
+	}
+	
+	@FXML
+	private void switchToFavorito() throws IOException {
+		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+			try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) messageButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		} else {
+			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
+		}
+		
+	}
    	
-   	@FXML
-   	private void switchToCesta() throws IOException {
-   	    App.setRoot("cesta"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
-   	}
-   	
-   	@FXML
-   	private void switchToFavorito() throws IOException {
-   	    App.setRoot("favorito"); // Cambia "cesta" por el nombre del archivo FXML de la cesta si es diferente
-   	}
-   	
-   	@FXML
-       private void switchToPagina() throws IOException {
-           App.setRoot("paginaPrincipal");
-       }
-
-    // Método para obtener el título del libro por su id
-    private String obtenerTituloPorId(int idLibro) {
-        // Consultar la base de datos para obtener el título del libro
-        return libroDAO.obtenerTituloPorId(idLibro);  // Reemplaza con tu lógica para consultar la base de datos
-    }
-
-    // Método para obtener la URL de la imagen del libro por su id
-    private String obtenerImagenUrlPorId(int idLibro) {
-        // Consultar la base de datos para obtener la URL de la imagen del libro
-        return libroDAO.obtenerImagenUrlPorId(idLibro);  // Reemplaza con tu lógica para consultar la base de datos
+	@FXML
+    private void switchToPagina() throws IOException {
+		try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	        Parent root = loader.load();
+	        Stage stage = (Stage) backButton.getScene().getWindow();
+	        stage.setScene(new Scene(root));
+	        stage.show();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
     }
 }
 
