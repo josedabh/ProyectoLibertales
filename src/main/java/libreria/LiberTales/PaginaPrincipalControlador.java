@@ -3,12 +3,14 @@ package libreria.LiberTales;
 import java.io.IOException;
 import java.util.List;
 
+import Alertas.Alerta;
 import Conexion.ConexionBD;
 import dao.LectorDAO;
 import dao.LibroDAO;
 import dto.Busqueda;
 import dto.Lector;
 import dto.Libro;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,23 +48,28 @@ public class PaginaPrincipalControlador {
 	public Lector lector;
 	
 	
-	public void initialize() {
+	@FXML
+    public void initialize() {
         Integer idLector = SesionUsuario.getInstancia().getIdLector();
-        System.out.println("Funciona" + idLector);
+        Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
         if (idLector != null) {
             System.out.println("ID del lector en la sesión: " + idLector);
-        } else {
+            
+            // Aquí puedes usar idLector para cargar datos específicos
+        } else if(idAdmin!=null) {
+        	System.out.println("ID del admin en la sesión: " + idAdmin);
+        }else {
             System.out.println("No hay ID de lector en la sesión.");
         }
         cargarCartas();
-	}
+    }
 	
 	@FXML
 	private void switchtoLogin() throws IOException {
 		if(SesionUsuario.getInstancia().getIdLector()==null) {
 			App.setRoot("iniciarsesion");
 		} else {
-			App.setRoot("modificarUsuario");
+			App.setRoot("modificarusuario");
 		}
 	}
 	

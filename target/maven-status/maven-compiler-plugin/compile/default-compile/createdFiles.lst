@@ -10,9 +10,11 @@ dao\CestaDAO.class
 libreria\LiberTales\App.class
 dao\LibroDAO.class
 libreria\LiberTales\BusquedaLibrosControlador.class
+libreria\LiberTales\CambiarContrasenaController.class
 Conexion\CerrarConexion.class
 libreria\LiberTales\PaginaPrincipalControlador.class
 dao\FavoritoDAO.class
+dto\SesionAdmin.class
 libreria\LiberTales\IniciarSesionControlador.class
 libreria\LiberTales\ModificarUsuarioControlador.class
 libreria\LiberTales\AdminLibrosController.class
@@ -24,11 +26,9 @@ dao\AdministradorDAO.class
 dto\Libro.class
 dto\Administrador.class
 dto\Favorito.class
-libreria\LiberTales\AdminTransaccionesController.class
 libreria\LiberTales\CardsCesta.class
 libreria\LiberTales\OlvidarControlador.class
 dao\UsuarioDAO.class
-libreria\LiberTales\CambiarContraseñaController.class
 dto\Transacciones.class
 libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class

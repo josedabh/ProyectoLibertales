@@ -8,6 +8,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import dao.CestaDAO;
 import dto.Cesta;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 
 import java.io.IOException;
@@ -39,11 +40,14 @@ public class CestaControlador {
     @FXML
     public void initialize() {
         Integer idLector = SesionUsuario.getInstancia().getIdLector();
+        Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
         if (idLector != null) {
             System.out.println("ID del lector en la sesión: " + idLector);
             
             // Aquí puedes usar idLector para cargar datos específicos
-        } else {
+        } else if(idAdmin!=null) {
+        	System.out.println("ID del admin en la sesión: " + idAdmin);
+        }else {
         	Alerta.mostrarError("Error al cargar la cesta", "Se requiere iniciar sesión primero");
             System.out.println("No hay ID de lector en la sesión.");
         }

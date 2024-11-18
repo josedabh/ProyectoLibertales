@@ -5,6 +5,7 @@ import dao.CestaDAO;
 import dao.FavoritoDAO;
 import dto.Cesta;
 import dto.Favorito;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,10 +45,12 @@ public class FavoritoControlador {
     public void initialize() {
         //Verificar si el usuario esta registrado
     	Integer idLector = SesionUsuario.getInstancia().getIdLector();
+    	Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
         if (idLector != null) {
-            System.out.println("ID del lector en la sesión: " + idLector);
-            
-        } else {
+            System.out.println("ID del lector en la sesión: " + idLector);  
+        }else if(idAdmin != null) {
+        	System.out.println("ID del admin en la sesión: " + idAdmin); 
+        }else {
         	Alerta.mostrarError("Error al cargar la cesta", "Se requiere iniciar sesión primero");
             System.out.println("No hay ID de lector en la sesión.");
         } 

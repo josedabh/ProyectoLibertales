@@ -22,7 +22,7 @@ public class SesionUsuario {
         this.idLector = idLector;
     }
 
-    // Método para cerrar la sesión
+	// Método para cerrar la sesión
     public void cerrarSesion() {
         idLector = null;
     }

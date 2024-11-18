@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import dao.DetallesLibroDAO;
 import dto.Libro;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -58,10 +59,13 @@ public class DetallesLibrosControlador {
     
     public void initialize() {
         Integer idLector = SesionUsuario.getInstancia().getIdLector();
+        Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
         System.out.println("Funciona" + idLector);
         if (idLector != null) {
             System.out.println("ID del lector en la sesión: " + idLector);
-        } else {
+        } else if(idAdmin!=null) {
+        	System.out.println("ID del admin en la sesión: " + idAdmin); 
+        }else {
             System.out.println("No hay ID de lector en la sesión.");
         }
 	}

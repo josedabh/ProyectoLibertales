@@ -6,19 +6,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Conexion.ConexionBD;
+import dto.SesionUsuario;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class ModificarUsuarioControlador {
 
-	TextField campoNombre;
-	TextField campoDireccion;
-	TextField campoTelefono;
-	private int idLector;
+	@FXML private TextField campoNombre;
+	@FXML private TextField campoDireccion;
+	@FXML private TextField campoTelefono;
+	@FXML private Button cartButton;
+	private int idLector = SesionUsuario.getInstancia().getIdLector();
 
-	@FXML
-	private void ingresarDatosbbdd() {
-		this.idLector = idLector;
+	public void initialize() {
+		if (idLector == 0) {
+            System.out.println("El ID del lector no ha sido inicializado.");
+            return;
+        }
 
 		String sql = "SELECT nombre, direccion, telefono FROM Lector WHERE id_lector = ?";
 
@@ -43,6 +53,11 @@ public class ModificarUsuarioControlador {
 		String nombre = campoNombre.getText();
 		String direccion = campoDireccion.getText();
 		String telefono = campoTelefono.getText();
+		
+		if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+		    System.out.println("Todos los campos deben estar llenos");
+		    return;
+		}
 
 		String sql = "UPDATE Lector SET nombre = ?, direccion = ?, telefono = ? WHERE id_lector = ?";
 
@@ -68,11 +83,71 @@ public class ModificarUsuarioControlador {
 		}
 	}
 
+	@FXML
 	private void switchtoModificarUsuario() throws IOException {
 		App.setRoot("modificarusuario");
 	}
 	
+	@FXML
 	private void switchtoIniciarSesion() throws IOException{
 		App.setRoot("iniciarsesion");
 	}
+	
+	//copy
+	@FXML
+	private void switchtoLogin() throws IOException {
+		if(SesionUsuario.getInstancia().getIdLector()==null) {
+			App.setRoot("iniciarsesion");
+		} else {
+			App.setRoot("modificarusuario");
+		}
+	}
+	
+	@FXML
+	private void switchToCesta() throws IOException {
+	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
+	    Parent root = loader.load();
+	    
+	    // Obtener el controlador de la vista cargada
+	    CestaControlador controller = loader.getController();
+	    
+	    // Mostrar la nueva escena
+	    Stage stage = (Stage) cartButton.getScene().getWindow();
+	    stage.setScene(new Scene(root));
+	    stage.show();
+	}
+	
+	@FXML
+	private void switchToFavorito() throws IOException {
+	    App.setRoot("favorito");
+	}
+	
+	@FXML
+	private void switchToCambiarContrasena() throws IOException {
+	    // Cargo la vista
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("cambiarcontrasena.fxml"));
+	
+		 // Cargo la ventana
+		Parent root = loader.load();
+	
+		CambiarContrasenaController controlador = loader.getController();
+	
+		controlador.setCambiarContrasena(controlador);
+	
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setScene(scene);
+		stage.showAndWait();
+	}
+	
+	@FXML
+    private void cerrarSesion() throws IOException {
+        // Limpiar el idLector de la sesión
+        SesionUsuario.getInstancia().cerrarSesion();
+
+        // Redirigir al usuario a la pantalla de inicio de sesión
+        App.setRoot("paginaprincipal");
+    }
 }
