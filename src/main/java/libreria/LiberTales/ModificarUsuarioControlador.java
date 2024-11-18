@@ -21,13 +21,21 @@ import javafx.stage.Stage;
 
 public class ModificarUsuarioControlador {
 
-	@FXML private TextField campoNombre;
-	@FXML private TextField campoDireccion;
-	@FXML private TextField campoTelefono;
-	@FXML private Button cartButton;
-	@FXML private Button botonGuardarCambios;
-	@FXML private Button botonCerrarSesion;
-	@FXML private Button userButton;
+	@FXML 
+	private TextField campoNombre;
+	@FXML 
+	private TextField campoDireccion;
+	@FXML 
+	private TextField campoTelefono;
+	@FXML 
+	private Button cartButton;
+	@FXML 
+	private Button botonGuardarCambios;
+	@FXML 
+	private Button botonCerrarSesion;
+	@FXML 
+	private Button userButton;
+	
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
 	boolean anadido = false;
 
@@ -107,40 +115,41 @@ public class ModificarUsuarioControlador {
 	
 	}
 
-	@FXML
-	private void switchtoLogin() throws IOException {
-    	if(SesionUsuario.getInstancia().getIdLector()==null) {
-    		try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
-    		try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		} else {
-			try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
+	 @FXML
+		private void switchtoLogin() throws IOException {
+	    	if(SesionUsuario.getInstancia().getIdLector()==null &&
+	    			SesionAdmin.getInstancia().getIdAdmin()==null) {
+	    		try {
+			        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+			        Parent root = loader.load();
+			        Stage stage = (Stage) userButton.getScene().getWindow();
+			        stage.setScene(new Scene(root));
+			        stage.show();
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			    }
+	    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+	    		try {
+			        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
+			        Parent root = loader.load();
+			        Stage stage = (Stage) userButton.getScene().getWindow();
+			        stage.setScene(new Scene(root));
+			        stage.show();
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			    }
+			} else {
+				try {
+			        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+			        Parent root = loader.load();
+			        Stage stage = (Stage) userButton.getScene().getWindow();
+			        stage.setScene(new Scene(root));
+			        stage.show();
+			    } catch (IOException e) {
+			        e.printStackTrace();
+			    }
+			}
 		}
-	}
 	
 	@FXML
 	private void switchToCesta() throws IOException {

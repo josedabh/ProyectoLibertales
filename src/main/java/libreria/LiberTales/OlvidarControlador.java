@@ -3,6 +3,7 @@ package libreria.LiberTales;
 import java.io.IOException;
 
 import Alertas.Alerta;
+import dao.OlvidarDAO;
 import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class OlvidarControlador {
@@ -24,39 +27,53 @@ public class OlvidarControlador {
     private Button backButton;
 	
     @FXML
-	private void switchtoLogin() throws IOException {
-    	if(SesionUsuario.getInstancia().getIdLector()==null) {
-    		try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
-    		try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		} else {
-			try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		}
-	}
+    private TextField correo;
+    
+    @FXML
+    private TextField nombre;
+    
+    @FXML
+    private Button sendButton;
+    
+    @FXML
+    private Label messageLabel;
+    
+    
+    @FXML
+   	private void switchtoLogin() throws IOException {
+       	if(SesionUsuario.getInstancia().getIdLector()==null &&
+       			SesionAdmin.getInstancia().getIdAdmin()==null) {
+       		try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       		try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		} else {
+   			try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		}
+   	}
 	
     @FXML
 	private void switchToCesta() throws IOException {
@@ -107,4 +124,22 @@ public class OlvidarControlador {
 	    }
     }
 	
+	@FXML
+	public void restablecerContrasenia() {
+		String email = correo.getText().trim();
+		String usuario = nombre.getText().trim();
+		
+		if(email.isEmpty()||usuario.isEmpty()) {
+			 messageLabel.setText("Por favor, rellene todos los campos");
+	         return;
+		}
+		
+		try {
+			OlvidarDAO dao = new OlvidarDAO();
+			dao.recuperarContrasenia(email, usuario);
+			Alerta.mostrarInformacion("Tu nueva contraseña es: ", "123");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
 }

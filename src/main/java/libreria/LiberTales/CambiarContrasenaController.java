@@ -15,9 +15,12 @@ import javafx.stage.Stage;
 
 public class CambiarContrasenaController {
 	
-	@FXML private TextField campoContrasenaActual;
-	@FXML private TextField campoNuevaContrasena;
-	@FXML private TextField campoVerificarContrasena;
+	@FXML 
+	private TextField campoContrasenaActual;
+	@FXML 
+	private TextField campoNuevaContrasena;
+	@FXML 
+	private TextField campoVerificarContrasena;
 	@FXML
 	private Button botonGuardarContrasena;
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
