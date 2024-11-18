@@ -15,30 +15,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ModificarUsuarioControlador {
-	
-	@FXML
-	private TextField campoNombre;
-	@FXML
-	private TextField campoDireccion;
-	@FXML
-	private TextField campoTelefono;
-	
-	private int idLector;
-	@FXML
-    private Button userButton;
-    @FXML
-    private Button cartButton;
-    @FXML
-    private Button messageButton;
-    @FXML
-    private Button backButton;
 
-	@FXML
-	private void ingresarDatosbbdd() {
-		this.idLector = idLector;
+	@FXML private TextField campoNombre;
+	@FXML private TextField campoDireccion;
+	@FXML private TextField campoTelefono;
+	@FXML private Button cartButton;
+	@FXML private Button botonGuardarCambios;
+	@FXML private Button botonCerrarSesion;
+	private int idLector = SesionUsuario.getInstancia().getIdLector();
+	boolean anadido = false;
+
+	public void initialize() {
+		if (idLector == 0) {
+            System.out.println("El ID del lector no ha sido inicializado.");
+            return;
+        }
 
 		String sql = "SELECT nombre, direccion, telefono FROM Lector WHERE id_lector = ?";
 
@@ -63,6 +58,11 @@ public class ModificarUsuarioControlador {
 		String nombre = campoNombre.getText();
 		String direccion = campoDireccion.getText();
 		String telefono = campoTelefono.getText();
+		
+		if (nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+		    System.out.println("Todos los campos deben estar llenos");
+		    return;
+		}
 
 		String sql = "UPDATE Lector SET nombre = ?, direccion = ?, telefono = ? WHERE id_lector = ?";
 
@@ -78,94 +78,98 @@ public class ModificarUsuarioControlador {
 	            
 	            if (filasActualizadas > 0) {
 	                System.out.println("Datos del lector actualizados correctamente.");
+	                anadido = true;
 	            } else {
 	                System.out.println("No se encontró el lector con el ID especificado.");
 	            }
 			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	
+		if(anadido) {
+        	try {
+    	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+    	        Parent root = loader.load();
+    	        Stage stage = (Stage) botonGuardarCambios.getScene().getWindow();
+    	        stage.setScene(new Scene(root));
+    	        stage.show();
+    	    } catch (IOException e) {
+    	        e.printStackTrace();
+    	    }
+        } else {
+        	Alerta.mostrarError("Error", "Introduce los datos primero");
+        }
+		
+		
+	
 	}
 
+	@FXML
 	private void switchtoModificarUsuario() throws IOException {
 		App.setRoot("modificarusuario");
 	}
 	
+	@FXML
 	private void switchtoIniciarSesion() throws IOException{
 		App.setRoot("iniciarsesion");
 	}
+	
+	//copy
 	@FXML
 	private void switchtoLogin() throws IOException {
-    	if(SesionUsuario.getInstancia().getIdLector()==null) {
-    		try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
+		if(SesionUsuario.getInstancia().getIdLector()==null) {
+			App.setRoot("iniciarsesion");
 		} else {
-			try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) userButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
+			App.setRoot("modificarusuario");
 		}
 	}
 	
-    @FXML
+	@FXML
 	private void switchToCesta() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()!=null) {
-			try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) cartButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		} else {
-			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
-		}
-		
+	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
+	    Parent root = loader.load();
+	    
+	    // Obtener el controlador de la vista cargada
+	    CestaControlador controller = loader.getController();
+	    
+	    // Mostrar la nueva escena
+	    Stage stage = (Stage) cartButton.getScene().getWindow();
+	    stage.setScene(new Scene(root));
+	    stage.show();
 	}
 	
 	@FXML
 	private void switchToFavorito() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()!=null) {
-			try {
-		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
-		        Parent root = loader.load();
-		        Stage stage = (Stage) messageButton.getScene().getWindow();
-		        stage.setScene(new Scene(root));
-		        stage.show();
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-		} else {
-			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
-		}
-		
+	    App.setRoot("favorito");
 	}
-   	
+	
 	@FXML
-    private void switchToPagina() throws IOException {
-		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
-	        Parent root = loader.load();
-	        Stage stage = (Stage) backButton.getScene().getWindow();
-	        stage.setScene(new Scene(root));
-	        stage.show();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+	private void switchToCambiarContrasena() throws IOException {
+	    // Cargo la vista
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("cambiarcontrasena.fxml"));
+	
+		 // Cargo la ventana
+		Parent root = loader.load();
+	
+		CambiarContrasenaController controlador = loader.getController();
+	
+		controlador.setCambiarContrasena(controlador);
+	
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	@FXML
+    private void cerrarSesion() throws IOException {
+        // Limpiar el idLector de la sesión
+        SesionUsuario.getInstancia().cerrarSesion();
+
+        // Redirigir al usuario a la pantalla de inicio de sesión
+        App.setRoot("paginaprincipal");
     }
 }

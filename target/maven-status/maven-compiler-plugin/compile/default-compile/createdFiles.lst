@@ -10,6 +10,7 @@ dao\CestaDAO.class
 libreria\LiberTales\App.class
 dao\LibroDAO.class
 libreria\LiberTales\BusquedaLibrosControlador.class
+libreria\LiberTales\CambiarContrasenaController.class
 Conexion\CerrarConexion.class
 libreria\LiberTales\PaginaPrincipalControlador.class
 dao\FavoritoDAO.class
