@@ -7,6 +7,7 @@ import Alertas.Alerta;
 import dao.LibroDAO;
 import dto.Busqueda;
 import dto.Libro;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -96,6 +97,16 @@ public class BusquedaLibrosControlador {
     	if(SesionUsuario.getInstancia().getIdLector()==null) {
     		try {
 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
 		        Parent root = loader.load();
 		        Stage stage = (Stage) userButton.getScene().getWindow();
 		        stage.setScene(new Scene(root));

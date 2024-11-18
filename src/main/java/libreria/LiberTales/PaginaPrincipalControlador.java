@@ -10,6 +10,7 @@ import dao.LibroDAO;
 import dto.Busqueda;
 import dto.Lector;
 import dto.Libro;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,23 +51,37 @@ public class PaginaPrincipalControlador {
 	
 	public Lector lector;
 	
-	
+	@FXML
 	public void initialize() {
         Integer idLector = SesionUsuario.getInstancia().getIdLector();
-        System.out.println("Funciona" + idLector);
+        Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
         if (idLector != null) {
             System.out.println("ID del lector en la sesión: " + idLector);
-        } else {
+            
+            // Aquí puedes usar idLector para cargar datos específicos
+        } else if(idAdmin!=null) {
+        	System.out.println("ID del admin en la sesión: " + idAdmin);
+        }else {
             System.out.println("No hay ID de lector en la sesión.");
         }
         cargarCartas();
-	}
+    }
 	
 	@FXML
 	private void switchtoLogin() throws IOException {
     	if(SesionUsuario.getInstancia().getIdLector()==null) {
     		try {
 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
 		        Parent root = loader.load();
 		        Stage stage = (Stage) userButton.getScene().getWindow();
 		        stage.setScene(new Scene(root));

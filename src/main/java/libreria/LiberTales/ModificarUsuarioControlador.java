@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import Alertas.Alerta;
 import Conexion.ConexionBD;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,7 @@ public class ModificarUsuarioControlador {
 	@FXML private Button cartButton;
 	@FXML private Button botonGuardarCambios;
 	@FXML private Button botonCerrarSesion;
+	@FXML private Button userButton;
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
 	boolean anadido = false;
 
@@ -106,22 +108,37 @@ public class ModificarUsuarioControlador {
 	}
 
 	@FXML
-	private void switchtoModificarUsuario() throws IOException {
-		App.setRoot("modificarusuario");
-	}
-	
-	@FXML
-	private void switchtoIniciarSesion() throws IOException{
-		App.setRoot("iniciarsesion");
-	}
-	
-	//copy
-	@FXML
 	private void switchtoLogin() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()==null) {
-			App.setRoot("iniciarsesion");
+    	if(SesionUsuario.getInstancia().getIdLector()==null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 		} else {
-			App.setRoot("modificarusuario");
+			try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
 		}
 	}
 	

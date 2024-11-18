@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import dao.CestaDAO;
 import dto.Cesta;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 
 import java.io.IOException;
@@ -91,6 +92,16 @@ public class CestaControlador {
     	if(SesionUsuario.getInstancia().getIdLector()==null) {
     		try {
 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+		        Parent root = loader.load();
+		        Stage stage = (Stage) userButton.getScene().getWindow();
+		        stage.setScene(new Scene(root));
+		        stage.show();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+    	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+    		try {
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
 		        Parent root = loader.load();
 		        Stage stage = (Stage) userButton.getScene().getWindow();
 		        stage.setScene(new Scene(root));
