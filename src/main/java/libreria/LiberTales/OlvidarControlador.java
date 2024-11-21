@@ -38,11 +38,35 @@ public class OlvidarControlador {
     @FXML
     private Label messageLabel;
     
-    
+    @FXML
+    public void initialize() {
+        // Listener para validar el campo de correo en tiempo real
+        correo.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!esCorreoValido(newValue)) {
+                correo.setStyle("-fx-border-color: red;");
+                messageLabel.setText("Por favor, introduce un correo válido.");
+            } else {
+                correo.setStyle(null); // Limpia estilos de error
+                messageLabel.setText(""); // Limpia el mensaje
+            }
+        });
+
+        // Listener para validar el campo de nombre en tiempo real
+        nombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                nombre.setStyle("-fx-border-color: red;");
+                messageLabel.setText("El nombre no puede estar vacío.");
+            } else {
+                nombre.setStyle(null); // Limpia estilos de error
+                messageLabel.setText(""); // Limpia el mensaje
+            }
+        });
+    }
+
     @FXML
    	private void switchtoLogin() throws IOException {
-       	if(SesionUsuario.getInstancia().getIdLector()==null &&
-       			SesionAdmin.getInstancia().getIdAdmin()==null) {
+       	if(SesionUsuario.getInstancia().getIdLector() == null &&
+       			SesionAdmin.getInstancia().getIdAdmin() == null) {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
    		        Parent root = loader.load();
@@ -52,7 +76,7 @@ public class OlvidarControlador {
    		    } catch (IOException e) {
    		        e.printStackTrace();
    		    }
-       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       	} else if(SesionAdmin.getInstancia().getIdAdmin() != null) {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
    		        Parent root = loader.load();
@@ -77,7 +101,7 @@ public class OlvidarControlador {
 	
     @FXML
 	private void switchToCesta() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+		if(SesionUsuario.getInstancia().getIdLector() != null) {
 			try {
 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
 		        Parent root = loader.load();
@@ -90,12 +114,11 @@ public class OlvidarControlador {
 		} else {
 			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
 		}
-		
 	}
 	
 	@FXML
 	private void switchToFavorito() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+		if(SesionUsuario.getInstancia().getIdLector() != null) {
 			try {
 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
 		        Parent root = loader.load();
@@ -108,7 +131,6 @@ public class OlvidarControlador {
 		} else {
 			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
 		}
-		
 	}
    	
 	@FXML
@@ -129,17 +151,29 @@ public class OlvidarControlador {
 		String email = correo.getText().trim();
 		String usuario = nombre.getText().trim();
 		
-		if(email.isEmpty()||usuario.isEmpty()) {
-			 messageLabel.setText("Por favor, rellene todos los campos");
-	         return;
+		// Validaciones finales antes de enviar
+		if (email.isEmpty() || usuario.isEmpty()) {
+			messageLabel.setText("Por favor, rellene todos los campos");
+			return;
+		}
+
+		if (!esCorreoValido(email)) {
+			messageLabel.setText("Por favor, introduce un correo válido.");
+			return;
 		}
 		
 		try {
 			OlvidarDAO dao = new OlvidarDAO();
 			dao.recuperarContrasenia(email, usuario);
 			Alerta.mostrarInformacion("Tu nueva contraseña es: ", "123");
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
+	}
+
+	private boolean esCorreoValido(String email) {
+		// Expresión regular básica para validar correos electrónicos
+		return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
 	}
 }
+
