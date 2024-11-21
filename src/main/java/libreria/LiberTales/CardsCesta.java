@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import dao.CestaDAO;
 import dao.CompraDAO;
 import dao.LibroDAO;
 import dto.Cesta;
@@ -23,6 +24,8 @@ public class CardsCesta {
     
     @FXML
     private Label tituloLabel;
+    @FXML
+    private Label precioLabel;
     
     private Libro libro;
     
@@ -33,6 +36,7 @@ public class CardsCesta {
         Image image = new Image(libro.getRutaImagen());
         imageView.setImage(image);
         tituloLabel.setText(libro.getTitulo());
+        precioLabel.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
         setLibro(libro);
     }
     
@@ -63,6 +67,19 @@ public class CardsCesta {
 	public void setLibro(Libro libro) {
 		this.libro = libro;
 	}
-    
+	
+	@FXML
+	private void eliminarDeLaCesta() throws SQLException {
+	    int idLector = SesionUsuario.getInstancia().getIdLector();
+		int idLibro = getLibro().getId_libro();
+
+		// Llamar al método para eliminar el libro de la cesta
+		CestaDAO cestaDAO = new CestaDAO();
+		cestaDAO.eliminarDeLaCesta(idLector, idLibro);
+
+		// Mensaje para confirmar eliminación o actualizar la UI según sea necesario
+		System.out.println("El libro ha sido eliminado de la cesta.");
+	}
+
 
 }
