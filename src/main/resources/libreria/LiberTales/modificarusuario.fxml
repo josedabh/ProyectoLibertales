@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.ModificarUsuarioControlador">
 	<children>
@@ -22,7 +24,7 @@
          <effect>
             <DropShadow offsetX="1.0" offsetY="2.0">
                <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
+                  <Color red="1" green="1" blue="1" />
                </color>
             </DropShadow>
          </effect>
