@@ -19,18 +19,25 @@
 			<image>
 				<Image url="@../../images/logo.png" />
 			</image>
+         <effect>
+            <DropShadow offsetX="1.0" offsetY="2.0">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
 		</ImageView>
 
 		<!-- Barra de búsqueda -->
 		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
-			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
-			<Button fx:id="searchButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+   			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
+			<Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
 		</HBox>
 
 		<!-- Iconos de usuario, carrito y mensaje -->
 		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
 			<!-- Button de usuario con ContextMenu -->
-			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -39,7 +46,7 @@
 					</ImageView>
 				</graphic>
 			</Button>
-			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -48,7 +55,7 @@
 					</ImageView>
 				</graphic>
 			</Button>
-			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
+			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -76,17 +83,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Nombre" />
-            <Label text="Dirección" GridPane.rowIndex="1" />
-            <Label text="Teléfono" GridPane.rowIndex="2" />
-            <Label text="Contraseña" GridPane.rowIndex="3" />
-            <TextField fx:id="campoNombre" GridPane.columnIndex="1" />
-            <TextField fx:id="campoDireccion" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="campoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#switchToCambiarContrasena" text="Cambiar Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label style="-fx-font-size: 20px; -fx-text-fill: #34495E;" text="Nombre" />
+            <Label style="-fx-font-size: 20px; -fx-text-fill: #34495E;" text="Dirección" GridPane.rowIndex="1" />
+            <Label style="-fx-font-size: 20px; -fx-text-fill: #34495E;" text="Teléfono" GridPane.rowIndex="2" />
+            <Label style="-fx-font-size: 20px; -fx-text-fill: #34495E;" text="Contraseña" GridPane.rowIndex="3" />
+            <TextField fx:id="campoNombre" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" GridPane.columnIndex="1" />
+            <TextField fx:id="campoDireccion" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="campoTelefono" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#switchToCambiarContrasena" style="-fx-background-color: #2980B9; -fx-text-fill: white; -fx-font-size: 15px; -fx-effect: dropshadow(gaussian, #2980B9, 5, 0.5, 0, 0); -fx-border-radius: 5px;" text="Cambiar Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="botonGuardarCambios" layoutX="239.0" layoutY="435.0" mnemonicParsing="false" onAction="#guardarCambios" text="Guardar Cambios" />
-      <Button fx:id="botonCerrarSesion" layoutX="449.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
+      <Button fx:id="botonGuardarCambios" layoutX="228.0" layoutY="435.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="46.0" prefWidth="184.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-padding: 10px 20px;" text="Guardar Cambios" />
+      <Button fx:id="botonCerrarSesion" layoutX="449.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-pref-height: 40px; -fx-pref-width: 150px; -fx-padding: 10px 20px;" text="Cerrar Sesión" />
 	</children>
 </AnchorPane>
