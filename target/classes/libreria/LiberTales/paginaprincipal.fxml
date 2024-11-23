@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
+<AnchorPane prefHeight="558.0" prefWidth="866.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
 	<children>
 		<!-- Logo -->
 		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
@@ -112,8 +113,11 @@
          </effect></Separator>
 
 		<!-- Sección de ofertas -->
-		<VBox alignment="CENTER" layoutX="41.0" layoutY="153.0" spacing="10" style="-fx-background-color: #F1948A; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 5px; -fx-background-radius: 5px;">
-			<Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="OFERTA 2X1" textFill="WHITE" />
+		<VBox alignment="CENTER" layoutX="67.0" layoutY="142.0" prefHeight="363.0" prefWidth="720.0" spacing="10" style="-fx-background-color: #F1948A; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+			<Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="TODOS LOS LIBROS" textFill="WHITE">
+            <effect>
+               <Glow />
+            </effect></Label>
 			<ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="500.0" prefHeight="250.0" prefWidth="400.0" vbarPolicy="AS_NEEDED">
             <content>
                <TilePane fx:id="tilePaneCartas" hgap="10.0" prefColumns="3" prefHeight="200.0" prefWidth="200.0" vgap="10.0">
@@ -133,31 +137,7 @@
 
 		</VBox>
 
-		<!-- Sección de destacados -->
-		<VBox alignment="CENTER" layoutX="492.0" layoutY="153.0" prefHeight="289.0" prefWidth="331.0" spacing="10" style="-fx-background-color: #f61805; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-background-radius: 5px; -fx-border-radius: 5px;">
-			<Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0099CC;" text="DESTACADOS" textFill="WHITE" />
-			<HBox alignment="CENTER" spacing="15">
-				<ImageView fitHeight="190.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-					<image>
-						<Image url="@../../libros/la-sangre-del-padre_9788408280187_3d_202310201015.png" />
-					</image>
-				</ImageView>
-				<ImageView fitHeight="190.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
-					<image>
-						<Image url="@../../libros/islan.png" />
-					</image>
-				</ImageView>
-			</HBox>
-         <effect>
-            <DropShadow offsetX="1.0" offsetY="2.0">
-               <color>
-                  <Color red="1.0" green="1.0" blue="1.0" />
-               </color>
-            </DropShadow>
-         </effect>
-		</VBox>
-
 		<!-- Footer con texto y versión -->
-		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" textFill="WHITE" />
+		<Label layoutX="254.0" layoutY="517.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" textFill="WHITE" />
 	</children>
 </AnchorPane>

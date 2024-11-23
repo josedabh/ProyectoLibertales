@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.FavoritoControlador">
+<AnchorPane prefHeight="551.0" prefWidth="865.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.FavoritoControlador">
     <children>
         <!-- Logo -->
         <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
@@ -79,7 +79,7 @@
         </VBox>
 
         <!-- Footer con texto y versión -->
-        <Label layoutX="254.0" layoutY="515.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+        <Label layoutX="259.0" layoutY="516.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
 
         <!-- Botón Volver Atrás con mejor estilo -->
         <Button fx:id="backButton" layoutX="677.0" layoutY="135.0" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-text-fill: white; -fx-border-radius: 25px; -fx-background-radius: 25px;" text="← Volver Atrás">
