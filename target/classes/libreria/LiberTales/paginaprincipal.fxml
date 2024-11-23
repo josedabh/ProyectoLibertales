@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #4d0908;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
 	<children>
 		<!-- Logo -->
 		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
@@ -36,20 +35,20 @@
 
 		<!-- Barra de búsqueda -->
 		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
-			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #9f8b8d;">
+			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;">
             <effect>
-               <SepiaTone />
+               <SepiaTone level="0.0" />
             </effect></TextField>
 			<Button fx:id="searchButton" onAction="#switchToBusqueda" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍">
-            <effect>
-               <SepiaTone />
-            </effect></Button>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor></Button>
 		</HBox>
 
 		<!-- Iconos de usuario, carrito y mensaje -->
 		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
 			<!-- Button de usuario con ContextMenu -->
-			<Button fx:id="userButton" onAction="#switchtoLogin" prefHeight="29.0" prefWidth="18.0" style="-fx-font-size: 20px; -fx-background-color: #faaa19; -fx-border-color: #000000; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -65,7 +64,7 @@
                </DropShadow>
             </effect>
 			</Button>
-			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #faaa19; -fx-border-color: #000000; -fx-border-radius: 50px; -fx-background-radius: 50px;">
+			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -81,7 +80,7 @@
                </DropShadow>
             </effect>
 			</Button>
-			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #faaa19; -fx-border-color: #000000; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -107,13 +106,13 @@
          <effect>
             <DropShadow offsetX="1.0" offsetY="2.0">
                <color>
-                  <Color red="0.9547619223594666" green="1.0" />
+                  <Color red="0.8313725590705872" green="0.8156862854957581" blue="0.8156862854957581" />
                </color>
             </DropShadow>
          </effect></Separator>
 
 		<!-- Sección de ofertas -->
-		<VBox alignment="CENTER" layoutX="41.0" layoutY="153.0" spacing="10" style="-fx-background-color: #faaa19; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+		<VBox alignment="CENTER" layoutX="41.0" layoutY="153.0" spacing="10" style="-fx-background-color: #F1948A; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 5px; -fx-background-radius: 5px;">
 			<Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="OFERTA 2X1" textFill="WHITE" />
 			<ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" maxHeight="500.0" prefHeight="250.0" prefWidth="400.0" vbarPolicy="AS_NEEDED">
             <content>
@@ -159,9 +158,6 @@
 		</VBox>
 
 		<!-- Footer con texto y versión -->
-		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13">
-         <effect>
-            <Bloom />
-         </effect></Label>
+		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" textFill="WHITE" />
 	</children>
 </AnchorPane>
