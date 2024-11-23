@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CambiarContrasenaController">
+<AnchorPane prefHeight="553.0" prefWidth="851.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CambiarContrasenaController">
 	<children>
 
 		<!-- Barra de búsqueda -->
@@ -19,8 +19,8 @@
 		<HBox layoutX="617.0" layoutY="41.0" spacing="20" />
 
 		<!-- Footer con texto y versión -->
-		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-      <GridPane layoutX="314.0" layoutY="142.0" prefHeight="238.0" prefWidth="218.0">
+		<Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+      <GridPane layoutX="314.0" layoutY="147.0" prefHeight="237.0" prefWidth="224.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="112.80001220703124" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" prefWidth="87.99998779296877" />
@@ -31,14 +31,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Contraseña Actual" />
-            <Label text="Nueva Contraseña" GridPane.rowIndex="1" />
-            <Label text="Verificar Contraseña" GridPane.rowIndex="2" />
-            <TextField fx:id="campoContrasenaActual" prefHeight="26.0" prefWidth="104.0" GridPane.columnIndex="1" />
-            <TextField fx:id="campoNuevaContrasena" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="campoVerificarContrasena" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-font-size: 12px; -fx-text-fill: #34495E;" text="Contraseña Actual" />
+            <Label style="-fx-text-fill: #34495E; -fx-font-size: 12px;" text="Nueva Contraseña" GridPane.rowIndex="1" />
+            <Label prefHeight="20.0" prefWidth="155.0" style="-fx-font-size: 12px; -fx-text-fill: #34495E;" text="Verificar Contraseña" GridPane.rowIndex="2" />
+            <TextField fx:id="campoContrasenaActual" prefHeight="26.0" prefWidth="104.0" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 10px;" GridPane.columnIndex="1" />
+            <TextField fx:id="campoNuevaContrasena" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="campoVerificarContrasena" prefHeight="25.0" prefWidth="138.0" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 10px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="botonGuardarContrasena" layoutX="362.0" layoutY="380.0" mnemonicParsing="false" onAction="#guardarContrasena" text="Guardar Contraseña" />
+      <Button fx:id="botonGuardarContrasena" layoutX="365.0" layoutY="396.0" mnemonicParsing="false" onAction="#guardarContrasena" style="-fx-font-size: 14px; -fx-background-color: #F39C12; -fx-text-fill: #FFFFFF; -fx-border-radius: 5px; -fx-pref-width: 150px; -fx-padding: 10px;" text="Guardar Contraseña" />
 	</children>
 </AnchorPane>
