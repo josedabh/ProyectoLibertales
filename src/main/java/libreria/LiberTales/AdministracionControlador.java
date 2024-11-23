@@ -25,6 +25,8 @@ public class AdministracionControlador {
     private Button botonLibros;
     @FXML
     private Button botonTransacciones;
+    @FXML
+    private Button botonCerrarSesion;
     
     @FXML
 	public void initialize() {
@@ -138,4 +140,18 @@ public class AdministracionControlador {
 	    }
 	}
 
+	@FXML
+    private void cerrarSesion() throws IOException {
+		// Redirigir al usuario a la pantalla de inicio de sesión
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	    Parent root = loader.load();
+	    // Mostrar la nueva escena
+	    Stage stage = (Stage) botonCerrarSesion.getScene().getWindow();
+	    stage.setScene(new Scene(root));
+	    stage.show();
+	    
+        // Limpiar el idAdmin de la sesión
+        SesionAdmin.getInstancia().cerrarSesion();
+
+    }
 }

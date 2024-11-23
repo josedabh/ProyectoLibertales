@@ -19,7 +19,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("paginaprincipal"));
         stage.setScene(scene);
-        stage.setTitle("LiberTales");
         stage.show();
     }
 

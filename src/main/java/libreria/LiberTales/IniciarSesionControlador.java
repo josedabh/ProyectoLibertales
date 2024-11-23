@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Alertas.Alerta;
+import dao.AdministradorDAO;
 import dao.LectorDAO;
 import dao.UsuarioDAO;
 import dto.SesionAdmin;
@@ -62,6 +63,7 @@ public class IniciarSesionControlador{
          
          UsuarioDAO us = new UsuarioDAO();
          LectorDAO ldao = new LectorDAO();
+         AdministradorDAO adao = new AdministradorDAO();
          
          if (email.isEmpty() || password.isEmpty()) {
              Alerta.mostrarError("Error al iniciar sesión", "Por favor, rellena los campos vacios");
@@ -74,6 +76,10 @@ public class IniciarSesionControlador{
         	 Alerta.mostrarError("Error al iniciar sesión", "Email o contraseña incorrectos.");
         	 
          } else if(usuario.getTipo().equals("administrador")){
+        	 
+        	 // Guarda el idLector en la sesión
+     	     SesionAdmin.getInstancia().setIdAdmin(adao.buscarAdminPorId(usuario.getIdUsuario()));
+     	     System.out.println(SesionAdmin.getInstancia().getIdAdmin());
         	 try {
  		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
  		        Parent root = loader.load();

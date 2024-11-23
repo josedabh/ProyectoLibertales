@@ -127,6 +127,31 @@ public class AdministradorDAO {
         return administradores;
     }
     
+    // Método para buscar un admin por id_usuario
+    public int buscarAdminPorId(int idUsuario) {
+        String sql = "SELECT id_admin FROM administrador WHERE id_usuario = ?";
+        int id = 0;
+
+        try {
+            Connection conn = ConexionBD.dameConexion();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, idUsuario);
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            CerrarConexion.cerrar(conn, pst, rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
+    
     public static void main(String[] args) {
 		AdministradorDAO admin = new AdministradorDAO();
 		admin.crearAdministrador(new Administrador(0, 0, "ale", "ale@gmail.com", "1234567"));

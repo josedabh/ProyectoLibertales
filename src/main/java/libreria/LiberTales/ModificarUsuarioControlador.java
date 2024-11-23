@@ -29,6 +29,8 @@ public class ModificarUsuarioControlador {
 	private TextField campoTelefono;
 	@FXML 
 	private Button cartButton;
+	@FXML
+	private Button messageButton;
 	@FXML 
 	private Button botonGuardarCambios;
 	@FXML 
@@ -157,9 +159,6 @@ public class ModificarUsuarioControlador {
 	    FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
 	    Parent root = loader.load();
 	    
-	    // Obtener el controlador de la vista cargada
-	    CestaControlador controller = loader.getController();
-	    
 	    // Mostrar la nueva escena
 	    Stage stage = (Stage) cartButton.getScene().getWindow();
 	    stage.setScene(new Scene(root));
@@ -168,7 +167,13 @@ public class ModificarUsuarioControlador {
 	
 	@FXML
 	private void switchToFavorito() throws IOException {
-	    App.setRoot("favorito");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
+	    Parent root = loader.load();
+	    
+	    // Mostrar la nueva escena
+	    Stage stage = (Stage) messageButton.getScene().getWindow();
+	    stage.setScene(new Scene(root));
+	    stage.show();
 	}
 	
 	@FXML
@@ -192,10 +197,16 @@ public class ModificarUsuarioControlador {
 	
 	@FXML
     private void cerrarSesion() throws IOException {
+		// Redirigir al usuario a la pantalla de inicio de sesión
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	    Parent root = loader.load();
+	    // Mostrar la nueva escena
+	    Stage stage = (Stage) botonCerrarSesion.getScene().getWindow();
+	    stage.setScene(new Scene(root));
+	    stage.show();
+	    
         // Limpiar el idLector de la sesión
         SesionUsuario.getInstancia().cerrarSesion();
 
-        // Redirigir al usuario a la pantalla de inicio de sesión
-        App.setRoot("paginaprincipal");
     }
 }
