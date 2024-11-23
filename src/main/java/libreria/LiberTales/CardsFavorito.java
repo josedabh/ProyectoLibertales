@@ -2,6 +2,7 @@ package libreria.LiberTales;
 
 import java.io.IOException;
 
+import Alertas.Alerta;
 import dao.CestaDAO;
 import dao.FavoritoDAO;
 import dao.LibroDAO;
@@ -36,12 +37,14 @@ public class CardsFavorito {
 	    
 	 // Método que se ejecuta al hacer clic en el botón de cesta
 	    @FXML
-	    private void switchToAnadiraCesta() throws IOException {
+	    private void switchToAnadiraFavorito() throws IOException {
 	        // Agregar el libro a la cesta
 	        Libro libro = getLibro();
 	        CestaDAO cestaDAO = new CestaDAO();
 	        // Obtener el libro que se está viendo
 	        cestaDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());//Quitar el id de libro
+            Alerta.mostrarInformacion("Libro añadido a la cesta", "¡El libro ha sido añadido a la cesta con éxito!");
+
 	    }
 	    public Libro getLibro() {
 			return libro;
@@ -52,11 +55,13 @@ public class CardsFavorito {
 		}
 	    // Método que se ejecuta al hacer clic en el botón de favorito
 	    @FXML
-	    private void switchToEliminarDeLaCesta() throws IOException {
+	    private void switchToEliminarDeFavorito() throws IOException {
 	        // Agregar el libro a la cesta
 	        Libro libro = getLibro();
 	        FavoritoDAO favoritoDAO = new FavoritoDAO();
 	        // Obtener el libro que se está viendo
 	        favoritoDAO.eliminarDeFavorito(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
+            Alerta.mostrarInformacion("Libro eliminado de favorito", "¡El libro ha sido eliminado de favoritos!");
+
 	    }
 }

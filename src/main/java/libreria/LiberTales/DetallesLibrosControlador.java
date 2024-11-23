@@ -143,6 +143,8 @@ public class DetallesLibrosControlador {
         // Agregar el libro a la cesta
         Libro libro = getLibro();  // Obtener el libro que se está viendo
         detallesLibroDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
+		Alerta.mostrarInformacion("Añadido a la cesta", "El libro se ha añadido a la cesta");
+
     }
     
     // Método que se ejecuta al hacer clic en el botón de favoritos
@@ -151,6 +153,7 @@ public class DetallesLibrosControlador {
         // Agregar el libro a los favoritos
         Libro libro = getLibro();  // Obtener el libro que se está viendo
         detallesLibroDAO.agregarAFavoritos(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
+		Alerta.mostrarInformacion("Añadido a favorito", "El libro se ha añadido a la lista de favoritos");
     }
 
 	public Libro getLibro() {

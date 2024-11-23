@@ -1,6 +1,7 @@
 package libreria.LiberTales;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import Alertas.Alerta;
 import dao.CestaDAO;
 import dao.CompraDAO;
 import dao.LibroDAO;
@@ -54,7 +56,7 @@ public class CardsCesta {
             
             // Realizar la compra
             comprarDAO.comprarLibro(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro(), fechaCompra);
-            
+            Alerta.mostrarInformacion("Compra realizada", "¡El libro ha sido comprado con éxito!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,9 +78,7 @@ public class CardsCesta {
 		// Llamar al método para eliminar el libro de la cesta
 		CestaDAO cestaDAO = new CestaDAO();
 		cestaDAO.eliminarDeLaCesta(idLector, idLibro);
-
-		// Mensaje para confirmar eliminación o actualizar la UI según sea necesario
-		System.out.println("El libro ha sido eliminado de la cesta.");
+        Alerta.mostrarInformacion("Libro eliminado", "¡El libro se ha eliminado de la cesta con éxito!");
 	}
 
 
