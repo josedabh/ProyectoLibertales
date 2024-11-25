@@ -51,6 +51,7 @@ public class AdministracionControlador {
    		        Parent root = loader.load();
    		        Stage stage = (Stage) userButton.getScene().getWindow();
    		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Iniciar sesión");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
@@ -61,6 +62,7 @@ public class AdministracionControlador {
    		        Parent root = loader.load();
    		        Stage stage = (Stage) userButton.getScene().getWindow();
    		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Administración");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
@@ -71,6 +73,7 @@ public class AdministracionControlador {
    		        Parent root = loader.load();
    		        Stage stage = (Stage) userButton.getScene().getWindow();
    		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Modificar usuario");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
@@ -78,14 +81,15 @@ public class AdministracionControlador {
    		}
    	}
    	
-       @FXML
+    @FXML
    	private void switchToCesta() throws IOException {
    		if(SesionUsuario.getInstancia().getIdLector()!=null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) botonLibros.getScene().getWindow();
+   		        Stage stage = (Stage) cartButton.getScene().getWindow();
    		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Cesta");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
@@ -102,8 +106,9 @@ public class AdministracionControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) botonTransacciones.getScene().getWindow();
+   		        Stage stage = (Stage) messageButton.getScene().getWindow();
    		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Favoritos");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
@@ -121,6 +126,7 @@ public class AdministracionControlador {
 	        Parent root = loader.load();
 	        Stage stage = (Stage) userButton.getScene().getWindow();
 	        stage.setScene(new Scene(root));
+	        stage.setTitle("Administración de libro");
 	        stage.show();
 	    } catch (IOException e) {
 	        e.printStackTrace();
@@ -148,6 +154,7 @@ public class AdministracionControlador {
 	    // Mostrar la nueva escena
 	    Stage stage = (Stage) botonCerrarSesion.getScene().getWindow();
 	    stage.setScene(new Scene(root));
+	    stage.setTitle("Página Principal");
 	    stage.show();
 	    
         // Limpiar el idAdmin de la sesión
