@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import Alertas.Alerta;
 import dao.DetallesLibroDAO;
+import dao.LibroDAO;
 import dto.Libro;
 import dto.SesionAdmin;
 import dto.SesionUsuario;
@@ -28,6 +29,10 @@ public class DetallesLibrosControlador {
     
     @FXML
     private Text sinopsisText;
+    
+    @FXML
+    private Label precioLabel;
+    
     @FXML
     private Button userButton;
     @FXML
@@ -35,6 +40,10 @@ public class DetallesLibrosControlador {
     @FXML
     private Button messageButton;
     
+    @FXML
+    private Button backButton;
+    
+    @FXML
     private Libro libro;
     
     // Instancia del DAO para manejar las operaciones en la base de datos
@@ -128,6 +137,7 @@ public class DetallesLibrosControlador {
         detalleImage.setImage(image);
         tituloLabel.setText(libro.getTitulo());
         sinopsisText.setText(libro.getSinopsis());
+        precioLabel.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
         setLibro(libro);
     }
     
@@ -168,5 +178,19 @@ public class DetallesLibrosControlador {
 	public void setLibro(Libro libro) {
 		this.libro = libro;
 	}
+	
+	@FXML
+    private void switchToPagina() throws IOException {
+		try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	        Parent root = loader.load();
+	        Stage stage = (Stage) backButton.getScene().getWindow();
+	        stage.setScene(new Scene(root));
+	        stage.setTitle("Página principal");
+	        stage.show();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+    }
     
 }
