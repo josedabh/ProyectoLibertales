@@ -97,5 +97,6 @@
       </GridPane>
       <Button fx:id="botonGuardarCambios" layoutX="228.0" layoutY="435.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="46.0" prefWidth="184.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-padding: 10px 20px;" text="Guardar Cambios" />
       <Button fx:id="botonCerrarSesion" layoutX="449.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-pref-height: 40px; -fx-pref-width: 150px; -fx-padding: 10px 20px;" text="Cerrar Sesión" />
+      <Button fx:id="volverAtras" layoutX="49.0" layoutY="150.0" mnemonicParsing="false" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
 	</children>
 </AnchorPane>

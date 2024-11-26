@@ -38,6 +38,9 @@ public class ModificarUsuarioControlador {
 	@FXML 
 	private Button userButton;
 	
+	@FXML 
+	private Button volverAtras;
+	
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
 	boolean anadido = false;
 

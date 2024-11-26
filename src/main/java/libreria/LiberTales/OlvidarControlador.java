@@ -18,13 +18,13 @@ import javafx.stage.Stage;
 public class OlvidarControlador {
 	
 	@FXML
-    private Button userButton;
+    private Button botonUsuario;
     @FXML
-    private Button cartButton;
+    private Button botonCesta;
     @FXML
-    private Button messageButton;
+    private Button botonFavorito;
     @FXML
-    private Button backButton;
+    private Button botonAtras;
 	
     @FXML
     private TextField correo;
@@ -33,10 +33,10 @@ public class OlvidarControlador {
     private TextField nombre;
     
     @FXML
-    private Button sendButton;
+    private Button botonEnviar;
     
     @FXML
-    private Label messageLabel;
+    private Label mensajeLabel;
     
     @FXML
     public void initialize() {
@@ -44,10 +44,10 @@ public class OlvidarControlador {
         correo.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!esCorreoValido(newValue)) {
                 correo.setStyle("-fx-border-color: red;");
-                messageLabel.setText("Por favor, introduce un correo válido.");
+                mensajeLabel.setText("Por favor, introduce un correo válido.");
             } else {
                 correo.setStyle(null); // Limpia estilos de error
-                messageLabel.setText(""); // Limpia el mensaje
+                mensajeLabel.setText(""); // Limpia el mensaje
             }
         });
 
@@ -55,10 +55,10 @@ public class OlvidarControlador {
         nombre.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.trim().isEmpty()) {
                 nombre.setStyle("-fx-border-color: red;");
-                messageLabel.setText("El nombre no puede estar vacío.");
+                mensajeLabel.setText("El nombre no puede estar vacío.");
             } else {
                 nombre.setStyle(null); // Limpia estilos de error
-                messageLabel.setText(""); // Limpia el mensaje
+                mensajeLabel.setText(""); // Limpia el mensaje
             }
         });
     }
@@ -70,7 +70,7 @@ public class OlvidarControlador {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Iniciar sesión");
    		        stage.show();
@@ -81,7 +81,7 @@ public class OlvidarControlador {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Administración");
    		        stage.show();
@@ -92,7 +92,7 @@ public class OlvidarControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Modificar usuario");
    		        stage.show();
@@ -108,7 +108,7 @@ public class OlvidarControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) cartButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonCesta.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Cesta");
    		        stage.show();
@@ -127,7 +127,7 @@ public class OlvidarControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) messageButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonFavorito.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Favoritos");
    		        stage.show();
@@ -145,7 +145,7 @@ public class OlvidarControlador {
 		try {
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
 	        Parent root = loader.load();
-	        Stage stage = (Stage) backButton.getScene().getWindow();
+	        Stage stage = (Stage) botonAtras.getScene().getWindow();
 	        stage.setScene(new Scene(root));
 	        stage.setTitle("Página principal");
 	        stage.show();
@@ -161,12 +161,12 @@ public class OlvidarControlador {
 		
 		// Validaciones finales antes de enviar
 		if (email.isEmpty() || usuario.isEmpty()) {
-			messageLabel.setText("Por favor, rellene todos los campos");
+			mensajeLabel.setText("Por favor, rellene todos los campos");
 			return;
 		}
 
 		if (!esCorreoValido(email)) {
-			messageLabel.setText("Por favor, introduce un correo válido.");
+			mensajeLabel.setText("Por favor, introduce un correo válido.");
 			return;
 		}
 		

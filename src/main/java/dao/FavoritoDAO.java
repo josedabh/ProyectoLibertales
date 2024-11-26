@@ -13,50 +13,6 @@ import dto.Favorito;
 
 public class FavoritoDAO {
 	
-	public FavoritoDAO() {
-		// TODO Auto-generated constructor stub
-	}
-	
-    // Método para agregar un libro a los favoritos de un lector
-    public void agregarAFavoritos(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-        
-        try {
-            con = ConexionBD.dameConexion();
-            String query = "INSERT INTO Favoritos (id_lector, id_libro) VALUES (?, ?)";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            stmt.executeUpdate();
-            System.out.println("Libro agregado a favoritos.");
-            
-            CerrarConexion.cerrar(con, stmt, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Método para eliminar un libro de los favoritos de un lector
-    public void eliminarDeFavoritos(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-
-        try {
-            con = ConexionBD.dameConexion();
-            String query = "DELETE FROM Favoritos WHERE id_lector = ? AND id_libro = ?";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            stmt.executeUpdate();
-            System.out.println("Libro eliminado de favoritos.");
-            
-            CerrarConexion.cerrar(con, stmt, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     // Método para obtener todos los libros favoritos de un lector
     public List<Favorito> obtenerFavoritos(int idLector) {
         Connection con = null;
@@ -82,32 +38,36 @@ public class FavoritoDAO {
         }
         return favoritos;
     }
-
-    // Método para verificar si un libro está en los favoritos de un lector
-    public boolean estaEnFavoritos(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        boolean enFavoritos = false;
-
+    
+    // Método para agregar un libro a la cesta de un lector
+    public void agregarALaCesta(int idLector, int idLibro) {
+        Connection conexion = null;
+        PreparedStatement pst = null;
         try {
-            con = ConexionBD.dameConexion();
-            String query = "SELECT COUNT(*) FROM Favoritos WHERE id_lector = ? AND id_libro = ?";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            rs = stmt.executeQuery();
+            // Establecer la conexión a la base de datos
+            conexion = ConexionBD.dameConexion();
 
-            if (rs.next()) {
-                enFavoritos = rs.getInt(1) > 0;
-            }
-            
-            CerrarConexion.cerrar(con, stmt, rs);
+            // SQL para insertar un libro en la cesta del usuario
+            String sql = "INSERT INTO cesta (id_lector, id_libro) VALUES (?, ?)";
+            pst = conexion.prepareStatement(sql);
+
+            // Establecer los parámetros de la consulta
+            pst.setInt(1, idLector);
+            pst.setInt(2, idLibro);
+
+            // Ejecutar la consulta
+            pst.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error al agregar el libro a la cesta: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar los recursos: " + e.getMessage());
+            }
         }
-        return enFavoritos;
-    }
+    } 
     
     // Método para eliminar un libro de la cesta
     public void eliminarDeFavorito(int idLector, int idLibro) {

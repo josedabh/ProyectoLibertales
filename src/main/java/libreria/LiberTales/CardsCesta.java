@@ -5,15 +5,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
 import Alertas.Alerta;
 import dao.CestaDAO;
-import dao.CompraDAO;
 import dao.LibroDAO;
 import dto.Cesta;
 import dto.Libro;
@@ -22,7 +19,7 @@ import dto.SesionUsuario;
 public class CardsCesta {
 
     @FXML
-    private ImageView imageView;
+    private ImageView libroImage;
     
     @FXML
     private Label tituloLabel;
@@ -36,7 +33,7 @@ public class CardsCesta {
     	LibroDAO libroDao = new LibroDAO();
     	Libro libro = libroDao.obtenerLibroPorId(cesta.getIdLibro());
         Image image = new Image(libro.getRutaImagen());
-        imageView.setImage(image);
+        libroImage.setImage(image);
         tituloLabel.setText(libro.getTitulo());
         precioLabel.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
         setLibro(libro);
@@ -44,7 +41,7 @@ public class CardsCesta {
     
     @FXML
     private void switchToComprarLibro() throws IOException {
-        CompraDAO comprarDAO = new CompraDAO();
+        CestaDAO cestaDAO = new CestaDAO();
     	Libro libro = getLibro();
         try {
         
@@ -55,7 +52,7 @@ public class CardsCesta {
             Date fechaCompra = java.sql.Date.valueOf(localDate);
             
             // Realizar la compra
-            comprarDAO.comprarLibro(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro(), fechaCompra);
+            cestaDAO.comprarLibro(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro(), fechaCompra);
             Alerta.mostrarInformacion("Compra realizada", "¡El libro ha sido comprado con éxito!");
         } catch (SQLException e) {
             e.printStackTrace();

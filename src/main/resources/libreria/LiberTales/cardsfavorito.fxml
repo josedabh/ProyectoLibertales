@@ -9,7 +9,7 @@
 <HBox spacing="15" style="-fx-background-color: #FFFFFF; -fx-padding: 12; -fx-border-color: #FF6347; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, #D3D3D3, 10, 0.5, 0, 0);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CardsFavorito">
    <children>
       <!-- Imagen del libro -->
-      <ImageView fx:id="imageView" fitHeight="142.0" fitWidth="119.0" style="-fx-effect: dropshadow(gaussian, #888888, 5, 0.5, 0, 0);" />
+      <ImageView fx:id="libroImage" fitHeight="142.0" fitWidth="119.0" style="-fx-effect: dropshadow(gaussian, #888888, 5, 0.5, 0, 0);" />
 
       <!-- Título del libro -->
       <Label fx:id="tituloLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Título del Libro 1">
