@@ -39,7 +39,7 @@
 		<!-- Iconos de usuario, carrito y mensaje -->
 		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
 			<!-- Button de usuario con ContextMenu -->
-			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="userButton" onAction="#cambiarAInicioSesion" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -48,7 +48,7 @@
 					</ImageView>
 				</graphic>
 			</Button>
-			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="cartButton" onAction="#cambiarACesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -57,7 +57,7 @@
 					</ImageView>
 				</graphic>
 			</Button>
-			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="messageButton" onAction="#cambiarAFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -92,11 +92,11 @@
             <TextField fx:id="campoNombre" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" GridPane.columnIndex="1" />
             <TextField fx:id="campoDireccion" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="campoTelefono" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#switchToCambiarContrasena" style="-fx-background-color: #2980B9; -fx-text-fill: white; -fx-font-size: 15px; -fx-effect: dropshadow(gaussian, #2980B9, 5, 0.5, 0, 0); -fx-border-radius: 5px;" text="Cambiar Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#irACambiarContrasena" style="-fx-background-color: #2980B9; -fx-text-fill: white; -fx-font-size: 15px; -fx-effect: dropshadow(gaussian, #2980B9, 5, 0.5, 0, 0); -fx-border-radius: 5px;" text="Cambiar Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button fx:id="botonGuardarCambios" layoutX="228.0" layoutY="435.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="46.0" prefWidth="184.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-padding: 10px 20px;" text="Guardar Cambios" />
       <Button fx:id="botonCerrarSesion" layoutX="449.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-pref-height: 40px; -fx-pref-width: 150px; -fx-padding: 10px 20px;" text="Cerrar Sesión" />
-      <Button fx:id="volverAtras" layoutX="49.0" layoutY="150.0" mnemonicParsing="false" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
+      <Button fx:id="volverAtras" layoutX="49.0" layoutY="150.0" mnemonicParsing="false" onAction="#volverAtras" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
 	</children>
 </AnchorPane>

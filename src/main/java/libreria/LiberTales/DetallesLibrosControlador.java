@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import Alertas.Alerta;
 import dao.DetallesLibroDAO;
-import dao.LibroDAO;
 import dto.Libro;
 import dto.SesionAdmin;
 import dto.SesionUsuario;
@@ -22,27 +21,21 @@ import javafx.stage.Stage;
 public class DetallesLibrosControlador {
     
     @FXML
-    private ImageView detalleImage;
-    
+    private ImageView imagenDetalle;
     @FXML
-    private Label tituloLabel;
-    
+    private Label etiquetaTitulo;
     @FXML
-    private Text sinopsisText;
-    
+    private Text textoSinopsis;
     @FXML
-    private Label precioLabel;
-    
+    private Label etiquetaPrecio;
     @FXML
-    private Button userButton;
+    private Button botonUsuario;
     @FXML
-    private Button cartButton;
+    private Button botonCarrito;
     @FXML
-    private Button messageButton;
-    
+    private Button botonFavoritos;
     @FXML
-    private Button backButton;
-    
+    private Button botonVolver;
     @FXML
     private Libro libro;
     
@@ -55,24 +48,24 @@ public class DetallesLibrosControlador {
     }
     
     @FXML
-   	private void switchtoLogin() throws IOException {
-       	if(SesionUsuario.getInstancia().getIdLector()==null &&
-       			SesionAdmin.getInstancia().getIdAdmin()==null) {
+   	private void cambiarALogin() throws IOException {
+       	if(SesionUsuario.getInstancia().getIdLector() == null &&
+       			SesionAdmin.getInstancia().getIdAdmin() == null) {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Iniciar sesión");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
    		    }
-       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       	} else if(SesionAdmin.getInstancia().getIdAdmin() != null) {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Administración");
    		        stage.show();
@@ -83,7 +76,7 @@ public class DetallesLibrosControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Modificar usuario");
    		        stage.show();
@@ -94,31 +87,30 @@ public class DetallesLibrosControlador {
    	}
 	
     @FXML
-   	private void switchToCesta() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   	private void cambiarACarrito() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector() != null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) cartButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonCarrito.getScene().getWindow();
    		        stage.setScene(new Scene(root));
-   		        stage.setTitle("Cesta");
+   		        stage.setTitle("Carrito");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
    		    }
    		} else {
-   			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
+   			Alerta.mostrarError("Error al ir al carrito", "Primero, tienes que iniciar sesión");
    		}
-   		
    	}
 	
     @FXML
-   	private void switchToFavorito() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   	private void cambiarAFavoritos() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector() != null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) messageButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonFavoritos.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Favoritos");
    		        stage.show();
@@ -128,22 +120,21 @@ public class DetallesLibrosControlador {
    		} else {
    			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
    		}
-   		
    	}
     
     // Este método se invoca para establecer los detalles del libro
     public void setDetalles(Libro libro) {
-        Image image = new Image(libro.getRutaImagen());
-        detalleImage.setImage(image);
-        tituloLabel.setText(libro.getTitulo());
-        sinopsisText.setText(libro.getSinopsis());
-        precioLabel.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
+        Image imagen = new Image(libro.getRutaImagen());
+        imagenDetalle.setImage(imagen);
+        etiquetaTitulo.setText(libro.getTitulo());
+        textoSinopsis.setText(libro.getSinopsis());
+        etiquetaPrecio.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
         setLibro(libro);
     }
     
-    public void initialize() {
+    public void inicializar() {
         Integer idLector = SesionUsuario.getInstancia().getIdLector();
-        System.out.println("Funciona" + idLector);
+        System.out.println("Funciona: " + idLector);
         if (idLector != null) {
             System.out.println("ID del lector en la sesión: " + idLector);
         } else {
@@ -151,24 +142,18 @@ public class DetallesLibrosControlador {
         }
 	}
 
-
-    // Método que se ejecuta al hacer clic en el botón de cesta
     @FXML
-    private void switchToAlaCesta() throws IOException {
-        // Agregar el libro a la cesta
-        Libro libro = getLibro();  // Obtener el libro que se está viendo
+    private void agregarAlCarrito() throws IOException {
+        Libro libro = getLibro(); 
         detallesLibroDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
-		Alerta.mostrarInformacion("Añadido a la cesta", "El libro se ha añadido a la cesta");
-
+		Alerta.mostrarInformacion("Añadido al carrito", "El libro se ha añadido al carrito");
     }
     
-    // Método que se ejecuta al hacer clic en el botón de favoritos
     @FXML
-    private void switchToaFavorito() throws IOException {
-        // Agregar el libro a los favoritos
-        Libro libro = getLibro();  // Obtener el libro que se está viendo
+    private void agregarAFavoritos() throws IOException {
+        Libro libro = getLibro(); 
         detallesLibroDAO.agregarAFavoritos(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
-		Alerta.mostrarInformacion("Añadido a favorito", "El libro se ha añadido a la lista de favoritos");
+		Alerta.mostrarInformacion("Añadido a favoritos", "El libro se ha añadido a la lista de favoritos");
     }
 
 	public Libro getLibro() {
@@ -180,11 +165,11 @@ public class DetallesLibrosControlador {
 	}
 	
 	@FXML
-    private void switchToPagina() throws IOException {
+    private void cambiarAPaginaPrincipal() throws IOException {
 		try {
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
 	        Parent root = loader.load();
-	        Stage stage = (Stage) backButton.getScene().getWindow();
+	        Stage stage = (Stage) botonVolver.getScene().getWindow();
 	        stage.setScene(new Scene(root));
 	        stage.setTitle("Página principal");
 	        stage.show();
@@ -192,5 +177,4 @@ public class DetallesLibrosControlador {
 	        e.printStackTrace();
 	    }
     }
-    
 }
