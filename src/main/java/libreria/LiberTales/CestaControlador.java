@@ -75,7 +75,7 @@ public class CestaControlador {
                 // Obtener el controlador de la carta y pasar los datos
                 CardsCesta controladorCesta = loader.getController();
                 //Le pasas la informacion de la cesta en setDatos que lo coje de CardsCesta
-                controladorCesta.setDatos(itemCesta);
+                controladorCesta.establecerDatos(itemCesta);
 
                 // Agregar la carta al contenedor
                 tilePaneCesta.getChildren().add(carta);

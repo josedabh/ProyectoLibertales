@@ -9,7 +9,7 @@
 <HBox spacing="15" style="-fx-background-color: #FFFFFF; -fx-padding: 12; -fx-border-color: #FF6347; -fx-border-radius: 10; -fx-effect: dropshadow(gaussian, #D3D3D3, 10, 0.5, 0, 0);" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CardsCesta">
    <children>
       <!-- Imagen del libro -->
-      <ImageView fx:id="libroImage" fitHeight="142.0" fitWidth="119.0" style="-fx-effect: dropshadow(gaussian, #888888, 5, 0.5, 0, 0);" />
+      <ImageView fx:id="libroImagen" fitHeight="142.0" fitWidth="119.0" style="-fx-effect: dropshadow(gaussian, #888888, 5, 0.5, 0, 0);" />
       
       <!-- Título del libro -->
       <Label fx:id="tituloLabel" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333333;" text="Título del Libro 1">
@@ -25,7 +25,7 @@
             <Label fx:id="precioLabel" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #888888;" text="Precio" />
             
             <!-- Botón Comprar -->
-            <Button onAction="#switchToComprarLibro" style="-fx-background-color: linear-gradient(to bottom, #6C9A08, #7FBC0B); -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold; -fx-border-radius: 8px; -fx-effect: dropshadow(gaussian, #6C9A08, 10, 0.5, 0, 0); -fx-border-color: #4CAF50;" text="Comprar" />
+            <Button onAction="#comprarLibro" style="-fx-background-color: linear-gradient(to bottom, #6C9A08, #7FBC0B); -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold; -fx-border-radius: 8px; -fx-effect: dropshadow(gaussian, #6C9A08, 10, 0.5, 0, 0); -fx-border-color: #4CAF50;" text="Comprar" />
             
             <!-- Botón Eliminar -->
             <Button onAction="#eliminarDeLaCesta" style="-fx-background-color: linear-gradient(to bottom, #FF6347, #FF7F50); -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-font-weight: bold; -fx-border-radius: 8px; -fx-effect: dropshadow(gaussian, #FF6347, 10, 0.5, 0, 0); -fx-border-color: #FF6347;" text="Eliminar" />

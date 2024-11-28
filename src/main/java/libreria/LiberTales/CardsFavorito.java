@@ -31,7 +31,7 @@ public class CardsFavorito {
 	    private Libro libro;
 	    
 	    // Este metodo se utiliza para establecer los datos del libro
-	    public void estableceDatos(Favorito favorito) {
+	    public void establecerDatos(Favorito favorito) {
 	    	// DAO para interactuar con la bbdd
 	    	LibroDAO libroDao = new LibroDAO();
 	    	// Obtenemos el libro por su id
