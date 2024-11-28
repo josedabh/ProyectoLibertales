@@ -141,7 +141,7 @@ public class OlvidarControlador {
    		
    	}
 	
-    // Metodo para cambiar a la ventana de favorito
+    // Metodo para cambiar a la ventana de favorito.fxml
     @FXML
    	private void ventanaFavorito() throws IOException {
     	// Si hay un usuario activo

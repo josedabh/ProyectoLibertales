@@ -38,7 +38,7 @@
 
         <!-- Iconos de usuario, carrito y mensaje -->
         <HBox layoutX="617.0" layoutY="41.0" spacing="20">
-            <Button fx:id="botonUsuario" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <Button fx:id="botonUsuario" onAction="#ventanaIniciarSesion" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -47,7 +47,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="botonCesta" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <Button fx:id="botonCesta" onAction="#ventanaCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -56,7 +56,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Button fx:id="botonFavorito" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <Button fx:id="botonFavorito" onAction="#ventanaFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -82,7 +82,7 @@
         <Label layoutX="259.0" layoutY="516.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
 
         <!-- Botón Volver Atrás con mejor estilo -->
-        <Button fx:id="botonAtras" layoutX="677.0" layoutY="135.0" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-text-fill: white; -fx-border-radius: 25px; -fx-background-radius: 25px;" text="← Volver Atrás">
+        <Button fx:id="botonAtras" layoutX="677.0" layoutY="135.0" onAction="#ventanaPaginaPrincipal" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-text-fill: white; -fx-border-radius: 25px; -fx-background-radius: 25px;" text="← Volver Atrás">
          <effect>
             <DropShadow offsetX="1.0" offsetY="2.0" spread="0.33">
                <color>

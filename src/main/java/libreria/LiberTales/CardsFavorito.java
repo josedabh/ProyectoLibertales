@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 
 public class CardsFavorito {
 	
+		// Botones y campos de la interfaz grafica 'cardsFavorito.fxml'
+	
 	   @FXML
 	    private ImageView libroImagen;
 	    
