@@ -10,6 +10,7 @@ public class DetallesLibroDAO {
 
     // Método para agregar un libro a la cesta
     public void agregarACesta(int idLector, int idLibro) {
+    	// Variables usadas
         Connection conexion = null;
         PreparedStatement pst = null;
         try {
@@ -26,6 +27,8 @@ public class DetallesLibroDAO {
 
             // Ejecutar la consulta
             pst.executeUpdate();
+            
+            // Manejo de errores
         } catch (SQLException e) {
             System.out.println("Error al agregar el libro a la cesta: " + e.getMessage());
         } finally {
@@ -40,6 +43,7 @@ public class DetallesLibroDAO {
 
     // Método para agregar un libro a los favoritos
     public void agregarAFavoritos(int idLector, int idLibro) {
+    	// Variables usadas
         Connection conexion = null;
         PreparedStatement pst = null;
         try {
@@ -56,6 +60,8 @@ public class DetallesLibroDAO {
 
             // Ejecutar la consulta
             pst.executeUpdate();
+            
+            // Manejo de errores
         } catch (SQLException e) {
             System.out.println("Error al agregar el libro a favoritos: " + e.getMessage());
         } finally {

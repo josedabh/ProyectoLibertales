@@ -12,6 +12,7 @@ public class CestaDAO {
 
     // Método para eliminar un libro de la cesta de un lector
     public void eliminarDeLaCesta(int idLector, int idLibro) {
+    	// Variables usadas
         Connection conexion = null;
         PreparedStatement pst = null;
         try {
@@ -28,6 +29,7 @@ public class CestaDAO {
 
             // Ejecutar la consulta
             pst.executeUpdate();
+            // Manejo de errores
         } catch (SQLException e) {
             System.out.println("Error al eliminar el libro de la cesta: " + e.getMessage());
         } finally {
@@ -43,6 +45,7 @@ public class CestaDAO {
 
     // Método para obtener todos los libros en la cesta de un lector
     public List<Cesta> obtenerCesta(int idLector) {
+    	// Variables usadas
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -61,6 +64,7 @@ public class CestaDAO {
             }
             
             CerrarConexion.cerrar(con, stmt, rs);
+            // Manejo de errores
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,7 +73,8 @@ public class CestaDAO {
     
  // Método para realizar la compra e insertar en la tabla Compra
     public void comprarLibro(int idLector, int idLibro, Date fechaCompra) throws SQLException {
-        Connection con = null;
+        // Variables usadas
+    	Connection con = null;
         PreparedStatement sentenciaCompra = null;
         PreparedStatement sentenciaEliminarDeCesta = null;
 
@@ -112,6 +117,7 @@ public class CestaDAO {
             // Si ambas operaciones fueron exitosas, confirmar la transacción
             con.commit();
 
+            // Manejo de errores
         } catch (SQLException e) {
             // Si ocurre un error, hacer rollback de la transacción
             if (con != null) {

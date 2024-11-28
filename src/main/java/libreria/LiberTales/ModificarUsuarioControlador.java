@@ -232,4 +232,18 @@ public class ModificarUsuarioControlador {
         SesionUsuario.getInstancia().cerrarSesion();
 
     }
+	
+	@FXML
+    private void volverPaginaPrincipal() throws IOException {
+		try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	        Parent root = loader.load();
+	        Stage stage = (Stage) volverAtras.getScene().getWindow();
+	        stage.setScene(new Scene(root));
+	        stage.setTitle("Página principal");
+	        stage.show();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+    }
 }

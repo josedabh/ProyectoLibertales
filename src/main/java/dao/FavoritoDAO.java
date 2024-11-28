@@ -15,6 +15,7 @@ public class FavoritoDAO {
 	
     // Método para obtener todos los libros favoritos de un lector
     public List<Favorito> obtenerFavoritos(int idLector) {
+    	// Variables usadas
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -22,17 +23,21 @@ public class FavoritoDAO {
 
         try {
             con = ConexionBD.dameConexion();
+            // Sentencia para seleccionar el id de libro de la tabla favoritos cuyo id del lector sea el de la sesion activa
             String query = "SELECT id_libro FROM Favoritos WHERE id_lector = ?";
             stmt = con.prepareStatement(query);
             stmt.setInt(1, idLector);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
+            	// Obetenemos el id de libro 
                 int idLibro = rs.getInt("id_libro");
+                // Creamos un objeto de tipo favorito y lo agregamos a la lista de favoritos
                 favoritos.add(new Favorito(idLector, idLibro));
             }
             
             CerrarConexion.cerrar(con, stmt, null);
+            // Manejo de errores
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,6 +46,7 @@ public class FavoritoDAO {
     
     // Método para agregar un libro a la cesta de un lector
     public void agregarALaCesta(int idLector, int idLibro) {
+    	//Variables usadas
         Connection conexion = null;
         PreparedStatement pst = null;
         try {
@@ -57,6 +63,8 @@ public class FavoritoDAO {
 
             // Ejecutar la consulta
             pst.executeUpdate();
+            
+            // Manejo de errores
         } catch (SQLException e) {
             System.out.println("Error al agregar el libro a la cesta: " + e.getMessage());
         } finally {
@@ -71,6 +79,7 @@ public class FavoritoDAO {
     
     // Método para eliminar un libro de la cesta
     public void eliminarDeFavorito(int idLector, int idLibro) {
+    	// Variables usadas
         Connection conexion = null;
         PreparedStatement pst = null;
         try {
@@ -87,6 +96,8 @@ public class FavoritoDAO {
 
             // Ejecutar la consulta
             pst.executeUpdate();
+            
+            //Manejo de errores
         } catch (SQLException e) {
             System.out.println("Error al eliminar el libro de favorito: " + e.getMessage());
         } finally {
