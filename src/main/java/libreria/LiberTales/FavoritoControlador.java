@@ -79,7 +79,7 @@ public class FavoritoControlador {
 
                // Obtener el controlador de la carta y pasar los datos
                CardsFavorito controladorFavorito = loader.getController();
-               controladorFavorito.setDatos(itemFavorito);
+               controladorFavorito.estableceDatos(itemFavorito);
 
                // Agregar la carta al contenedor
                TilePaneFavorito.getChildren().add(carta);
