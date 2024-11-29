@@ -2,6 +2,7 @@ package libreria.LiberTales;
 
 import java.io.IOException;
 
+
 import dao.DetallesLibroDAO;
 import dto.Libro;
 import dto.SesionUsuario;
@@ -9,6 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import dto.Libro;
+import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 public class DetallesLibrosControlador {
