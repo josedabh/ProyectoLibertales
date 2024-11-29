@@ -46,6 +46,12 @@ public class DetallesLibrosControlador {
     @FXML
     private Libro libro;
     
+    @FXML
+    private Button cestaBoton;
+    
+    @FXML
+    private Label precioAlquiler;
+    
     // Instancia del DAO para manejar las operaciones en la base de datos
     private DetallesLibroDAO detallesLibroDAO;  
     
@@ -131,6 +137,8 @@ public class DetallesLibrosControlador {
    		
    	}
     
+
+    
     // Este método se invoca para establecer los detalles del libro
     public void setDetalles(Libro libro) {
         Image image = new Image(libro.getRutaImagen());
@@ -138,6 +146,7 @@ public class DetallesLibrosControlador {
         tituloLabel.setText(libro.getTitulo());
         sinopsisText.setText(libro.getSinopsis());
         precioLabel.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
+        precioAlquiler.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
         setLibro(libro);
     }
     
@@ -159,6 +168,16 @@ public class DetallesLibrosControlador {
         Libro libro = getLibro();  // Obtener el libro que se está viendo
         detallesLibroDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
 		Alerta.mostrarInformacion("Añadido a la cesta", "El libro se ha añadido a la cesta");
+
+    }
+    
+    // Metodo para mandar el libro a alquiler
+    @FXML
+    private void switchToAlquiler() throws IOException {
+        // Agregar el libro a la cesta
+        Libro libro = getLibro();  // Obtener el libro que se está viendo
+        detallesLibroDAO.agregarAlquiler(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
+		Alerta.mostrarInformacion("Añadido a alquiler", "El libro se ha añadido a alquiler");
 
     }
     

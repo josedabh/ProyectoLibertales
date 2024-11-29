@@ -109,7 +109,7 @@
       <Button fx:id="comprarButton" layoutX="324.0" layoutY="375.0" onAction="#switchToAlaCesta" style="-fx-font-size: 20px; -fx-background-color: #2980B9; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #2980B9, 10, 0.5, 0, 2)" text="Cesta">
          Comprar
       </Button>
-      <Button fx:id="favoritoButton" layoutX="515.0" layoutY="374.0" onAction="#switchToaFavorito" style="-fx-font-size: 20px; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #E74C3C, 10, 0.5, 0, 2)" text="Favorito">
+      <Button fx:id="favoritoButton" layoutX="494.0" layoutY="374.0" onAction="#switchToaFavorito" style="-fx-font-size: 20px; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #E74C3C, 10, 0.5, 0, 2)" text="Favorito">
          Favorito
       </Button>
 
@@ -117,5 +117,7 @@
       <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
       <Button fx:id="backButton" layoutX="56.0" layoutY="139.0" mnemonicParsing="false" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
       <Label fx:id="precioLabel" layoutX="324.0" layoutY="324.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-text-fill: #888888; -fx-font-weight: bold;" text="Precio" />
+      <Button fx:id="cestaBoton" layoutX="685.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchToAlquiler" style="-fx-font-size: 20px; -fx-background-color: #E67E22; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #D35400, 10, 0.5, 0, 2);" text="Alquiler" />
+      <Label fx:id="precioAlquiler" layoutX="683.0" layoutY="324.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-text-fill: #888888; -fx-font-weight: bold;" text="Precio" />
    </children>
 </AnchorPane>

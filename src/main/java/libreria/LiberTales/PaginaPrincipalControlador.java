@@ -49,6 +49,9 @@ public class PaginaPrincipalControlador {
 	@FXML
 	private VBox contenedorCartas;
 	
+	 @FXML
+	 private Button alquilerboton; 
+	 
 	public Lector lector;
 	
 	@FXML
@@ -124,6 +127,8 @@ public class PaginaPrincipalControlador {
    		}
    		
    	}
+    
+    
 	
     @FXML
    	private void switchToFavorito() throws IOException {
@@ -143,7 +148,26 @@ public class PaginaPrincipalControlador {
    		}
    		
    	}
-	
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
 	@FXML
 	private void switchToBusqueda() throws IOException {
 	    // Crear una instancia de FXMLLoader y cargar el archivo FXML

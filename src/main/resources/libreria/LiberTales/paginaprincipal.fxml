@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
+<AnchorPane prefHeight="568.0" prefWidth="943.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
 	<children>
 		<!-- Logo -->
 		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
@@ -100,10 +100,29 @@
                <Cursor fx:constant="DEFAULT" />
             </cursor>
 			</Button>
+         <Button fx:id="alquilerboton" onAction="#ventanaAlquiler" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <graphic>
+               <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../iconos/favorito.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <effect>
+               <DropShadow offsetX="1.0" offsetY="2.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+         </Button>
 		</HBox>
 
 		<!-- Separador superior -->
-		<Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0">
+		<Separator layoutX="15.0" layoutY="112.0" prefHeight="14.0" prefWidth="897.0">
          <effect>
             <DropShadow offsetX="1.0" offsetY="2.0">
                <color>
@@ -113,7 +132,7 @@
          </effect></Separator>
 
 		<!-- Sección de ofertas -->
-		<VBox alignment="CENTER" layoutX="67.0" layoutY="142.0" prefHeight="363.0" prefWidth="720.0" spacing="10" style="-fx-background-color: #F1948A; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 5px; -fx-background-radius: 5px;">
+		<VBox alignment="CENTER" layoutX="37.0" layoutY="142.0" prefHeight="376.0" prefWidth="845.0" spacing="10" style="-fx-background-color: #F1948A; -fx-padding: 10px; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 5px; -fx-background-radius: 5px;">
 			<Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="TODOS LOS LIBROS" textFill="WHITE">
             <effect>
                <Glow />
@@ -138,6 +157,6 @@
 		</VBox>
 
 		<!-- Footer con texto y versión -->
-		<Label layoutX="254.0" layoutY="517.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" textFill="WHITE" />
+		<Label layoutX="314.0" layoutY="533.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" textFill="WHITE" />
 	</children>
 </AnchorPane>

@@ -1,5 +1,15 @@
 package libreria.LiberTales;
 
+import java.io.IOException;
+import java.util.List;
+
+import Alertas.Alerta;
+import dao.AlquilerDAO;
+import dao.CestaDAO;
+import dto.Alquiler;
+import dto.Cesta;
+import dto.SesionAdmin;
+import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,28 +20,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import dao.CestaDAO;
-import dto.Cesta;
-import dto.SesionAdmin;
-import dto.SesionUsuario;
 
-import java.io.IOException;
-import java.util.List;
-
-import Alertas.Alerta;
-
-public class CestaControlador {
-
-	// Botones y campos de la interfaz grafica 'cesta.fxml'
-   
+public class AlquilerControlador {
+	
+	// Botones y campos de la interfaz grafica 'alquiler.fxml'
+	   
 	@FXML
     private VBox cestaVBox; 
 
     @FXML
-    private ScrollPane scrollPaneCesta;
+    private ScrollPane scrollPaneAlquiler;
     
     @FXML
-    private TilePane tilePaneCesta;
+    private TilePane tilePaneAlquiler;
     
 	@FXML
     private Button botonUsuario;
@@ -46,17 +47,17 @@ public class CestaControlador {
     private Button botonAtras;
     
     @FXML
-    private HBox contenedorCesta;
-    
-    @FXML
     private Button alquilerboton;
     
     @FXML
-    private CestaDAO cestaDAO;
+    private HBox contenedorCesta;
+    
+    @FXML
+    private AlquilerDAO alquilerDAO;
     
     // Constructor para inicializar el DAO
-    public CestaControlador() {
-        cestaDAO = new CestaDAO();
+    public AlquilerControlador() {
+    	alquilerDAO = new AlquilerDAO();
     }
 
     // Metodo para inicializacion para cargar la vista
@@ -71,33 +72,34 @@ public class CestaControlador {
             System.out.println("No hay ID de lector en la sesión.");
         }
         // Cargar los libros de cesta 
-        cargarCesta();
+        cargarAlquiler();
     }
     
     // Metodo para cargar cesta
-    private void cargarCesta() {
-        // Obtener los libros de la cesta del lector
-		try {
-			List<Cesta> librosEnCesta = cestaDAO.obtenerCesta(SesionUsuario.getInstancia().getIdLector());
+    private void cargarAlquiler() {
+        // Obtener los alquileres del lector
+        try {
+            // Obtener la lista de alquileres activos del lector
+            List<Alquiler> alquileres = alquilerDAO.obtenerAlquileres(SesionUsuario.getInstancia().getIdLector());
             
-            for(Cesta itemCesta : librosEnCesta) {
-                // Carga la vista cardscesta.fxml
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("cardscesta.fxml"));
+            // Iterar sobre cada alquiler para crear las tarjetas correspondientes
+            for (Alquiler itemAlquiler : alquileres) {
+                // Cargar la vista de la tarjeta de alquiler (cardsalquiler.fxml)
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("cardsalquiler.fxml"));
                 HBox carta = loader.load();
 
-                // Obtener el controlador de la carta y pasar los datos
-                CardsCesta controladorCesta = loader.getController();
-                controladorCesta.establecerDatos(itemCesta);
+                // Obtener el controlador de la tarjeta de alquiler y pasarle los datos del alquiler
+                CardsAlquiler controladorAlquiler = loader.getController();
+                controladorAlquiler.establecerDatos(itemAlquiler);  // Método que pasa los datos del alquiler
 
-                // Agregar la carta al contenedor
-                tilePaneCesta.getChildren().add(carta);
+                // Agregar la carta al contenedor TilePane para que se muestre en la interfaz
+                tilePaneAlquiler.getChildren().add(carta);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace();  // Capturar cualquier excepción y mostrarla en consola
         }
     }
 
-    
     // Metodo para llevarnos a la ventana de iniciar sesion
     @FXML
    	private void ventanaIniciarSesion() throws IOException {
@@ -205,10 +207,13 @@ public class CestaControlador {
 	    }
     }
 	
+	
+		// Metodo para volver a la pagina de libros alquilados
 	   @FXML
 	   	private void ventanaAlquiler() throws IOException {
 	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
 	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
 	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
 	   		        Parent root = loader.load();
 	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
@@ -223,7 +228,5 @@ public class CestaControlador {
 	   		}
 	   		
 	   	}
-	
-	
-}
 
+}

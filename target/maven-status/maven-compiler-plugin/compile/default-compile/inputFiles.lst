@@ -2,6 +2,7 @@ C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTal
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\OlvidarDAO.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\BusquedaLibrosControlador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\UsuarioDAO.java
+C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\AlquilerControlador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Usuario.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\LectorDAO.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\LibroDAO.java
@@ -24,6 +25,7 @@ C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTal
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\FavoritoDAO.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Busqueda.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Cesta.java
+C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\CardsAlquiler.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\RegistrarseControlador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\DetallesLibrosControlador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\Conexion\CerrarConexion.java
@@ -31,6 +33,8 @@ C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Libro.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\FavoritoControlador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\Conexion\ConexionBD.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\ModificarUsuarioControlador.java
+C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dao\AlquilerDAO.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Administrador.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\CardsCesta.java
 C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\libreria\LiberTales\CestaControlador.java
+C:\Users\juanjo\git\ProyectoLibertales-Alejandro\src\main\java\dto\Alquiler.java
