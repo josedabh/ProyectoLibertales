@@ -52,6 +52,9 @@ public class DetallesLibrosControlador {
     @FXML
     private Label precioAlquiler;
     
+    @FXML 
+	private Button alquilerboton;
+    
     // Instancia del DAO para manejar las operaciones en la base de datos
     private DetallesLibroDAO detallesLibroDAO;  
     
@@ -211,5 +214,26 @@ public class DetallesLibrosControlador {
 	        e.printStackTrace();
 	    }
     }
+	
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
     
 }

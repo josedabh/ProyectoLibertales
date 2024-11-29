@@ -4,12 +4,14 @@ import java.time.LocalDate;
 
 public class Alquiler {
 	
+	// Atributos
 	private int idAlquiler;
     private int idLector;
     private int idLibro;
     private java.time.LocalDate fechaInicio;
     private java.time.LocalDate fechaLimite;
     
+    // Constructor
 	public Alquiler(int idAlquiler, int idLector, int idLibro, LocalDate fechaInicio, LocalDate fechaLimite) {
 		this.idAlquiler = idAlquiler;
 		this.idLector = idLector;
@@ -18,6 +20,7 @@ public class Alquiler {
 		this.fechaLimite = fechaLimite;
 	}
 
+	// Getters y setters
 	public int getIdAlquiler() {
 		return idAlquiler;
 	}

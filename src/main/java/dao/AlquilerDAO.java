@@ -13,6 +13,7 @@ import dto.Alquiler;
 
 public class AlquilerDAO {
 
+	// Metodo para obtener los libros alquilados de los lectores
 	public List<Alquiler> obtenerAlquileres(int idLector) {
 	    // Variables usadas
 	    Connection con = null;

@@ -53,9 +53,14 @@ public class IniciarSesionControlador{
     private Button addButton;
     @FXML
     private Hyperlink forgotPasswordLink;
+    
     @FXML
     private Label footerLabel;
 	
+    @FXML 
+	private Button alquilerboton;
+    
+    
     @FXML
     public void comprobarUsuario(ActionEvent event) {
     	 String email = emailField.getText();
@@ -227,5 +232,26 @@ public class IniciarSesionControlador{
    		}
    		
    	}
+    
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
 
 }

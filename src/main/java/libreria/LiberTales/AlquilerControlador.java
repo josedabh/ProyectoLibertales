@@ -75,7 +75,7 @@ public class AlquilerControlador {
         cargarAlquiler();
     }
     
-    // Metodo para cargar cesta
+    // Metodo para cargar Alquiler
     private void cargarAlquiler() {
         // Obtener los alquileres del lector
         try {

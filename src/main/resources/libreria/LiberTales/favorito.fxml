@@ -66,9 +66,9 @@
                     </ImageView>
                 </graphic>
             </Button>
-         <Button fx:id="alquilerboton" onAction="#ventanaFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+         <Button fx:id="alquilerboton" onAction="#ventanaAlquiler" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
             <graphic>
-               <ImageView fitHeight="32.0" fitWidth="29.0" onDragDetected="#ventanaAlquiler" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../../iconos/favorito.png" />
                   </image>

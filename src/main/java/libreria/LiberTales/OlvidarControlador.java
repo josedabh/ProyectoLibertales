@@ -42,6 +42,9 @@ public class OlvidarControlador {
     @FXML
     private Label mensaje;
     
+	@FXML 
+	private Button alquilerboton;
+    
     @FXML
     public void initialize() {
         // Listener para validar el campo de correo en tiempo real
@@ -210,11 +213,32 @@ public class OlvidarControlador {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// Metodo privado para validar si el formato del correo es valido
 	private boolean esCorreoValido(String email) {
 		// Expresión regular basica para validar correos electronicos
 		return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
 	}
+	
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
 }
 
