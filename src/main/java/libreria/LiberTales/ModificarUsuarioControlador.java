@@ -23,20 +23,30 @@ public class ModificarUsuarioControlador {
 
 	@FXML 
 	private TextField campoNombre;
+	
 	@FXML 
 	private TextField campoDireccion;
+	
 	@FXML 
 	private TextField campoTelefono;
+	
 	@FXML 
 	private Button cartButton;
+	
 	@FXML
 	private Button messageButton;
+	
 	@FXML 
 	private Button botonGuardarCambios;
+	
 	@FXML 
 	private Button botonCerrarSesion;
+	
 	@FXML 
 	private Button userButton;
+	
+	@FXML 
+	private Button alquilerboton;
 	
 	@FXML 
 	private Button volverAtras;
@@ -234,6 +244,40 @@ public class ModificarUsuarioControlador {
     }
 	
 	@FXML
+    private void volverPaginaPrincipal() throws IOException {
+		try {
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	        Parent root = loader.load();
+	        Stage stage = (Stage) volverAtras.getScene().getWindow();
+	        stage.setScene(new Scene(root));
+	        stage.setTitle("Página principal");
+	        stage.show();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+    }
+	
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
+
     private void volverAtras() throws IOException {
         try {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));

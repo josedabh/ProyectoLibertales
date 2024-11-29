@@ -15,6 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import dto.Libro;
+import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -38,6 +43,15 @@ public class DetallesLibrosControlador {
     private Button botonVolver;
     @FXML
     private Libro libro;
+    
+    @FXML
+    private Button cestaBoton;
+    
+    @FXML
+    private Label precioAlquiler;
+    
+    @FXML 
+	private Button alquilerboton;
     
     // Instancia del DAO para manejar las operaciones en la base de datos
     private DetallesLibroDAO detallesLibroDAO;  
@@ -122,6 +136,8 @@ public class DetallesLibrosControlador {
    		}
    	}
     
+
+    
     // Este método se invoca para establecer los detalles del libro
     public void setDetalles(Libro libro) {
         Image imagen = new Image(libro.getRutaImagen());
@@ -129,6 +145,7 @@ public class DetallesLibrosControlador {
         etiquetaTitulo.setText(libro.getTitulo());
         textoSinopsis.setText(libro.getSinopsis());
         etiquetaPrecio.setText(String.format("€ %.2f", libro.getPrecioCompra())); 
+		precioAlquiler.setText(String.format("€ %.2f", libro.getPrecioAlquiler())); 
         setLibro(libro);
     }
     
@@ -149,6 +166,17 @@ public class DetallesLibrosControlador {
 		Alerta.mostrarInformacion("Añadido al carrito", "El libro se ha añadido al carrito");
     }
     
+    // Metodo para mandar el libro a alquiler
+    @FXML
+    private void switchToAlquiler() throws IOException {
+        // Agregar el libro a la cesta
+        Libro libro = getLibro();  // Obtener el libro que se está viendo
+        detallesLibroDAO.agregarAlquiler(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());
+		Alerta.mostrarInformacion("Añadido a alquiler", "El libro se ha añadido a alquiler");
+
+    }
+    
+    // Método que se ejecuta al hacer clic en el botón de favoritos
     @FXML
     private void agregarAFavoritos() throws IOException {
         Libro libro = getLibro(); 
@@ -177,4 +205,26 @@ public class DetallesLibrosControlador {
 	        e.printStackTrace();
 	    }
     }
+	
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
+    
 }

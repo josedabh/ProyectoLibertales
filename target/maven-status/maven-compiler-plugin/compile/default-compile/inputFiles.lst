@@ -1,6 +1,8 @@
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\AdministracionControlador.java
+C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\AlquilerControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\ModificarUsuarioControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\App.java
+C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dto\Alquiler.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\CambiarContrasenaController.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dto\Administrador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\LectorDAO.java
@@ -15,12 +17,14 @@ C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\DetallesLibro
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\LibroDAO.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\AdminLibrosController.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\Conexion\CerrarConexion.java
+C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\CompraDAO.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\FavoritoDAO.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dto\Lector.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\CestaControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\PaginaPrincipalControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\Conexion\ConexionBD.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\CestaDAO.java
+C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\CardsAlquiler.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\AdministradorDAO.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\OlvidarControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\UsuarioDAO.java
@@ -32,5 +36,7 @@ C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTal
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\Alertas\Alerta.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\RegistrarseControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\OlvidarDAO.java
+C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dao\AlquilerDAO.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\libreria\LiberTales\FavoritoControlador.java
 C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dto\Cesta.java
+C:\Users\dani5\git\ProyectoLibertales-Alejandroa\src\main\java\dto\Compra.java
