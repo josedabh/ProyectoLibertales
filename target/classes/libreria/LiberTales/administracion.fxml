@@ -4,60 +4,73 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.AdministracionControlador">
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.AdministracionControlador">
     <children>
+      <!-- Logo -->
+		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+			<image>
+				<Image url="@../../images/logo.png" />
+			</image>
+         <effect>
+            <DropShadow offsetX="1.0" offsetY="2.0">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+		</ImageView>
+
+		<!-- Barra de búsqueda -->
+		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
+			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
+			<Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+		</HBox>
+
+		<!-- Iconos de usuario, carrito y mensaje -->
+		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
+			<!-- Button de usuario con ContextMenu -->
+			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+				<graphic>
+					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@../../iconos/avatar.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+				<graphic>
+					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@../../iconos/cesta.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+				<graphic>
+					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@../../iconos/favorito.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+		</HBox>
 
         <!-- Separador superior -->
         <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
+      <Button fx:id="botonLibros" layoutX="228.0" layoutY="177.0" mnemonicParsing="false" onAction="#switchtoAdminLibros" prefHeight="200.0" prefWidth="300.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #D4A5A5; -fx-text-fill: white; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-pref-height: 200px; -fx-pref-width: 300px; -fx-padding: 20px;" text="Libros" />
 
         <!-- Footer con texto y versión -->
-        <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #D3D3D3;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-      <Button fx:id="botonUsuarios" layoutX="378.0" layoutY="189.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Usuarios" />
-      <Button fx:id="botonLibros" layoutX="378.0" layoutY="243.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Libros" />
-      <Button fx:id="botonTransacciones" layoutX="378.0" layoutY="296.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Transacciones" />
-      <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="24.0" layoutY="12.0">
-         <image>
-            <Image url="@../../images/logo.png" />
-         </image>
-      </ImageView>
-      <HBox layoutX="174.0" layoutY="23.0" spacing="10" />
-      <HBox layoutX="616.0" layoutY="39.0" spacing="20">
-         <children>
-            <Button fx:id="userButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../iconos/avatar.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="cartButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../iconos/cesta.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="messageButton" style="-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-border-color: #000000;">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../iconos/notificaciones.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </HBox>
-      <TextField fx:id="searchField" layoutX="144.0" layoutY="50.0" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px;" />
-      <Button fx:id="addButton" layoutX="555.0" layoutY="49.0" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+        <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+      <Button fx:id="botonCerrarSesion" layoutX="75.0" layoutY="438.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-pref-height: 40px; -fx-pref-width: 150px; -fx-padding: 10px 20px;" text="Cerrar Sesión" />
     </children>
 </AnchorPane>

@@ -21,6 +21,7 @@ public class App extends Application {
         // Cargar la vista principal
         scene = new Scene(loadFXML("paginaprincipal"));
         stage.setScene(scene);
+        stage.setTitle("Página Principal");
         stage.show();
     }
 

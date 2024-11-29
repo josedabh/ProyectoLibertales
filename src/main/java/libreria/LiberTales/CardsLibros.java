@@ -54,6 +54,7 @@ public class CardsLibros {
 	    // Mostrar la nueva escena
 	    Stage stage = (Stage) detallesButton.getScene().getWindow();
 	    stage.setScene(new Scene(root));
+	    stage.setTitle("Detalles de " + infoLibro.getTitulo());
 	    stage.show();
     }
 

@@ -10,74 +10,42 @@ import java.util.List;
 
 public class CestaDAO {
 
-    // Método para agregar un libro a la cesta de un lector
-    public void agregarALaCesta(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-        
-        try {
-            con = ConexionBD.dameConexion();
-            String query = "INSERT INTO Cesta (id_lector, id_libro) VALUES (?, ?)";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            stmt.executeUpdate();
-            System.out.println("Libro agregado a la cesta.");
-            
-            CerrarConexion.cerrar(con, stmt, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     // Método para eliminar un libro de la cesta de un lector
     public void eliminarDeLaCesta(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-
+    	// Variables usadas
+        Connection conexion = null;
+        PreparedStatement pst = null;
         try {
-            con = ConexionBD.dameConexion();
-            String query = "DELETE FROM cesta WHERE id_lector = ? AND id_libro = ?";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            stmt.executeUpdate();
-            
-            CerrarConexion.cerrar(con, stmt, null);
-            System.out.println("Libro eliminado de la cesta.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
- // Método para alquilar un libro en la cesta de un lector
-    public void alquilarLibro(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
+            // Establecer la conexión a la base de datos
+            conexion = ConexionBD.dameConexion();
 
-        try {
-            con = ConexionBD.dameConexion();
-            String query = "UPDATE Cesta SET estado = 'alquilado' WHERE id_lector = ? AND id_libro = ?";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            int filasActualizadas = stmt.executeUpdate();
+            // SQL para eliminar un libro de la cesta del usuario
+            String sql = "DELETE FROM cesta WHERE id_lector = ? AND id_libro = ?";
+            pst = conexion.prepareStatement(sql);
 
-            if (filasActualizadas > 0) {
-                System.out.println("Libro alquilado correctamente.");
-            } else {
-                System.out.println("El libro no estaba en la cesta del lector.");
-            }
-            
+            // Establecer los parámetros de la consulta
+            pst.setInt(1, idLector);
+            pst.setInt(2, idLibro);
+
+            // Ejecutar la consulta
+            pst.executeUpdate();
+            // Manejo de errores
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error al eliminar el libro de la cesta: " + e.getMessage());
         } finally {
-            CerrarConexion.cerrar(con, stmt, null);
+            try {
+                if (pst != null) pst.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar los recursos: " + e.getMessage());
+            }
         }
     }
+
 
     // Método para obtener todos los libros en la cesta de un lector
     public List<Cesta> obtenerCesta(int idLector) {
+    	// Variables usadas
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -96,36 +64,77 @@ public class CestaDAO {
             }
             
             CerrarConexion.cerrar(con, stmt, rs);
+            // Manejo de errores
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return cesta;
     }
+    
+ // Método para realizar la compra e insertar en la tabla Compra
+    public void comprarLibro(int idLector, int idLibro, Date fechaCompra) throws SQLException {
+        // Variables usadas
+    	Connection con = null;
+        PreparedStatement sentenciaCompra = null;
+        PreparedStatement sentenciaEliminarDeCesta = null;
 
-    // Método para verificar si un libro está en la cesta de un lector
-    public boolean estaEnCesta(int idLector, int idLibro) {
-        Connection con = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        boolean enCesta = false;
-
+        String sqlCompra = "INSERT INTO Compra (id_lector, id_libro, fecha_compra) VALUES (?, ?, ?)";
+        String sqlEliminarDeCesta = "DELETE FROM Cesta WHERE id_lector = ? AND id_libro = ?";
         try {
+            // Obtener la conexión
             con = ConexionBD.dameConexion();
-            String query = "SELECT COUNT(*) FROM Cesta WHERE id_lector = ? AND id_libro = ?";
-            stmt = con.prepareStatement(query);
-            stmt.setInt(1, idLector);
-            stmt.setInt(2, idLibro);
-            rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                enCesta = rs.getInt(1) > 0;
+            // Iniciar la transacción
+            con.setAutoCommit(false); // Desactivamos el autocommit para manejarlo manualmente
+
+            // Preparar la consulta para insertar la compra
+            sentenciaCompra = con.prepareStatement(sqlCompra);
+            sentenciaCompra.setInt(1, idLector);
+            sentenciaCompra.setInt(2, idLibro);
+            sentenciaCompra.setDate(3, fechaCompra);
+
+            // Ejecutar la inserción
+            int filasInsertadas = sentenciaCompra.executeUpdate();
+
+            // Si no se insertaron filas en la tabla Compra, lanzamos una excepción
+            if (filasInsertadas == 0) {
+                throw new SQLException("No se pudo realizar la compra.");
             }
-            
-            CerrarConexion.cerrar(con, stmt, rs);
+
+            // Preparar la consulta para eliminar el libro de la cesta
+            sentenciaEliminarDeCesta = con.prepareStatement(sqlEliminarDeCesta);
+            sentenciaEliminarDeCesta.setInt(1, idLector);
+            sentenciaEliminarDeCesta.setInt(2, idLibro);
+
+            // Ejecutar la eliminación del libro de la tabla Cesta
+            int filasEliminadas = sentenciaEliminarDeCesta.executeUpdate();
+
+            // Si no se eliminó ninguna fila, lanzamos una excepción
+            if (filasEliminadas == 0) {
+                throw new SQLException("No se pudo eliminar el libro de la cesta.");
+            }
+
+            // Si ambas operaciones fueron exitosas, confirmar la transacción
+            con.commit();
+
+            // Manejo de errores
         } catch (SQLException e) {
-            e.printStackTrace();
+            // Si ocurre un error, hacer rollback de la transacción
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("Error al hacer rollback: " + ex.getMessage());
+                }
+            }
+            System.err.println("Error al realizar la compra o eliminar el libro de la cesta: " + e.getMessage());
+            throw e;  // Lanzamos la excepción para que se maneje en otro lugar
+
+        } finally {
+            // Cerrar los recursos
+            CerrarConexion.cerrar(con, sentenciaCompra, null);
+            CerrarConexion.cerrar(con, sentenciaEliminarDeCesta, null);
         }
-        return enCesta;
     }
     
  // Método para agregar un libro a la cesta

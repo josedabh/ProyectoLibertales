@@ -3,12 +3,14 @@ package libreria.LiberTales;
 import java.io.IOException;
 import java.util.List;
 
+import Alertas.Alerta;
 import Conexion.ConexionBD;
 import dao.LectorDAO;
 import dao.LibroDAO;
 import dto.Busqueda;
 import dto.Lector;
 import dto.Libro;
+import dto.SesionAdmin;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,39 +40,120 @@ public class PaginaPrincipalControlador {
     private Button searchButton; 
     
     @FXML
+    private Button userButton;
+    @FXML
     private Button cartButton;
+    @FXML
+    private Button messageButton;
     
 	@FXML
 	private VBox contenedorCartas;
 	
+	 @FXML
+	 private Button alquilerboton; 
+	 
 	public Lector lector;
 	
 	@FXML
-	private void switchtoLogin() throws IOException {
-		if(SesionUsuario.getInstancia().getIdLector()==null) {
-			App.setRoot("iniciarsesion");
-		} else {
-			App.setRoot("modificarUsuario");
-		}
-	}
+   	private void switchtoLogin() throws IOException {
+       	if(SesionUsuario.getInstancia().getIdLector()==null &&
+       			SesionAdmin.getInstancia().getIdAdmin()==null) {
+       		try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Iniciar sesión");
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       		try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Administración");
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		} else {
+   			try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Modificar usuario");
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		}
+   	}
 	
-	@FXML
-	private void switchToCesta() throws IOException {
-	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
-	    Parent root = loader.load();
-	    
-	    // Obtener el controlador de la vista cargada
-	    CestaControlador controller = loader.getController();
-	    
-	    // Mostrar la nueva escena
-	    Stage stage = (Stage) cartButton.getScene().getWindow();
-	    stage.setScene(new Scene(root));
-	    stage.show();
-	}
+    @FXML
+   	private void switchToCesta() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   			try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) cartButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Cesta");
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		} else {
+   			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
+   		}
+   		
+   	}
+    
+    
 	
+    @FXML
+   	private void switchToFavorito() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   			try {
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) messageButton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Favoritos");
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		} else {
+   			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
+   		}
+   		
+   	}
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
 	@FXML
-	private void switchToFavorito() throws IOException {
+	private void switchToBusqueda() throws IOException {
 	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
 	    FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
 	    Parent root = loader.load();
@@ -81,6 +164,7 @@ public class PaginaPrincipalControlador {
 	    // Mostrar la nueva escena
 	    Stage stage = (Stage) cartButton.getScene().getWindow();
 	    stage.setScene(new Scene(root));
+	    stage.setTitle("Búsqueda libros");
 	    stage.show();
 	}
 	
