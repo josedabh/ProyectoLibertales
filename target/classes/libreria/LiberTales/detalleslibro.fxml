@@ -16,7 +16,7 @@
 <AnchorPane prefHeight="568.0" prefWidth="943.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.DetallesLibrosControlador">
    <children>
       <!-- Logo -->
-      <ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+      <ImageView fx:id="imagenDetalle" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
          <image>
             <Image url="@../../images/logo.png" />
          </image>
@@ -31,13 +31,13 @@
 
       <!-- Barra de búsqueda -->
       <HBox layoutX="155.0" layoutY="48.0" spacing="10">
-         <TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
-         <Button fx:id="searchButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+         <TextField fx:id="campoBusqueda" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
+         <Button fx:id="botonBusqueda" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
       </HBox>
 
       <!-- Iconos de usuario, carrito y mensaje -->
       <HBox layoutX="617.0" layoutY="41.0" spacing="20">
-         <Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
+         <Button fx:id="botonUsuario" onAction="#cambiarALogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
             <graphic>
                <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -53,7 +53,7 @@
                </DropShadow>
             </effect>
          </Button>
-         <Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
+         <Button fx:id="botonCarrito" onAction="#cambiarACarrito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
             <graphic>
                <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -69,7 +69,7 @@
                </DropShadow>
             </effect>
          </Button>
-         <Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
+         <Button fx:id="botonFavoritos" onAction="#cambiarAFavoritos" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
             <graphic>
                <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -109,7 +109,7 @@
       <Separator layoutX="15.0" layoutY="112.0" prefHeight="9.0" prefWidth="906.0" />
 
       <!-- Detalles del libro -->
-      <ImageView fx:id="detalleImage" fitHeight="258.0" fitWidth="211.0" layoutX="44.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #7F8C8D; -fx-border-width: 5; -fx-border-radius: 10px; -fx-padding: 10px; -fx-effect: dropshadow(gaussian, #888888, 5, 0.5, 0, 0);">
+      <ImageView fx:id="imagenDetalle" fitHeight="258.0" fitWidth="211.0" layoutX="44.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #7F8C8D; -fx-border-width: 5; -fx-border-radius: 10px; -fx-padding: 10px; -fx-effect: dropshadow(gaussian, #888888, 5, 0.5, 0, 0);">
          <image>
             <Image url="@../../images/your_image.jpg" />
          </image>
@@ -122,22 +122,20 @@
          </effect>
       </ImageView>
       
-      <Label fx:id="tituloLabel" layoutX="316.0" layoutY="191.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Libro" />
-      <Text fx:id="sinopsisText" layoutX="316.0" layoutY="268.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Sinopsis" />
+      <Label fx:id="etiquetaTitulo" layoutX="316.0" layoutY="191.0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Libro" />
+      <Text fx:id="textoSinopsis" layoutX="316.0" layoutY="268.0" style="-fx-font-size: 16px; -fx-text-fill: #7F8C8D;" text="Sinopsis" />
 
       <!-- Botones para Comprar y Favorito -->
-      <Button fx:id="comprarButton" layoutX="324.0" layoutY="375.0" onAction="#switchToAlaCesta" style="-fx-font-size: 20px; -fx-background-color: #2980B9; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #2980B9, 10, 0.5, 0, 2)" text="Cesta">
-         Comprar
-      </Button>
-      <Button fx:id="favoritoButton" layoutX="494.0" layoutY="374.0" onAction="#switchToaFavorito" style="-fx-font-size: 20px; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #E74C3C, 10, 0.5, 0, 2)" text="Favorito">
-         Favorito
+      <Button fx:id="botonComprar" layoutX="324.0" layoutY="375.0" onAction="#agregarAlCarrito" style="-fx-font-size: 20px; -fx-background-color: #2980B9; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #2980B9, 10, 0.5, 0, 2)" text="Cesta">
       </Button>
 
       <!-- Pie de página -->
       <Label layoutX="320.0" layoutY="511.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-      <Button fx:id="backButton" layoutX="56.0" layoutY="139.0" mnemonicParsing="false" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
-      <Label fx:id="precioLabel" layoutX="324.0" layoutY="324.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-text-fill: #888888; -fx-font-weight: bold;" text="Precio" />
       <Button fx:id="cestaBoton" layoutX="685.0" layoutY="374.0" mnemonicParsing="false" onAction="#switchToAlquiler" style="-fx-font-size: 20px; -fx-background-color: #E67E22; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #D35400, 10, 0.5, 0, 2);" text="Alquiler" />
       <Label fx:id="precioAlquiler" layoutX="683.0" layoutY="324.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-text-fill: #888888; -fx-font-weight: bold;" text="Precio" />
+      <Button fx:id="botonFavorito" layoutX="515.0" layoutY="374.0" onAction="#agregarAFavoritos" style="-fx-font-size: 20px; -fx-background-color: #E74C3C; -fx-text-fill: white; -fx-border-radius: 5px; -fx-padding: 10px 20px; -fx-effect: dropshadow(gaussian, #E74C3C, 10, 0.5, 0, 2)" text="Favorito">
+      </Button>
+      <Button fx:id="botonVolver" layoutX="56.0" layoutY="139.0" mnemonicParsing="false" onAction="#cambiarAPaginaPrincipal" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
+      <Label fx:id="etiquetaPrecio" layoutX="324.0" layoutY="324.0" prefHeight="31.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-text-fill: #888888; -fx-font-weight: bold;" text="Precio" />
    </children>
 </AnchorPane>

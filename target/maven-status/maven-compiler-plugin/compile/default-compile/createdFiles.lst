@@ -32,6 +32,7 @@ dto\Favorito.class
 libreria\LiberTales\CardsCesta.class
 libreria\LiberTales\OlvidarControlador.class
 dao\UsuarioDAO.class
+dao\CompraDAO.class
 libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class
 dao\OlvidarDAO.class
