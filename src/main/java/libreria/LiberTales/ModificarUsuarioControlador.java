@@ -54,7 +54,7 @@ public class ModificarUsuarioControlador {
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
 	boolean anadido = false;
 
-	public void initialize() {
+	public void iniciar() {
 		if (idLector == 0) {
             System.out.println("El ID del lector no ha sido inicializado.");
             return;
@@ -131,7 +131,7 @@ public class ModificarUsuarioControlador {
 	}
 
 	@FXML
-   	private void switchtoLogin() throws IOException {
+   	private void cambiarAInicioSesion() throws IOException {
        	if(SesionUsuario.getInstancia().getIdLector()==null &&
        			SesionAdmin.getInstancia().getIdAdmin()==null) {
        		try {
@@ -170,7 +170,7 @@ public class ModificarUsuarioControlador {
    	}
 	
     @FXML
-   	private void switchToCesta() throws IOException {
+   	private void cambiarACesta() throws IOException {
    		if(SesionUsuario.getInstancia().getIdLector()!=null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
@@ -189,7 +189,7 @@ public class ModificarUsuarioControlador {
    	}
 	
     @FXML
-   	private void switchToFavorito() throws IOException {
+   	private void cambiarAFavorito() throws IOException {
    		if(SesionUsuario.getInstancia().getIdLector()!=null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
@@ -208,7 +208,7 @@ public class ModificarUsuarioControlador {
    	}
 	
 	@FXML
-	private void switchToCambiarContrasena() throws IOException {
+	private void irACambiarContrasena() throws IOException {
 	    // Cargo la vista
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("cambiarcontrasena.fxml"));
 	
@@ -278,4 +278,16 @@ public class ModificarUsuarioControlador {
 	   		
 	   	}
 
+    private void volverAtras() throws IOException {
+        try {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+            Parent raiz = cargador.load();
+            Stage escenario = (Stage) volverAtras.getScene().getWindow();
+            escenario.setScene(new Scene(raiz));
+            escenario.setTitle("Página principal");
+            escenario.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

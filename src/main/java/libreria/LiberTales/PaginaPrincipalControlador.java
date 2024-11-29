@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import Alertas.Alerta;
-import Conexion.ConexionBD;
-import dao.LectorDAO;
 import dao.LibroDAO;
 import dto.Busqueda;
 import dto.Lector;
@@ -19,32 +17,30 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PaginaPrincipalControlador {
 	
 	@FXML
-    private ScrollPane scrollPane;
+    private ScrollPane panelDesplazable;
     
     @FXML
     private TilePane tilePaneCartas;
     
     @FXML
-    private TextField searchField; // Campo de texto para ingresar la búsqueda
+    private TextField campoBusqueda; // Campo de texto para ingresar la búsqueda
     
     @FXML
-    private Button searchButton; 
+    private Button botonBuscar; 
     
     @FXML
-    private Button userButton;
+    private Button botonUsuario;
     @FXML
-    private Button cartButton;
+    private Button botonCesta;
     @FXML
-    private Button messageButton;
+    private Button botonMensajes;
     
 	@FXML
 	private VBox contenedorCartas;
@@ -55,24 +51,40 @@ public class PaginaPrincipalControlador {
 	public Lector lector;
 	
 	@FXML
-   	private void switchtoLogin() throws IOException {
-       	if(SesionUsuario.getInstancia().getIdLector()==null &&
-       			SesionAdmin.getInstancia().getIdAdmin()==null) {
+	public void initialize() {
+        Integer idLector = SesionUsuario.getInstancia().getIdLector();
+        Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
+        if (idLector != null) {
+            System.out.println("ID del lector en la sesión: " + idLector);
+            
+            // Aquí puedes usar idLector para cargar datos específicos
+        } else if (idAdmin != null) {
+        	System.out.println("ID del administrador en la sesión: " + idAdmin);
+        } else {
+            System.out.println("No hay ID de lector en la sesión.");
+        }
+        cargarCartas();
+    }
+	
+	@FXML
+   	private void cambiarALogin() throws IOException {
+       	if (SesionUsuario.getInstancia().getIdLector() == null &&
+       			SesionAdmin.getInstancia().getIdAdmin() == null) {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Iniciar sesión");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
    		    }
-       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       	} else if (SesionAdmin.getInstancia().getIdAdmin() != null) {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Administración");
    		        stage.show();
@@ -83,7 +95,7 @@ public class PaginaPrincipalControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Modificar usuario");
    		        stage.show();
@@ -94,12 +106,12 @@ public class PaginaPrincipalControlador {
    	}
 	
     @FXML
-   	private void switchToCesta() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   	private void cambiarACesta() throws IOException {
+   		if (SesionUsuario.getInstancia().getIdLector() != null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) cartButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonCesta.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Cesta");
    		        stage.show();
@@ -115,12 +127,12 @@ public class PaginaPrincipalControlador {
     
 	
     @FXML
-   	private void switchToFavorito() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   	private void cambiarAFavorito() throws IOException {
+   		if (SesionUsuario.getInstancia().getIdLector() != null) {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) messageButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonMensajes.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Favoritos");
    		        stage.show();
@@ -153,18 +165,24 @@ public class PaginaPrincipalControlador {
 	   		
 	   	}
 	@FXML
-	private void switchToBusqueda() throws IOException {
+	private void cambiarABusqueda() throws IOException {
 	    // Crear una instancia de FXMLLoader y cargar el archivo FXML
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("busquedalibros.fxml"));
 	    Parent root = loader.load();
 	    
 	    // Obtener el controlador de la vista cargada
-	    FavoritoControlador controller = loader.getController();
+	    BusquedaLibrosControlador controller = loader.getController();
+	    
+	    // Crear una instancia de Busqueda con el texto de búsqueda actual
+	    Busqueda busqueda = new Busqueda(campoBusqueda.getText());
+	    
+	    // Pasar la instancia de Busqueda al controlador de la vista de búsqueda
+	    controller.setBusqueda(busqueda);
 	    
 	    // Mostrar la nueva escena
-	    Stage stage = (Stage) cartButton.getScene().getWindow();
+	    Stage stage = (Stage) botonBuscar.getScene().getWindow();
 	    stage.setScene(new Scene(root));
-	    stage.setTitle("Búsqueda libros");
+	    stage.setTitle("Búsqueda de libros");
 	    stage.show();
 	}
 	
@@ -173,7 +191,7 @@ public class PaginaPrincipalControlador {
 			LibroDAO libroDAO = new LibroDAO();
             List<Libro> listaLibros = libroDAO.obtenerTodosLosLibros();
             
-            for(Libro libro: listaLibros) {
+            for (Libro libro : listaLibros) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("cardslibros.fxml"));
                 VBox carta = loader.load();
 
@@ -188,49 +206,4 @@ public class PaginaPrincipalControlador {
             e.printStackTrace();
         }
     }
-
-    public void initialize() {
-        Integer idLector = SesionUsuario.getInstancia().getIdLector();
-        System.out.println("Funciona" + idLector);
-        if (idLector != null) {
-            System.out.println("ID del lector en la sesión: " + idLector);
-        } else {
-            System.out.println("No hay ID de lector en la sesión.");
-        }
-        cargarLibros(null); // Carga todos los libros al iniciar la aplicación
-    }
-    private void cargarLibros(String searchText) {
-        tilePaneCartas.getChildren().clear(); // Limpia el contenedor antes de agregar resultados
-
-        LibroDAO libroDAO = new LibroDAO();
-        List<Libro> listaLibros;
-        
-        if (searchText == null || searchText.isEmpty()) {
-            listaLibros = libroDAO.obtenerTodosLosLibros(); // Obtiene todos los libros si no hay texto de búsqueda
-        } else {
-            listaLibros = libroDAO.buscarLibrosPorTitulo(searchText); // Obtiene libros filtrados por el título
-        }
-        
-        for (Libro libro : listaLibros) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("cardslibros.fxml"));
-                VBox carta = loader.load();
-                
-                // Obtener el controlador de la carta y establecer los datos del libro
-                CardsLibros controladorCarta = loader.getController();
-                controladorCarta.setDatos(libro);
-
-                tilePaneCartas.getChildren().add(carta);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    // Método que se ejecuta al hacer clic en el botón de búsqueda
-    public void buscarLibros() {
-        String searchText = searchField.getText(); // Obtiene el texto del campo de búsqueda
-        cargarLibros(searchText); // Llama a cargarLibros con el texto de búsqueda
-    }
-
 }
