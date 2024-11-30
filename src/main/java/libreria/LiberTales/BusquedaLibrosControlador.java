@@ -44,6 +44,8 @@ public class BusquedaLibrosControlador {
     private Button botonCesta;
     @FXML
     private Button botonFavoritos;
+    @FXML
+    private Button alquilerboton;
     
     private Busqueda busqueda;
 
@@ -182,4 +184,24 @@ public class BusquedaLibrosControlador {
 	        e.printStackTrace();
 	    }
     }
+	
+	@FXML
+   	private void ventanaAlquiler() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   			try {
+   				// Carga la vista de la pagina principal 'alquiler.fxml'
+   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+   		        Parent root = loader.load();
+   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+   		        stage.setScene(new Scene(root));
+   		        stage.setTitle("Alquiler");
+   		        stage.show();
+   		    } catch (IOException e) {
+   		        e.printStackTrace();
+   		    }
+   		} else {
+   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+   		}
+   		
+   	}
 }
