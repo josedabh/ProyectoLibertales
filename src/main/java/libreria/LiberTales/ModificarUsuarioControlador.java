@@ -47,7 +47,7 @@ public class ModificarUsuarioControlador {
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
 	boolean anadido = false;
 
-	public void iniciar() {
+	public void initialize() {
 		if (idLector == 0) {
             System.out.println("El ID del lector no ha sido inicializado.");
             return;
