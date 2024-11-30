@@ -128,7 +128,7 @@ public class RegistrarseControlador {
 
     // Método que se ejecuta cuando el usuario hace clic en "Registrar"
     @FXML
-    private void registrarUsuario(ActionEvent evento) {
+    private void registrarUsuario() {
         String nombreUsuarioCompleto = campoNombreUsuarioCompleto.getText();
         String direccion = campoDireccion.getText();
         String correoElectronico = campoCorreoElectronico.getText().trim();
@@ -157,7 +157,12 @@ public class RegistrarseControlador {
         
         Alerta.mostrarInformacion("Registro Exitoso", "Usuario registrado correctamente.");
         try {
-            App.setRoot("iniciarsesion");
+        	FXMLLoader cargador = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+            Parent raiz = cargador.load();
+            Stage escenario = (Stage) botonRegistrar.getScene().getWindow();
+            escenario.setScene(new Scene(raiz));
+            escenario.setTitle("Iniciar sesión");
+            escenario.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -239,7 +244,7 @@ public class RegistrarseControlador {
     }
 
     @FXML
-    private void volverAInicioSesion() throws IOException {
+    public void volverAInicioSesion() throws IOException {
         try {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
             Parent raiz = cargador.load();
