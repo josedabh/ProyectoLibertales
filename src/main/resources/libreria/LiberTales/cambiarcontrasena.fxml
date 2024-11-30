@@ -40,5 +40,8 @@
          </children>
       </GridPane>
       <Button fx:id="botonGuardarContrasena" layoutX="365.0" layoutY="396.0" mnemonicParsing="false" onAction="#guardarContrasena" style="-fx-font-size: 14px; -fx-background-color: #F39C12; -fx-text-fill: #FFFFFF; -fx-border-radius: 5px; -fx-pref-width: 150px; -fx-padding: 10px;" text="Guardar Contraseña" />
+      <Label fx:id="errorContrasenaActual" layoutX="538.0" layoutY="178.0" textFill="RED" />
+      <Label fx:id="errorNuevaContrasena" layoutX="538.0" layoutY="257.0" textFill="RED" />
+      <Label fx:id="errorVerificarContrasena" layoutX="538.0" layoutY="338.0" textFill="RED" />
 	</children>
 </AnchorPane>

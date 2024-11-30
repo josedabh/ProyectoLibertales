@@ -1,7 +1,6 @@
 package libreria.LiberTales;
 
 import java.io.IOException;
-
 import Alertas.Alerta;
 import dao.LectorDAO;
 import dao.UsuarioDAO;
@@ -14,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -43,6 +43,86 @@ public class RegistrarseControlador {
     private Button botonFavoritos;
     @FXML
     private Button botonVolver;
+    @FXML
+    private Label errorNombreCompleto;
+    @FXML
+    private Label errorDireccion;
+    @FXML
+    private Label errorTelefono;
+    @FXML
+    private Label errorCorreoElectronico;
+    @FXML
+    private Label errorContrasena;
+    @FXML 
+    private Label errorConfirmarContrasena;
+    
+    public void initialize() {
+    	// Listener para validar el campo de nombre completo en tiempo real
+        campoNombreUsuarioCompleto.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoNombreUsuarioCompleto.setStyle("-fx-border-color: red;");
+                errorNombreCompleto.setText("El nombre no puede estar vacío");
+            } else {
+                campoNombreUsuarioCompleto.setStyle(null); // Limpia estilos de error
+                errorNombreCompleto.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de dirección en tiempo real
+        campoDireccion.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoDireccion.setStyle("-fx-border-color: red;");
+                errorDireccion.setText("La dirección no puede estar vacía");
+            } else {
+                campoDireccion.setStyle(null); // Limpia estilos de error
+                errorDireccion.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de teléfono en tiempo real
+        campoTelefono.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoTelefono.setStyle("-fx-border-color: red;");
+                errorTelefono.setText("El teléfono debe tener 9 números");
+            } else {
+                campoTelefono.setStyle(null); // Limpia estilos de error
+                errorTelefono.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de correo en tiempo real
+        campoCorreoElectronico.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!esCorreoValido(newValue)) {
+                campoCorreoElectronico.setStyle("-fx-border-color: red;");
+                errorCorreoElectronico.setText("Por favor, introduce un correo válido");
+            } else {
+                campoCorreoElectronico.setStyle(null); // Limpia estilos de error
+                errorCorreoElectronico.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de contraseña en tiempo real
+        campoContrasena.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoContrasena.setStyle("-fx-border-color: red;");
+                errorContrasena.setText("La contraseña no puede estar vacía");
+            } else {
+                campoContrasena.setStyle(null); // Limpia estilos de error
+                errorContrasena.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar que los valores de los campos Contrasena y ConfirmarContrasena son iguales
+        campoConfirmarContrasena.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals(campoContrasena.getText())) {
+                campoConfirmarContrasena.setStyle("-fx-border-color: red;");
+                errorConfirmarContrasena.setText("Las contraseñas no coinciden");
+            } else {
+                campoConfirmarContrasena.setStyle(null); // Limpia estilos de error
+                errorConfirmarContrasena.setText(""); // Limpia el mensaje
+            }
+        });
+    }
 
     // Método que se ejecuta cuando el usuario hace clic en "Registrar"
     @FXML
@@ -57,7 +137,7 @@ public class RegistrarseControlador {
         // Validar que los campos no estén vacíos
         if (correoElectronico.isEmpty() || contrasena.isEmpty() || confirmarContrasena.isEmpty() || 
                 direccion.isEmpty() || nombreUsuarioCompleto.isEmpty() || telefono.isEmpty()) {
-            Alerta.mostrarError("Error de Registro", "Por favor, completa todos los campos.");
+            errorNombreCompleto.setText("Por favor, completa todos los campos");
             return;
         }
 
@@ -171,5 +251,15 @@ public class RegistrarseControlador {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private boolean esCorreoValido(String email) {
+		// Expresión regular básica para validar correos electrónicos
+		return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+	}
+    
+    private boolean esTelefonoValido(String telefono) {
+        // Expresión regular para validar que el teléfono tiene exactamente 9 dígitos
+        return telefono.matches("^\\d{9}$");
     }
 }

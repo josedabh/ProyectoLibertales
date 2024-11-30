@@ -80,12 +80,13 @@
         <Button fx:id="botonEnviar" layoutX="227.0" layoutY="398.0" onAction="#restablecerContrasenia" style="-fx-font-size: 14px; -fx-background-color: #4CAF50; -fx-text-fill: #FFFFFF; -fx-border-radius: 5px; -fx-pref-width: 100px; -fx-padding: 10px;" text="Enviar" />
 
         <!-- Mensaje de retroalimentación para el usuario -->
-        <Label fx:id="mensajeLabel" layoutX="230.0" layoutY="260.0" style="-fx-font-size: 14px; -fx-text-fill: red;" text="" />
+        <Label fx:id="errorCorreo" layoutX="230.0" layoutY="260.0" style="-fx-text-fill: red;" text="" />
 
         <!-- Footer con texto y versión -->
         <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
       <Button fx:id="botonAtras" layoutX="40.0" layoutY="134.0" onAction="#switchtoLogin" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
       <Label layoutX="228.0" layoutY="292.0" style="-fx-font-size: 14px; -fx-text-fill: #34495E;" text="Nombre:" />
       <TextField fx:id="nombre" layoutX="228.0" layoutY="326.0" prefWidth="300.0" promptText="Introduce tu nombre completo" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 10px;" />
+      <Label fx:id="errorNombre" layoutX="228.0" layoutY="362.0" style="-fx-text-fill: red;" text="" />
     </children>
 </AnchorPane>

@@ -36,7 +36,10 @@ public class OlvidarControlador {
     private Button botonEnviar;
     
     @FXML
-    private Label mensajeLabel;
+    private Label errorCorreo;
+    
+    @FXML
+    private Label errorNombre;
     
     @FXML
     public void initialize() {
@@ -44,10 +47,10 @@ public class OlvidarControlador {
         correo.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!esCorreoValido(newValue)) {
                 correo.setStyle("-fx-border-color: red;");
-                mensajeLabel.setText("Por favor, introduce un correo válido.");
+                errorCorreo.setText("Por favor, introduce un correo válido");
             } else {
                 correo.setStyle(null); // Limpia estilos de error
-                mensajeLabel.setText(""); // Limpia el mensaje
+                errorCorreo.setText(""); // Limpia el mensaje
             }
         });
 
@@ -55,10 +58,10 @@ public class OlvidarControlador {
         nombre.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.trim().isEmpty()) {
                 nombre.setStyle("-fx-border-color: red;");
-                mensajeLabel.setText("El nombre no puede estar vacío.");
+                errorNombre.setText("El nombre no puede estar vacío");
             } else {
                 nombre.setStyle(null); // Limpia estilos de error
-                mensajeLabel.setText(""); // Limpia el mensaje
+                errorNombre.setText(""); // Limpia el mensaje
             }
         });
     }
@@ -161,12 +164,12 @@ public class OlvidarControlador {
 		
 		// Validaciones finales antes de enviar
 		if (email.isEmpty() || usuario.isEmpty()) {
-			mensajeLabel.setText("Por favor, rellene todos los campos");
+			errorCorreo.setText("Por favor, rellene todos los campos");
 			return;
 		}
 
 		if (!esCorreoValido(email)) {
-			mensajeLabel.setText("Por favor, introduce un correo válido.");
+			errorCorreo.setText("Por favor, introduce un correo válido");
 			return;
 		}
 		
