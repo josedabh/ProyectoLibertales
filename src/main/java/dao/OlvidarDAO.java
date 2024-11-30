@@ -8,6 +8,7 @@ import Conexion.CerrarConexion;
 
 public class OlvidarDAO {
 
+	// Metodo recuperar la contraseña
     public void recuperarContrasenia(String email, String nombre) {
     	// Variables usadas
         Connection con = null;

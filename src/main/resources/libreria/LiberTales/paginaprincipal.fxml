@@ -82,7 +82,7 @@
                     </DropShadow>
                 </effect>
             </Button>
-            <Button fx:id="botonFavoritos" onAction="#cambiarAFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <Button fx:id="botonMensajes" onAction="#cambiarAFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                         <image>
