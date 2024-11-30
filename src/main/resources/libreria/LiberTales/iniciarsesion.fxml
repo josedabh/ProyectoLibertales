@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.IniciarSesionControlador">
     <children>
@@ -71,16 +72,22 @@
       <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
 
         <!-- Botón de Volver Atrás -->
-        <Button fx:id="backButton" layoutX="25.0" layoutY="150.0" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
+        <Button fx:id="backButton" layoutX="36.0" layoutY="140.0" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
 
         <!-- Formulario de inicio de sesión -->
         <VBox layoutX="293.0" layoutY="150.0" prefHeight="274.0" prefWidth="259.0" spacing="10">
             <Label style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Inicio Sesión" />
          <Separator prefWidth="200.0" />
-            <TextField fx:id="emailField" prefHeight="26.0" prefWidth="200.0" promptText="Email" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" />
-         <Label fx:id="errorCorreo" textFill="RED" />
-            <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-font-size: 15px; -fx-border-radius: 5px; -fx-background-color: #F7F7F7; -fx-padding: 5px; -fx-border-color: #BDC3C7;" />
-         <Label fx:id="errorContrasena" textFill="#ff0000" />
+            <TextField fx:id="emailField" prefHeight="41.0" prefWidth="259.0" promptText="Email" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" />
+         <Label fx:id="errorCorreo" textFill="RED">
+            <font>
+               <Font size="6.0" />
+            </font></Label>
+            <PasswordField fx:id="passwordField" prefHeight="46.0" prefWidth="259.0" promptText="Contraseña" style="-fx-font-size: 15px; -fx-border-radius: 5px; -fx-background-color: #F7F7F7; -fx-padding: 5px; -fx-border-color: #BDC3C7;" />
+         <Label fx:id="errorContrasena" textFill="#ff0000">
+            <font>
+               <Font size="6.0" />
+            </font></Label>
          <Separator prefWidth="200.0" />
             <Button fx:id="loginButton" onAction="#comprobarUsuario" style="-fx-background-color: #2980B9; -fx-text-fill: white; -fx-font-size: 15px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, #2980B9, 5, 0.5, 0, 0);" text="Iniciar Sesión" />
 
