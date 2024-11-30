@@ -140,11 +140,11 @@ public class AdminAlquilerControlador implements Initializable{
     @FXML
     private void volverAtras() throws IOException {
 		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
 	        Parent root = loader.load();
 	        Stage stage = (Stage) botonVolverAtras.getScene().getWindow();
 	        stage.setScene(new Scene(root));
-	        stage.setTitle("Página principal");
+	        stage.setTitle("Administracion");
 	        stage.show();
 	    } catch (IOException e) {
 	        e.printStackTrace();

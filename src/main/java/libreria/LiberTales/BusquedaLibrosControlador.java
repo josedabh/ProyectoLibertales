@@ -24,60 +24,60 @@ import javafx.stage.Stage;
 public class BusquedaLibrosControlador {
 
     @FXML
-    private ScrollPane scrollBusqueda;
+    private ScrollPane scrollPaneBusqueda;
     
     @FXML
-    private TilePane tilePaneBusqueda;
+    private TilePane panelLibrosBusqueda;
     
     @FXML
-    private TextField searchField; // Campo de texto para ingresar la búsqueda
+    private TextField campoBusqueda; // Campo de texto para ingresar la búsqueda
     
     @FXML
-    private Button searchButton; 
+    private Button botonBuscar;
     
     @FXML
-    private Button backButton;
+    private Button botonVolver;
     
     @FXML
-    private Button userButton;
+    private Button botonUsuario;
     @FXML
-    private Button cartButton;
+    private Button botonCesta;
     @FXML
-    private Button messageButton;
+    private Button botonFavoritos;
     
     private Busqueda busqueda;
 
-    public void initialize() {
+    public void inicializar() {
         // Configura el campo de búsqueda inicial
         if (busqueda != null) {
-            this.searchField.setText(busqueda.getBuscar());
+            this.campoBusqueda.setText(busqueda.getBuscar());
             cargarLibros(busqueda.getBuscar());
         }
 
         // Agrega un listener al campo de búsqueda para actualizar al escribir
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        campoBusqueda.textProperty().addListener((observable, oldValue, newValue) -> {
             busqueda.setBuscar(newValue);
             cargarLibros(newValue);
         });
     }
 
-    private void cargarLibros(String searchText) {
-        tilePaneBusqueda.getChildren().clear();
+    private void cargarLibros(String textoBusqueda) {
+        panelLibrosBusqueda.getChildren().clear();
 
         LibroDAO libroDAO = new LibroDAO();
-        List<Libro> listaLibros = (searchText == null || searchText.isEmpty())
+        List<Libro> listaLibros = (textoBusqueda == null || textoBusqueda.isEmpty())
             ? libroDAO.obtenerTodosLosLibros()
-            : libroDAO.buscarLibrosPorTitulo(searchText);
+            : libroDAO.buscarLibrosPorTitulo(textoBusqueda);
 
         for (Libro libro : listaLibros) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("cardslibros.fxml"));
-                VBox carta = loader.load();
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("cardslibros.fxml"));
+                VBox cartaLibro = cargador.load();
 
-                CardsLibros controladorCarta = loader.getController();
+                CardsLibros controladorCarta = cargador.getController();
                 controladorCarta.setDatos(libro);
 
-                tilePaneBusqueda.getChildren().add(carta);
+                panelLibrosBusqueda.getChildren().add(cartaLibro);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,31 +86,31 @@ public class BusquedaLibrosControlador {
 
     public void setBusqueda(Busqueda busqueda) {
         this.busqueda = busqueda;
-        if (searchField != null) {
-            searchField.setText(busqueda.getBuscar());
+        if (campoBusqueda != null) {
+            campoBusqueda.setText(busqueda.getBuscar());
             cargarLibros(busqueda.getBuscar());
         }
     }
     
     @FXML
-   	private void switchtoLogin() throws IOException {
-       	if(SesionUsuario.getInstancia().getIdLector()==null &&
-       			SesionAdmin.getInstancia().getIdAdmin()==null) {
+   	private void cambiarALogin() throws IOException {
+       	if(SesionUsuario.getInstancia().getIdLector() == null &&
+       			SesionAdmin.getInstancia().getIdAdmin() == null) {
        		try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        FXMLLoader cargador = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+   		        Parent root = cargador.load();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Iniciar sesión");
    		        stage.show();
    		    } catch (IOException e) {
    		        e.printStackTrace();
    		    }
-       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       	} else if(SesionAdmin.getInstancia().getIdAdmin() != null) {
        		try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        FXMLLoader cargador = new FXMLLoader(getClass().getResource("administracion.fxml"));
+   		        Parent root = cargador.load();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Administración");
    		        stage.show();
@@ -119,9 +119,9 @@ public class BusquedaLibrosControlador {
    		    }
    		} else {
    			try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        FXMLLoader cargador = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+   		        Parent root = cargador.load();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Modificar usuario");
    		        stage.show();
@@ -132,12 +132,12 @@ public class BusquedaLibrosControlador {
    	}
 	
     @FXML
-   	private void switchToCesta() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   	private void cambiarACesta() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector() != null) {
    			try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) cartButton.getScene().getWindow();
+   		        FXMLLoader cargador = new FXMLLoader(getClass().getResource("cesta.fxml"));
+   		        Parent root = cargador.load();
+   		        Stage stage = (Stage) botonCesta.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Cesta");
    		        stage.show();
@@ -151,12 +151,12 @@ public class BusquedaLibrosControlador {
    	}
 	
     @FXML
-   	private void switchToFavorito() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+   	private void cambiarAFavoritos() throws IOException {
+   		if(SesionUsuario.getInstancia().getIdLector() != null) {
    			try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) messageButton.getScene().getWindow();
+   		        FXMLLoader cargador = new FXMLLoader(getClass().getResource("favorito.fxml"));
+   		        Parent root = cargador.load();
+   		        Stage stage = (Stage) botonFavoritos.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Favoritos");
    		        stage.show();
@@ -170,11 +170,11 @@ public class BusquedaLibrosControlador {
    	}
 	
 	@FXML
-    private void switchToPagina() throws IOException {
+    private void cambiarAPaginaPrincipal() throws IOException {
 		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
-	        Parent root = loader.load();
-	        Stage stage = (Stage) backButton.getScene().getWindow();
+	        FXMLLoader cargador = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
+	        Parent root = cargador.load();
+	        Stage stage = (Stage) botonVolver.getScene().getWindow();
 	        stage.setScene(new Scene(root));
 	        stage.setTitle("Página principal");
 	        stage.show();
@@ -182,5 +182,4 @@ public class BusquedaLibrosControlador {
 	        e.printStackTrace();
 	    }
     }
-	
 }

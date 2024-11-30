@@ -23,13 +23,6 @@
             <image>
                 <Image url="@../../images/logo.png" />
             </image>
-            <effect>
-                <DropShadow offsetX="1.0" offsetY="2.0">
-                    <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                    </color>
-                </DropShadow>
-            </effect>
         </ImageView>
 
         <!-- Barra de búsqueda -->
@@ -74,25 +67,15 @@
         <!-- Botón de Volver -->
         <Button fx:id="botonVolver" layoutX="25.0" layoutY="150.0" onAction="#volverAInicioSesion" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
 
-        <Label layoutX="374.0" layoutY="148.0" style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Registro">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
+        <Label layoutX="374.0" layoutY="148.0" style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Registro"/>
 
        <!-- Formulario de registro -->
         <VBox layoutX="216.0" layoutY="190.0" prefHeight="238.0" prefWidth="428.0" spacing="10">
             <Separator prefHeight="0.0" prefWidth="415.0" />
             <TextField fx:id="campoNombreUsuarioCompleto" prefHeight="26.0" prefWidth="200.0" promptText="Nombre Completo" style="-fx-font-size: 15px;" />
-         <Label fx:id="errorNombreCompleto" style="-fx-text-fill: red;" text="">
-            <font>
-               <Font size="6.0" />
-            </font></Label>
+         <Label fx:id="errorNombreCompleto" style="-fx-text-fill: red;" text=""/>
             <TextArea fx:id="campoDireccion" prefHeight="39.0" prefWidth="415.0" promptText="Dirección" style="-fx-font-size: 15px;" />
-         <Label fx:id="errorDireccion" style="-fx-text-fill: red;" text="">
-            <font>
-               <Font size="8.0" />
-            </font></Label>
+         <Label fx:id="errorDireccion" style="-fx-text-fill: red;" text=""/>
             <GridPane prefHeight="195.0" prefWidth="419.0">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

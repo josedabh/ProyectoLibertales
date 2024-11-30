@@ -25,28 +25,22 @@ public class PaginaPrincipalControlador {
 	
 	@FXML
     private ScrollPane panelDesplazable;
-    
     @FXML
     private TilePane tilePaneCartas;
-    
     @FXML
     private TextField campoBusqueda; // Campo de texto para ingresar la búsqueda
-    
     @FXML
     private Button botonBuscar; 
-    
     @FXML
     private Button botonUsuario;
     @FXML
     private Button botonCesta;
     @FXML
-    private Button botonMensajes;
-    
+    private Button botonFavoritos;
 	@FXML
 	private VBox contenedorCartas;
-	
-	 @FXML
-	 private Button alquilerboton; 
+	@FXML
+	private Button alquilerboton; 
 	 
 	public Lector lector;
 	
@@ -132,7 +126,7 @@ public class PaginaPrincipalControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) botonMensajes.getScene().getWindow();
+   		        Stage stage = (Stage) botonFavoritos.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Favoritos");
    		        stage.show();

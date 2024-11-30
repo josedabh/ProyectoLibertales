@@ -18,55 +18,54 @@
 <AnchorPane prefHeight="568.0" prefWidth="943.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.ModificarUsuarioControlador">
 	<children>
 		<!-- Logo -->
-		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
-			<image>
-				<Image url="@../../images/logo.png" />
-			</image>
-         <effect>
-            <DropShadow offsetX="1.0" offsetY="2.0">
-               <color>
-                  <Color red="1" green="1" blue="1" />
-               </color>
-            </DropShadow>
-         </effect>
-		</ImageView>
+        <ImageView fx:id="logoImagenVista" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+            <image>
+                <Image url="@../../images/logo.png" />
+            </image>
+            <effect>
+                <DropShadow offsetX="1.0" offsetY="2.0">
+                    <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </ImageView>
 
-		<!-- Barra de búsqueda -->
-		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
-   			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
-			<Button fx:id="addButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
-		</HBox>
+        <!-- Barra de búsqueda -->
+        <HBox layoutX="155.0" layoutY="48.0" spacing="10">
+            <TextField fx:id="campoBusqueda" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
+            <Button fx:id="botonAgregar" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+        </HBox>
 
 		<!-- Iconos de usuario, carrito y mensaje -->
 		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
-			<!-- Button de usuario con ContextMenu -->
-			<Button fx:id="userButton" onAction="#cambiarAInicioSesion" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
-				<graphic>
-					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-						<image>
-							<Image url="@../../iconos/avatar.png" />
-						</image>
-					</ImageView>
-				</graphic>
-			</Button>
-			<Button fx:id="cartButton" onAction="#cambiarACesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
-				<graphic>
-					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-						<image>
-							<Image url="@../../iconos/cesta.png" />
-						</image>
-					</ImageView>
-				</graphic>
-			</Button>
-			<Button fx:id="messageButton" onAction="#cambiarAFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
-				<graphic>
-					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-						<image>
-							<Image url="@../../iconos/favorito.png" />
-						</image>
-					</ImageView>
-				</graphic>
-			</Button>
+			<Button fx:id="botonUsuario" onAction="#cambiarAIniciarSesion" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/avatar.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="botonCarrito" onAction="#cambiarACesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/cesta.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="botonFavoritos" onAction="#cambiarAFavoritos" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+                <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../iconos/favorito.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
          <Button fx:id="alquilerboton" onAction="#ventanaAlquiler" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
             <graphic>
                <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">

@@ -15,7 +15,7 @@
 <AnchorPane prefHeight="550.0" prefWidth="861.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.BusquedaLibrosControlador">
 	<children>
 		<!-- Logo -->
-		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+		<ImageView fx:id="vistaImagenLogo" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
 			<image>
 				<Image url="@../../images/logo.png" />
 			</image>
@@ -23,14 +23,14 @@
 
 		<!-- Barra de búsqueda -->
 		<HBox layoutX="155.0" layoutY="48.0" spacing="10">
-			<TextField fx:id="searchField" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
-			<Button fx:id="searchButton" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+			<TextField fx:id="campoBusqueda" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
+			<Button fx:id="botonBuscar" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
 		</HBox>
 
-		<!-- Iconos de usuario, carrito y mensaje -->
+		<!-- Iconos de usuario, carrito y favoritos -->
 		<HBox layoutX="617.0" layoutY="41.0" spacing="20">
-			<!-- Button de usuario con ContextMenu -->
-			<Button fx:id="userButton" onAction="#switchtoLogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<!-- Botón de usuario con menú contextual -->
+			<Button fx:id="botonUsuario" onAction="#cambiarALogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -39,7 +39,7 @@
 					</ImageView>
 				</graphic>
 			</Button>
-			<Button fx:id="cartButton" onAction="#switchToCesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="botonCesta" onAction="#cambiarACesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -48,7 +48,7 @@
 					</ImageView>
 				</graphic>
 			</Button>
-			<Button fx:id="messageButton" onAction="#switchToFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+			<Button fx:id="botonFavoritos" onAction="#cambiarAFavoritos" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
 				<graphic>
 					<ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -63,18 +63,18 @@
 		<Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
 		
 		<!-- Botón de Volver Atrás -->
-        <Button fx:id="backButton" layoutX="52.0" layoutY="134.0" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
+        <Button fx:id="botonVolver" layoutX="52.0" layoutY="134.0" onAction="#cambiarAPaginaPrincipal" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
 
 		<!-- Footer con texto y versión -->
 		<Label layoutX="254.0" layoutY="515.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
-			<ScrollPane fx:id="scrollBusqueda" fitToWidth="true" hbarPolicy="NEVER" layoutX="52.0" layoutY="193.0" maxHeight="500.0" prefHeight="303.0" prefWidth="751.0" vbarPolicy="AS_NEEDED">
+		<ScrollPane fx:id="scrollPaneBusqueda" fitToWidth="true" hbarPolicy="NEVER" layoutX="52.0" layoutY="193.0" maxHeight="500.0" prefHeight="303.0" prefWidth="751.0" vbarPolicy="AS_NEEDED">
          <content>
-            <TilePane fx:id="tilePaneBusqueda" hgap="10.0" prefColumns="6" prefHeight="304.0" prefRows="8" prefWidth="738.0" vgap="10.0">
+            <TilePane fx:id="panelLibrosBusqueda" hgap="10.0" prefColumns="6" prefHeight="304.0" prefRows="8" prefWidth="738.0" vgap="10.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </TilePane>
          </content>
-			</ScrollPane>
+		</ScrollPane>
 	</children>
 </AnchorPane>
