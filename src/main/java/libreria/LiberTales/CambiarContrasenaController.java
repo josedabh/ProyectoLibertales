@@ -10,6 +10,7 @@ import Conexion.ConexionBD;
 import dto.SesionUsuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,6 +26,48 @@ public class CambiarContrasenaController {
 	private Button botonGuardarContrasena;
 	private int idLector = SesionUsuario.getInstancia().getIdLector();
 	static CambiarContrasenaController controlador;
+	@FXML
+	private Label errorContrasenaActual;
+	@FXML
+	private Label errorNuevaContrasena;
+	@FXML
+	private Label errorVerificarContrasena;
+	
+	public void initialize() {
+		String contrasenaActual = campoContrasenaActual.getText();
+		String contrasenaNueva = campoNuevaContrasena.getText();
+		String verificarContrasena = campoVerificarContrasena.getText();
+		
+		// Comprobar que todos los campos están rellenos
+				if (contrasenaActual.isEmpty() || contrasenaNueva.isEmpty() || verificarContrasena.isEmpty()) {
+					campoContrasenaActual.setStyle("-fx-border-color: red;");
+		            errorContrasenaActual.setText("Por favor, completa todos los campos");
+				}else {
+					campoContrasenaActual.setStyle(null); // Limpia estilos de error
+		            errorContrasenaActual.setText(""); // Limpia el mensaje
+				}
+		        
+				// Comprobar que la contraseña actual (antes de cambiarla) es correcta
+				if (!verificarContrasenaActual(contrasenaActual)) {
+			        campoContrasenaActual.setStyle("-fx-border-color: red;");
+			        errorContrasenaActual.setText("La contraseña no es correcta");
+			    }else if(verificarContrasenaActual(contrasenaActual)) {
+			    	campoContrasenaActual.setStyle(null); // Limpia estilos de error
+		            errorContrasenaActual.setText(""); // Limpia el mensaje
+			    }
+				
+				// Listener para validar el campo de contraseña en tiempo real
+		        campoNuevaContrasena.textProperty().addListener((observable, oldValue, newValue) -> {
+		            if (newValue.trim().isEmpty()) {
+		                campoNuevaContrasena.setStyle("-fx-border-color: red;");
+		                errorNuevaContrasena.setText("La contraseña no puede estar vacía");
+		            } else {
+		                campoNuevaContrasena.setStyle(null); // Limpia estilos de error
+		                errorNuevaContrasena.setText(""); // Limpia el mensaje
+		            }
+		        });
+				
+			    }
 	
 	@FXML
 	private void guardarContrasena() {
@@ -32,19 +75,18 @@ public class CambiarContrasenaController {
 		String contrasenaNueva = campoNuevaContrasena.getText();
 		String verificarContrasena = campoVerificarContrasena.getText();
 		
-		// Comprobar que todos los campos están rellenos
-		if (contrasenaActual.isEmpty() || contrasenaNueva.isEmpty() || verificarContrasena.isEmpty()) {
-		    Alerta.mostrarError("Casillas Vacías", "Todos los campos deben estar llenos");
-		    return;
-		// Comprobar que la contraseña actual (antes de cambiarla) es correcta
-		}else if (!verificarContrasenaActual(contrasenaActual)) {
-	        Alerta.mostrarError("Contraseña Actual Erronea", "La contraseña actual no es correcta");
-	        return;
-	    // Comprobar que la contraseña nueva y su verificación son iguales
-	    }else if (!contrasenaNueva.equals(verificarContrasena)) {
-	    	Alerta.mostrarError("Contraseña Nueva No Coincide", "La contraseña nueva y su verificación no coinciden");
-	        return;
-	    }
+		// Comprobar que la contraseña nueva y su verificación son iguales
+    	if (!contrasenaNueva.equals(verificarContrasena)) {
+    	campoVerificarContrasena.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals(campoNuevaContrasena.getText())) {
+                campoVerificarContrasena.setStyle("-fx-border-color: red;");
+                errorVerificarContrasena.setText("Las contraseñas no coinciden");
+            } else {
+                campoVerificarContrasena.setStyle(null); // Limpia estilos de error
+                errorVerificarContrasena.setText(""); // Limpia el mensaje
+            }
+        });
+    	}
 		
 		String sql = "UPDATE Lector SET contrasenia=? WHERE id_lector = ?";
 
