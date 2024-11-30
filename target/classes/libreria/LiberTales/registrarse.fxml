@@ -16,33 +16,55 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #E6E8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.RegistrarseControlador">
-    <children>
-        <!-- Logo -->
-        <ImageView fx:id="logoImagen" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
-            <image>
-                <Image url="@../../images/logo.png" />
-            </image>
-        </ImageView>
-
+<AnchorPane prefHeight="568.0" prefWidth="943.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.PaginaPrincipalControlador">
+	<children>
+		<!-- Logo -->
+		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
+			<image>
+				<Image url="@../../images/logo.png" />
+			</image>
+         <effect>
+            <DropShadow offsetX="1.0" offsetY="2.0">
+               <color>
+                  <Color red="0.8421052694320679" green="0.8109161853790283" blue="0.8109161853790283" />
+               </color>
+            </DropShadow>
+         </effect>
+		</ImageView>
         <!-- Barra de búsqueda -->
         <HBox layoutX="155.0" layoutY="48.0" spacing="10">
-            <TextField fx:id="campoBusqueda" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;" />
-            <Button fx:id="botonBuscar" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍" />
+            <TextField fx:id="campoBusqueda" prefWidth="400" promptText="Buscar" style="-fx-font-size: 15px; -fx-background-color: #d4d0d0;">
+                <effect>
+                    <SepiaTone level="0.0" />
+                </effect>
+            </TextField>
+            <Button fx:id="botonBuscar" onAction="#cambiarABusqueda" style="-fx-background-color: #E6E6FA; -fx-font-size: 15px;" text="🔍">
+                <cursor>
+                    <Cursor fx:constant="DEFAULT" />
+                </cursor>
+            </Button>
         </HBox>
 
-        <!-- Iconos de usuario, carrito y favoritos -->
+        <!-- Iconos de usuario, carrito y mensaje -->
         <HBox layoutX="617.0" layoutY="41.0" spacing="20">
-            <Button fx:id="botonUsuario" onAction="#cambiarAInicioSesion" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <!-- Botón de usuario -->
+            <Button fx:id="botonUsuario" onAction="#cambiarALogin" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
                 <graphic>
-                    <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../../iconos/avatar.png" />
                         </image>
                     </ImageView>
                 </graphic>
+                <effect>
+                    <DropShadow offsetX="1.0" offsetY="2.0">
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </color>
+                    </DropShadow>
+                </effect>
             </Button>
-            <Button fx:id="botonCesta" onAction="#cambiarACesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <Button fx:id="botonCesta" onAction="#cambiarACesta" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-border-radius: 50px; -fx-background-radius: 50px;">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -50,8 +72,15 @@
                         </image>
                     </ImageView>
                 </graphic>
+                <effect>
+                    <DropShadow offsetX="1.0" offsetY="2.0">
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </color>
+                    </DropShadow>
+                </effect>
             </Button>
-            <Button fx:id="botonFavoritos" onAction="#cambiarAFavoritos" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <Button fx:id="botonFavoritos" onAction="#cambiarAFavorito" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -59,7 +88,36 @@
                         </image>
                     </ImageView>
                 </graphic>
+                <effect>
+                    <DropShadow offsetX="1.0" offsetY="2.0">
+                        <color>
+                            <Color red="1.0" green="1.0" blue="1.0" />
+                        </color>
+                    </DropShadow>
+                </effect>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT" />
+                </cursor>
             </Button>
+         <Button fx:id="alquilerboton" onAction="#ventanaAlquiler" style="-fx-font-size: 20px; -fx-background-color: #F1948A; -fx-border-color: #C0392B; -fx-background-radius: 50px; -fx-border-radius: 50px;">
+            <graphic>
+               <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../iconos/alquilar.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <effect>
+               <DropShadow offsetX="1.0" offsetY="2.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+         </Button>
         </HBox>
         
         <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />

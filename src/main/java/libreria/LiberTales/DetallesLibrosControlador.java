@@ -149,7 +149,7 @@ public class DetallesLibrosControlador {
         setLibro(libro);
     }
     
-    public void inicializar() {
+    public void initialize() {
         Integer idLector = SesionUsuario.getInstancia().getIdLector();
         System.out.println("Funciona: " + idLector);
         if (idLector != null) {
