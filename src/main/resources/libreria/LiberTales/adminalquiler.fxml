@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.AdministracionControlador">
+<AnchorPane prefHeight="539.0" prefWidth="847.0" style="-fx-background-color: #e0dcdc;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.AdminAlquilerControlador">
     <children>
       <!-- Logo -->
 		<ImageView fx:id="logoImageView" fitHeight="100.0" fitWidth="100.0" layoutX="25.0" layoutY="14.0">
@@ -67,13 +69,18 @@
 
         <!-- Separador superior -->
         <Separator layoutX="15.0" layoutY="112.0" prefHeight="15.0" prefWidth="826.0" />
-      <Button fx:id="botonVolverAtras" layoutX="25.0" layoutY="136.0" mnemonicParsing="false" onAction="#volverAPaginaPrincipal" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
-      <Label layoutX="362.0" layoutY="127.0" style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Administración" />
-      <Button fx:id="botonLibros" layoutX="125.0" layoutY="193.0" mnemonicParsing="false" onAction="#cambiarAAdministrarLibros" prefHeight="200.0" prefWidth="300.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #D4A5A5; -fx-text-fill: white; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-pref-height: 200px; -fx-pref-width: 300px; -fx-padding: 20px;" text="Libros" />
-      <Button fx:id="botonAdminAlquiler" layoutX="452.0" layoutY="193.0" mnemonicParsing="false" onAction="#cambiarAHistorialAlquiler" prefHeight="200.0" prefWidth="300.0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #D4A5A5; -fx-text-fill: white; -fx-background-radius: 10px; -fx-border-radius: 10px; -fx-pref-height: 200px; -fx-pref-width: 300px; -fx-padding: 20px;" text="Alquiler" />
-      <Button fx:id="botonCerrarSesion" layoutX="103.0" layoutY="435.0" mnemonicParsing="false" onAction="#cerrarSesion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #F39C12; -fx-text-fill: white; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-pref-height: 40px; -fx-pref-width: 150px; -fx-padding: 10px 20px;" text="Cerrar Sesión" />
 
         <!-- Footer con texto y versión -->
         <Label layoutX="254.0" layoutY="503.0" style="-fx-font-size: 15px; -fx-text-fill: #000000;" text="© LiberTales. Todos los derechos reservados. v4.2.13" />
+      <Button fx:id="botonVolverAtras" layoutX="30.0" layoutY="127.0" mnemonicParsing="false" onAction="#volverAtras" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
+      <Label layoutX="336.0" layoutY="127.0" style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Historial: Alquiler" />
+      <TableView fx:id="tablaAlquiler" layoutX="33.0" layoutY="175.0" prefHeight="309.0" prefWidth="784.0">
+        <columns>
+          <TableColumn fx:id="colLector" prefWidth="166.39995956420898" text="Lector" />
+          <TableColumn fx:id="colLibro" minWidth="0.0" prefWidth="219.2000274658203" text="Libro" />
+            <TableColumn fx:id="colFecAlta" prefWidth="179.99993896484375" text="Fecha de alta" />
+            <TableColumn fx:id="colFecDev" prefWidth="216.7999267578125" text="Fecha de devolución" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\Alquile
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\OlvidarControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\AdministracionControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\SesionUsuario.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\AdminAlquilerControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Busqueda.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Cesta.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\CompraDAO.java
@@ -24,6 +25,7 @@ C:\Users\dani5\git\ProyectoLibertales2\src\main\java\Alertas\Alerta.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\FavoritoControlador.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\libreria\LiberTales\CardsAlquiler.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\LibroDAO.java
+C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\HistorialAlquiler.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Lector.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dto\Usuario.java
 C:\Users\dani5\git\ProyectoLibertales2\src\main\java\dao\DetallesLibroDAO.java

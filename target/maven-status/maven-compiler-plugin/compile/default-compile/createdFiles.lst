@@ -3,6 +3,7 @@ dto\Lector.class
 libreria\LiberTales\CestaControlador.class
 Conexion\ConexionBD.class
 libreria\LiberTales\AlquilerControlador.class
+dto\HistorialAlquiler.class
 Alertas\Alerta.class
 dto\SesionUsuario.class
 dao\CestaDAO.class
@@ -37,6 +38,7 @@ libreria\LiberTales\CardsFavorito.class
 dto\Usuario.class
 dao\OlvidarDAO.class
 libreria\LiberTales\RegistrarseControlador.class
+libreria\LiberTales\AdminAlquilerControlador.class
 dao\DetallesLibroDAO.class
 libreria\LiberTales\CardsLibros.class
 libreria\LiberTales\AdministracionControlador.class

@@ -1,20 +1,31 @@
 package libreria.LiberTales;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import Alertas.Alerta;
+import dao.AlquilerDAO;
+import dto.HistorialAlquiler;
 import dto.SesionAdmin;
 import dto.SesionUsuario;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class AdministracionControlador {
-
-    @FXML
+public class AdminAlquilerControlador implements Initializable{
+	
+	@FXML
     private Button botonUsuario;
     @FXML
     private Button botonCesta;
@@ -23,26 +34,35 @@ public class AdministracionControlador {
     @FXML
     private Button botonVolverAtras;
     @FXML
-    private Button botonAdministrarLibros;
+    private TableView<HistorialAlquiler> tablaAlquiler;
     @FXML
-    private Button botonAdminAlquiler;
+    private TableColumn colLector;
     @FXML
-    private Button botonCerrarSesion;
+    private TableColumn colLibro;
+    @FXML
+    private TableColumn colFecAlta;
+    @FXML
+    private TableColumn colFecDev;
+    
+    private ObservableList<HistorialAlquiler> observableAlquiler;
+    
 
-    @FXML
-    public void iniciar() {
-        Integer idLector = SesionUsuario.getInstancia().getIdLector();
-        Integer idAdmin = SesionAdmin.getInstancia().getIdAdmin();
-        if (idLector != null) {
-            System.out.println("ID del lector en la sesión: " + idLector);
-        } else if (idAdmin != null) {
-            System.out.println("ID del administrador en la sesión: " + idAdmin);
-        } else {
-            System.out.println("No hay ID de lector en la sesión.");
-        }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    	AlquilerDAO alquilerDao = new AlquilerDAO();
+    	List<HistorialAlquiler> histAlquiler = alquilerDao.obtenerListaDescendente();
+    	 // Convierte la lista a un ObservableList
+    	observableAlquiler = FXCollections.observableArrayList(histAlquiler);
+    	this.tablaAlquiler.setItems(observableAlquiler);
+
+        // Asigno las columnas con los atributos del modelo
+        this.colLector.setCellValueFactory(new PropertyValueFactory("nomLector")); //Nombre del atributo del modelo
+        this.colLibro.setCellValueFactory(new PropertyValueFactory("tituloLibro"));
+        this.colFecAlta.setCellValueFactory(new PropertyValueFactory("fechaInicio"));
+        this.colFecDev.setCellValueFactory(new PropertyValueFactory("fechaLimite"));
     }
-
-    @FXML
+    
+	@FXML
     private void cambiarAInicioSesion() throws IOException {
         if (SesionUsuario.getInstancia().getIdLector() == null &&
                 SesionAdmin.getInstancia().getIdAdmin() == null) {
@@ -116,51 +136,9 @@ public class AdministracionControlador {
             Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
         }
     }
-
-    @FXML
-    private void cambiarAAdministrarLibros() throws IOException {
-        try {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("adminlibros.fxml"));
-            Parent raiz = cargador.load();
-            Stage escenario = (Stage) botonUsuario.getScene().getWindow();
-            escenario.setScene(new Scene(raiz));
-            escenario.setTitle("Administración de libros");
-            escenario.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     @FXML
-    private void cambiarAHistorialAlquiler() throws IOException {
-        try {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("adminalquiler.fxml"));
-            Parent raiz = cargador.load();
-            Stage escenario = (Stage) botonAdminAlquiler.getScene().getWindow();
-            escenario.setScene(new Scene(raiz));
-            escenario.setTitle("Historial Alquiler");
-            escenario.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void cerrarSesion() throws IOException {
-        // Redirigir al usuario a la pantalla de inicio
-        FXMLLoader cargador = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
-        Parent raiz = cargador.load();
-        Stage escenario = (Stage) botonCerrarSesion.getScene().getWindow();
-        escenario.setScene(new Scene(raiz));
-        escenario.setTitle("Página Principal");
-        escenario.show();
-
-        // Limpiar la sesión del administrador
-        SesionAdmin.getInstancia().cerrarSesion();
-    }
-    
-    @FXML
-    private void volverAPaginaPrincipal() throws IOException {
+    private void volverAtras() throws IOException {
 		try {
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
 	        Parent root = loader.load();
