@@ -147,9 +147,6 @@ public class RegistrarseControlador {
             return;
         }
 
-        // Validar que el correo no esté registrado ya en la base de datos
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-
         // Crear el nuevo lector y guardarlo en la base de datos
         Lector lector = new Lector(0, 0, nombreUsuarioCompleto, direccion, telefono, correoElectronico, contrasena);
         LectorDAO registro = new LectorDAO();

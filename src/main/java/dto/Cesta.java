@@ -1,14 +1,17 @@
 package dto;
 
 public class Cesta {
+	// Atributos
     private int idLector;
     private int idLibro;
     
+    //Constructor
 	public Cesta(int idLector, int idLibro) {
 		this.idLector = idLector;
 		this.idLibro = idLibro;
 	}
-
+	
+	//Getters y setters
 	public int getIdLector() {
 		return idLector;
 	}

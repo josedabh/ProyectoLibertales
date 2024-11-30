@@ -1,6 +1,8 @@
 package libreria.LiberTales;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import Alertas.Alerta;
 import dao.AdministradorDAO;
@@ -12,8 +14,11 @@ import dto.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -48,6 +53,7 @@ public class IniciarSesionControlador{
     private Button addButton;
     @FXML
     private Hyperlink forgotPasswordLink;
+    
     @FXML
     private Label footerLabel;
     @FXML
@@ -55,29 +61,32 @@ public class IniciarSesionControlador{
     @FXML
     private Label errorContrasena;
 	
+    @FXML 
+	private Button alquilerboton;
+    
     public void initialize() { 
-    	  // Listener para validar el campo de correo en tiempo real
-        emailField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!esCorreoValido(newValue)) {
-                emailField.setStyle("-fx-border-color: red;");
-                errorCorreo.setText("Introduce un correo válido");
-            } else {
-                emailField.setStyle(null); // Limpia estilos de error
-                errorCorreo.setText(""); // Limpia el mensaje
-            }
-        });
-        
-        // Listener para validar el campo de contraseña en tiempo real
-        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.trim().isEmpty()) {
-                passwordField.setStyle("-fx-border-color: red;");
-                errorContrasena.setText("La contraseña no puede estar vacía");
-            } else {
-                passwordField.setStyle(null); // Limpia estilos de error
-                errorContrasena.setText(""); // Limpia el mensaje
-            }
-        });
-    }
+  	  // Listener para validar el campo de correo en tiempo real
+      emailField.textProperty().addListener((observable, oldValue, newValue) -> {
+          if (!esCorreoValido(newValue)) {
+              emailField.setStyle("-fx-border-color: red;");
+              errorCorreo.setText("Introduce un correo válido");
+          } else {
+              emailField.setStyle(null); // Limpia estilos de error
+              errorCorreo.setText(""); // Limpia el mensaje
+          }
+      });
+      
+      // Listener para validar el campo de contraseña en tiempo real
+      passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+          if (newValue.trim().isEmpty()) {
+              passwordField.setStyle("-fx-border-color: red;");
+              errorContrasena.setText("La contraseña no puede estar vacía");
+          } else {
+              passwordField.setStyle(null); // Limpia estilos de error
+              errorContrasena.setText(""); // Limpia el mensaje
+          }
+      });
+  }
     
     @FXML
     public void comprobarUsuario(ActionEvent event) {
@@ -88,11 +97,10 @@ public class IniciarSesionControlador{
          LectorDAO ldao = new LectorDAO();
          AdministradorDAO adao = new AdministradorDAO();
          
-      // Validaciones finales antes de enviar
- 		if (email.isEmpty() || password.isEmpty()) {
- 			errorCorreo.setText("Por favor, rellene todos los campos");
- 			return;
- 		}
+         if (email.isEmpty() || password.isEmpty()) {
+             Alerta.mostrarError("Error al iniciar sesión", "Por favor, rellena los campos vacios");
+             return;
+         } 
          
          Usuario usuario = us.autenticarUsuario(email, password);
          
@@ -252,9 +260,29 @@ public class IniciarSesionControlador{
    		
    	}
     
-    private boolean esCorreoValido(String email) {
-		// Expresión regular básica para validar correos electrónicos
-		return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
-	}
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
 
+	   private boolean esCorreoValido(String email) {
+			// Expresión regular básica para validar correos electrónicos
+			return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+		}
 }

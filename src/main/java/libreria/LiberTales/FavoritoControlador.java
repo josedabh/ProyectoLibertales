@@ -26,60 +26,78 @@ import java.util.List;
 import Alertas.Alerta;
 
 public class FavoritoControlador {
+	
+	// Botones y campos de la interfaz grafica 'favorito.fxml'
 	@FXML
 	private TilePane  TilePaneFavorito;
+	
 	@FXML
 	private HBox contenedorFavorito;
+	
 	@FXML
     private Button botonUsuario;
+	
     @FXML
     private Button botonCesta;
+    
     @FXML
     private Button botonFavorito;
+    
     @FXML
     private Button botonAtras;
+    
     @FXML
-    private VBox favoritosVBox;  // VBox en FXML donde se mostrarán los favoritos
-    @FXML
-    private Label favoritosLabel;  // Etiqueta para mostrar "Favoritos"
+    private VBox favoritosVBox; 
 
+    @FXML
+    private Label favoritosLabel;  
+
+    @FXML
     private FavoritoDAO favoritoDAO;
-    private LibroDAO libroDAO;  // Asegúrate de tener este DAO para consultar los detalles de los libros
+    
+    @FXML
+    private LibroDAO libroDAO; 
+    
+    @FXML
+    private Button alquilerboton;
    
+    // Constructor para inicializar los DAO
     public FavoritoControlador() {
-        // Inicialización de los DAOs
         favoritoDAO = new FavoritoDAO();
-        libroDAO = new LibroDAO();  // Suponiendo que tienes este DAO para obtener libros
+        libroDAO = new LibroDAO();  
     }
 
+    // Metodo para inicializacion para cargar la vista
     @FXML
     public void initialize() {
         //Verificar si el usuario esta registrado
     	Integer idLector = SesionUsuario.getInstancia().getIdLector();
         if (idLector != null) {
             System.out.println("ID del lector en la sesión: " + idLector);
-            
+            // Mostar una alerta al usuario si no ha iniciado sesion
         } else {
         	Alerta.mostrarError("Error al cargar la cesta", "Se requiere iniciar sesión primero");
             System.out.println("No hay ID de lector en la sesión.");
         } 
-        // Cargar los libros favoritos (en la cesta del lector)
+        // Cargar los libros favoritos 
         cargarFavoritos();
     }
-    //ERROR AL CARGAR LA IMAGEN
-    // Método para cargar los libros en la cesta del lector (favoritos)
+
+    
+    // Método para cargar los libros favoritos de un lector
     private void cargarFavoritos() {
         // Obtener los libros de la cesta del lector
        try {
     	   List<Favorito> Listafavorito = favoritoDAO.obtenerFavoritos(SesionUsuario.getInstancia().getIdLector());
-
+    	   
            for(Favorito itemFavorito : Listafavorito) {
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("cardsfavorito.fxml"));
+               // Carga la vista cardsfavorito.fxml
+        	   FXMLLoader loader = new FXMLLoader(getClass().getResource("cardsfavorito.fxml"));
                HBox carta = loader.load();
 
                // Obtener el controlador de la carta y pasar los datos
                CardsFavorito controladorFavorito = loader.getController();
-               controladorFavorito.setDatos(itemFavorito);
+               controladorFavorito.establecerDatos(itemFavorito);
 
                // Agregar la carta al contenedor
                TilePaneFavorito.getChildren().add(carta);
@@ -89,11 +107,15 @@ public class FavoritoControlador {
 	}
     }
     
+    // Metodo para llevarnos a la ventana de iniciar sesion
     @FXML
-   	private void switchtoLogin() throws IOException {
+   	private void ventanaIniciarSesion() throws IOException {
+    	// Verifica si hay un usuario activo en la sesion
        	if(SesionUsuario.getInstancia().getIdLector()==null &&
        			SesionAdmin.getInstancia().getIdAdmin()==null) {
+       		// Si el usuario no ha iniciado sesion
        		try {
+       			// Carga la vista de iniciar sesion y nos lleva alli
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
    		        Parent root = loader.load();
    		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
@@ -103,8 +125,11 @@ public class FavoritoControlador {
    		    } catch (IOException e) {
    		        e.printStackTrace();
    		    }
-       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
+       	}
+       	// Si el usuario ha iniciado como administrador
+       	else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
        		try {
+       			// Carga el fxml de administracion.fxml
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
    		        Parent root = loader.load();
    		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
@@ -116,6 +141,7 @@ public class FavoritoControlador {
    		    }
    		} else {
    			try {
+   				// Si el usuario esta autenticado pero no es administrador, nos lleva y carga el fxml de modificarusuario.fxml
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
    		        Parent root = loader.load();
    		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
@@ -128,10 +154,13 @@ public class FavoritoControlador {
    		}
    	}
 	
+    // Metodo para cambiar a la ventana de cesta 'cesta.fxml'
     @FXML
-   	private void switchToCesta() throws IOException {
+   	private void ventanaCesta() throws IOException {
+    	// Si hay un usuario en la sesion activa
    		if(SesionUsuario.getInstancia().getIdLector()!=null) {
    			try {
+   				// Nos lleva a cesta.fxml
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
    		        Parent root = loader.load();
    		        Stage stage = (Stage) botonCesta.getScene().getWindow();
@@ -142,15 +171,19 @@ public class FavoritoControlador {
    		        e.printStackTrace();
    		    }
    		} else {
+   			// Muestra una alerta al usuario de que para ir a cesta primero tiene que iniciar sesion
    			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
    		}
    		
    	}
 	
+    // Metodo para cambiar a la ventana de favorito.fxml
     @FXML
-   	private void switchToFavorito() throws IOException {
+   	private void ventanaFavorito() throws IOException {
+	    // Si hay un usuario activo
    		if(SesionUsuario.getInstancia().getIdLector()!=null) {
    			try {
+   				// Carga la vista favorito
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
    		        Stage stage = (Stage) botonFavorito.getScene().getWindow();
@@ -161,14 +194,17 @@ public class FavoritoControlador {
    		        e.printStackTrace();
    		    }
    		} else {
+   			// Si no hay un usuario activo pues muestra al usuario que tiene que iniciar sesion antes
    			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
    		}
    		
    	}
 	
+    // Metodo para volver a la pagina principal
 	@FXML
-    private void switchToPagina() throws IOException {
+    private void ventanaPaginaPrincipal() throws IOException {
 		try {
+			// Carga la vista de la pagina principal 'paginaprincipal.fxml'
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
 	        Parent root = loader.load();
 	        Stage stage = (Stage) botonAtras.getScene().getWindow();
@@ -179,5 +215,26 @@ public class FavoritoControlador {
 	        e.printStackTrace();
 	    }
     }
+	
+	// Metodo para volver a la pagina de libros alquilados
+	   @FXML
+	   	private void ventanaAlquiler() throws IOException {
+	   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
+	   			try {
+	   				// Carga la vista de la pagina principal 'alquiler.fxml'
+	   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("alquiler.fxml"));
+	   		        Parent root = loader.load();
+	   		        Stage stage = (Stage) alquilerboton.getScene().getWindow();
+	   		        stage.setScene(new Scene(root));
+	   		        stage.setTitle("Alquiler");
+	   		        stage.show();
+	   		    } catch (IOException e) {
+	   		        e.printStackTrace();
+	   		    }
+	   		} else {
+	   			Alerta.mostrarError("Error al ir a alquiler", "Primero, tienes que iniciar sesión");
+	   		}
+	   		
+	   	}
 }
 

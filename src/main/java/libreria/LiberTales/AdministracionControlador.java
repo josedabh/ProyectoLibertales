@@ -25,7 +25,7 @@ public class AdministracionControlador {
     @FXML
     private Button botonAdministrarLibros;
     @FXML
-    private Button botonAdministrarTransacciones;
+    private Button botonAdminAlquiler;
     @FXML
     private Button botonCerrarSesion;
 
@@ -125,6 +125,20 @@ public class AdministracionControlador {
             Stage escenario = (Stage) botonUsuario.getScene().getWindow();
             escenario.setScene(new Scene(raiz));
             escenario.setTitle("Administración de libros");
+            escenario.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void cambiarAHistorialAlquiler() throws IOException {
+        try {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("adminalquiler.fxml"));
+            Parent raiz = cargador.load();
+            Stage escenario = (Stage) botonAdminAlquiler.getScene().getWindow();
+            escenario.setScene(new Scene(raiz));
+            escenario.setTitle("Historial Alquiler");
             escenario.show();
         } catch (IOException e) {
             e.printStackTrace();

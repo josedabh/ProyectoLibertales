@@ -12,6 +12,7 @@ public class CestaDAO {
 
     // Método para eliminar un libro de la cesta de un lector
     public void eliminarDeLaCesta(int idLector, int idLibro) {
+    	// Variables usadas
         Connection conexion = null;
         PreparedStatement pst = null;
         try {
@@ -28,6 +29,7 @@ public class CestaDAO {
 
             // Ejecutar la consulta
             pst.executeUpdate();
+            // Manejo de errores
         } catch (SQLException e) {
             System.out.println("Error al eliminar el libro de la cesta: " + e.getMessage());
         } finally {
@@ -43,6 +45,7 @@ public class CestaDAO {
 
     // Método para obtener todos los libros en la cesta de un lector
     public List<Cesta> obtenerCesta(int idLector) {
+    	// Variables usadas
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -61,6 +64,7 @@ public class CestaDAO {
             }
             
             CerrarConexion.cerrar(con, stmt, rs);
+            // Manejo de errores
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,7 +73,8 @@ public class CestaDAO {
     
  // Método para realizar la compra e insertar en la tabla Compra
     public void comprarLibro(int idLector, int idLibro, Date fechaCompra) throws SQLException {
-        Connection con = null;
+        // Variables usadas
+    	Connection con = null;
         PreparedStatement sentenciaCompra = null;
         PreparedStatement sentenciaEliminarDeCesta = null;
 
@@ -112,6 +117,7 @@ public class CestaDAO {
             // Si ambas operaciones fueron exitosas, confirmar la transacción
             con.commit();
 
+            // Manejo de errores
         } catch (SQLException e) {
             // Si ocurre un error, hacer rollback de la transacción
             if (con != null) {
@@ -130,5 +136,65 @@ public class CestaDAO {
             CerrarConexion.cerrar(con, sentenciaEliminarDeCesta, null);
         }
     }
+    
+ // Método para agregar un libro a la cesta
+    public void agregarACesta(int idLector, int idLibro) {
+        Connection conexion = null;
+        PreparedStatement pst = null;
+        try {
+            // Establecer la conexión a la base de datos
+            conexion = ConexionBD.dameConexion();
+
+            // SQL para insertar un libro en la cesta del usuario
+            String sql = "INSERT INTO cesta (id_lector, id_libro) VALUES (?, ?)";
+            pst = conexion.prepareStatement(sql);
+
+            // Establecer los parámetros de la consulta
+            pst.setInt(1, idLector);
+            pst.setInt(2, idLibro);
+
+            // Ejecutar la consulta
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al agregar el libro a la cesta: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }
+ // Método para eliminar un libro de la cesta
+    public void eliminarDeLACesta(int idLector, int idLibro) {
+        Connection conexion = null;
+        PreparedStatement pst = null;
+        try {
+            // Establecer la conexión a la base de datos
+            conexion = ConexionBD.dameConexion();
+
+            // SQL para eliminar un libro de la cesta del usuario
+            String sql = "DELETE FROM cesta WHERE id_lector = ? AND id_libro = ?";
+            pst = conexion.prepareStatement(sql);
+
+            // Establecer los parámetros de la consulta
+            pst.setInt(1, idLector);
+            pst.setInt(2, idLibro);
+
+            // Ejecutar la consulta
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar el libro de la cesta: " + e.getMessage());
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar los recursos: " + e.getMessage());
+            }
+        }
+    }    
+
 }
 
