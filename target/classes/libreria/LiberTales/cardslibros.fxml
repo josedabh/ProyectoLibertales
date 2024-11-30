@@ -5,8 +5,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox spacing="10.0" style="-fx-background-color: #f5f5f5; -fx-padding: 10; -fx-border-color: #D3D3D3; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CardsLibros">
-   <ImageView fx:id="libroImage" fitHeight="191.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-   <Label fx:id="nombreLabel" text="Título del Libro" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
-   <Button fx:id="detallesButton" mnemonicParsing="false" onAction="#switchTodetallesLibros" text="Más detalles" style="-fx-background-color: #6C9A08; -fx-text-fill: #FFFFFF; -fx-font-size: 14px; -fx-border-radius: 5; -fx-border-color: #6C9A08;" />
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libreria.LiberTales.CardsLibros">
+  <ImageView fx:id="libroImage" fitHeight="191.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+   <Label fx:id="nombreLabel" text="Label" />
+   <Button fx:id="detallesButton" mnemonicParsing="false" onAction="#switchTodetallesLibros" text="Más detalles" />
 </VBox>
