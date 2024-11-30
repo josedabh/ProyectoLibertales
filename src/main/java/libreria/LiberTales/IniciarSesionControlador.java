@@ -56,10 +56,37 @@ public class IniciarSesionControlador{
     
     @FXML
     private Label footerLabel;
+    @FXML
+    private Label errorCorreo;
+    @FXML
+    private Label errorContrasena;
 	
     @FXML 
 	private Button alquilerboton;
     
+    public void initialize() { 
+  	  // Listener para validar el campo de correo en tiempo real
+      emailField.textProperty().addListener((observable, oldValue, newValue) -> {
+          if (!esCorreoValido(newValue)) {
+              emailField.setStyle("-fx-border-color: red;");
+              errorCorreo.setText("Introduce un correo válido");
+          } else {
+              emailField.setStyle(null); // Limpia estilos de error
+              errorCorreo.setText(""); // Limpia el mensaje
+          }
+      });
+      
+      // Listener para validar el campo de contraseña en tiempo real
+      passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+          if (newValue.trim().isEmpty()) {
+              passwordField.setStyle("-fx-border-color: red;");
+              errorContrasena.setText("La contraseña no puede estar vacía");
+          } else {
+              passwordField.setStyle(null); // Limpia estilos de error
+              errorContrasena.setText(""); // Limpia el mensaje
+          }
+      });
+  }
     
     @FXML
     public void comprobarUsuario(ActionEvent event) {
@@ -254,4 +281,8 @@ public class IniciarSesionControlador{
 	   		
 	   	}
 
+	   private boolean esCorreoValido(String email) {
+			// Expresión regular básica para validar correos electrónicos
+			return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+		}
 }

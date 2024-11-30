@@ -94,11 +94,19 @@
         <Button fx:id="backButton" layoutX="53.0" layoutY="157.0" onAction="#switchToPagina" style="-fx-font-size: 16px; -fx-background-color: #1ABC9C; -fx-background-radius: 25px; -fx-text-fill: white; -fx-border-radius: 25px;" text="← Volver Atrás" />
 
         <!-- Formulario de inicio de sesión -->
-        <VBox layoutX="335.0" layoutY="157.0" prefHeight="274.0" prefWidth="259.0" spacing="10">
+        <VBox layoutX="293.0" layoutY="150.0" prefHeight="274.0" prefWidth="259.0" spacing="10">
             <Label style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Inicio Sesión" />
          <Separator prefWidth="200.0" />
-            <TextField fx:id="emailField" prefHeight="26.0" prefWidth="200.0" promptText="Email" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" />
-            <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-font-size: 15px; -fx-border-radius: 5px; -fx-background-color: #F7F7F7; -fx-padding: 5px; -fx-border-color: #BDC3C7;" />
+            <TextField fx:id="emailField" prefHeight="41.0" prefWidth="259.0" promptText="Email" style="-fx-font-size: 15px; -fx-background-color: #F7F7F7; -fx-border-color: #BDC3C7; -fx-border-radius: 5px; -fx-padding: 5px;" />
+         <Label fx:id="errorCorreo" textFill="RED">
+            <font>
+               <Font size="6.0" />
+            </font></Label>
+            <PasswordField fx:id="passwordField" prefHeight="46.0" prefWidth="259.0" promptText="Contraseña" style="-fx-font-size: 15px; -fx-border-radius: 5px; -fx-background-color: #F7F7F7; -fx-padding: 5px; -fx-border-color: #BDC3C7;" />
+         <Label fx:id="errorContrasena" textFill="#ff0000">
+            <font>
+               <Font size="6.0" />
+            </font></Label>
          <Separator prefWidth="200.0" />
             <Button fx:id="loginButton" onAction="#comprobarUsuario" style="-fx-background-color: #2980B9; -fx-text-fill: white; -fx-font-size: 15px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, #2980B9, 5, 0.5, 0, 0);" text="Iniciar Sesión" />
 
