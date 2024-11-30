@@ -12,7 +12,6 @@ dao\LibroDAO.class
 libreria\LiberTales\BusquedaLibrosControlador.class
 libreria\LiberTales\CambiarContrasenaController.class
 Conexion\CerrarConexion.class
-dto\Compra.class
 libreria\LiberTales\PaginaPrincipalControlador.class
 dao\FavoritoDAO.class
 dto\Alquiler.class
