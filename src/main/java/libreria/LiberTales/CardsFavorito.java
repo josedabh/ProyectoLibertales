@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
 
 public class CardsFavorito {
 	   @FXML
-	    private ImageView imageView;
+	    private ImageView libroImage;
 	    
 	    @FXML
 	    private Label tituloLabel;
@@ -30,7 +30,7 @@ public class CardsFavorito {
 	    	LibroDAO libroDao = new LibroDAO();
 	    	Libro libro = libroDao.obtenerLibroPorId(favorito.getIdLibro());
 	        Image image = new Image(libro.getRutaImagen());
-	        imageView.setImage(image);
+	        libroImage.setImage(image);
 	        tituloLabel.setText(libro.getTitulo());
 	        setLibro(libro);
 	    }
@@ -40,9 +40,9 @@ public class CardsFavorito {
 	    private void switchToAnadiraFavorito() throws IOException {
 	        // Agregar el libro a la cesta
 	        Libro libro = getLibro();
-	        CestaDAO cestaDAO = new CestaDAO();
+	        FavoritoDAO favoritoDAO = new FavoritoDAO();
 	        // Obtener el libro que se está viendo
-	        cestaDAO.agregarACesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());//Quitar el id de libro
+	        favoritoDAO.agregarALaCesta(SesionUsuario.getInstancia().getIdLector(), libro.getId_libro());//Quitar el id de libro
             Alerta.mostrarInformacion("Libro añadido a la cesta", "¡El libro ha sido añadido a la cesta con éxito!");
 
 	    }

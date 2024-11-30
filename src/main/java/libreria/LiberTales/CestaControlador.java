@@ -23,7 +23,7 @@ import Alertas.Alerta;
 public class CestaControlador {
 
     @FXML
-    private VBox cestaVBox; // VBox donde se mostrarán los libros en la cesta
+    private VBox cestaVBox; 
 
     @FXML
     private ScrollPane scrollPaneCesta;
@@ -31,13 +31,13 @@ public class CestaControlador {
     @FXML
     private TilePane tilePaneCesta;
 	@FXML
-    private Button userButton;
+    private Button botonUsuario;
     @FXML
-    private Button cartButton;
+    private Button botonCesta;
     @FXML
-    private Button messageButton;
+    private Button botonFavorito;
     @FXML
-    private Button backButton;
+    private Button botonAtras;
     @FXML
     private HBox contenedorCesta;
     
@@ -94,7 +94,7 @@ public class CestaControlador {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Iniciar sesión");
    		        stage.show();
@@ -105,7 +105,7 @@ public class CestaControlador {
        		try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Administración");
    		        stage.show();
@@ -116,7 +116,7 @@ public class CestaControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonUsuario.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Modificar usuario");
    		        stage.show();
@@ -132,7 +132,7 @@ public class CestaControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) cartButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonCesta.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Cesta");
    		        stage.show();
@@ -151,7 +151,7 @@ public class CestaControlador {
    			try {
    		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
    		        Parent root = loader.load();
-   		        Stage stage = (Stage) messageButton.getScene().getWindow();
+   		        Stage stage = (Stage) botonFavorito.getScene().getWindow();
    		        stage.setScene(new Scene(root));
    		        stage.setTitle("Favoritos");
    		        stage.show();
@@ -169,7 +169,7 @@ public class CestaControlador {
 		try {
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
 	        Parent root = loader.load();
-	        Stage stage = (Stage) backButton.getScene().getWindow();
+	        Stage stage = (Stage) botonAtras.getScene().getWindow();
 	        stage.setScene(new Scene(root));
 	        stage.setTitle("Página principal");
 	        stage.show();

@@ -1,8 +1,6 @@
 package libreria.LiberTales;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import Alertas.Alerta;
 import dao.AdministradorDAO;
@@ -14,11 +12,8 @@ import dto.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -55,7 +50,35 @@ public class IniciarSesionControlador{
     private Hyperlink forgotPasswordLink;
     @FXML
     private Label footerLabel;
+    @FXML
+    private Label errorCorreo;
+    @FXML
+    private Label errorContrasena;
 	
+    public void initialize() { 
+    	  // Listener para validar el campo de correo en tiempo real
+        emailField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!esCorreoValido(newValue)) {
+                emailField.setStyle("-fx-border-color: red;");
+                errorCorreo.setText("Introduce un correo válido");
+            } else {
+                emailField.setStyle(null); // Limpia estilos de error
+                errorCorreo.setText(""); // Limpia el mensaje
+            }
+        });
+        
+        // Listener para validar el campo de contraseña en tiempo real
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                passwordField.setStyle("-fx-border-color: red;");
+                errorContrasena.setText("La contraseña no puede estar vacía");
+            } else {
+                passwordField.setStyle(null); // Limpia estilos de error
+                errorContrasena.setText(""); // Limpia el mensaje
+            }
+        });
+    }
+    
     @FXML
     public void comprobarUsuario(ActionEvent event) {
     	 String email = emailField.getText();
@@ -65,10 +88,11 @@ public class IniciarSesionControlador{
          LectorDAO ldao = new LectorDAO();
          AdministradorDAO adao = new AdministradorDAO();
          
-         if (email.isEmpty() || password.isEmpty()) {
-             Alerta.mostrarError("Error al iniciar sesión", "Por favor, rellena los campos vacios");
-             return;
-         } 
+      // Validaciones finales antes de enviar
+ 		if (email.isEmpty() || password.isEmpty()) {
+ 			errorCorreo.setText("Por favor, rellene todos los campos");
+ 			return;
+ 		}
          
          Usuario usuario = us.autenticarUsuario(email, password);
          
@@ -227,5 +251,10 @@ public class IniciarSesionControlador{
    		}
    		
    	}
+    
+    private boolean esCorreoValido(String email) {
+		// Expresión regular básica para validar correos electrónicos
+		return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+	}
 
 }

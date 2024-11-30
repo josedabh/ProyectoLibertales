@@ -1,7 +1,6 @@
 package libreria.LiberTales;
 
 import java.io.IOException;
-
 import Alertas.Alerta;
 import dao.LectorDAO;
 import dao.UsuarioDAO;
@@ -14,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,61 +21,137 @@ import javafx.stage.Stage;
 
 public class RegistrarseControlador {
 
-	@FXML
-	private TextField usernameCompletField;
     @FXML
-    private TextField emailField;
+    private TextField campoNombreUsuarioCompleto;
     @FXML
-    private TextField telefonoField;
+    private TextField campoCorreoElectronico;
     @FXML
-    private PasswordField passwordField;
+    private TextField campoTelefono;
     @FXML
-    private PasswordField verifyPasswordField;
+    private PasswordField campoContrasena;
     @FXML
-    private TextArea direccionField;
+    private PasswordField campoConfirmarContrasena;
     @FXML
-    private Button registerButton;
+    private TextArea campoDireccion;
     @FXML
-    private Button userButton;
+    private Button botonRegistrar;
     @FXML
-    private Button cartButton;
+    private Button botonUsuario;
     @FXML
-    private Button messageButton;
+    private Button botonCesta;
     @FXML
-    private Button backButton;
+    private Button botonFavoritos;
+    @FXML
+    private Button botonVolver;
+    @FXML
+    private Label errorNombreCompleto;
+    @FXML
+    private Label errorDireccion;
+    @FXML
+    private Label errorTelefono;
+    @FXML
+    private Label errorCorreoElectronico;
+    @FXML
+    private Label errorContrasena;
+    @FXML 
+    private Label errorConfirmarContrasena;
+    
+    public void initialize() {
+    	// Listener para validar el campo de nombre completo en tiempo real
+        campoNombreUsuarioCompleto.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoNombreUsuarioCompleto.setStyle("-fx-border-color: red;");
+                errorNombreCompleto.setText("El nombre no puede estar vacío");
+            } else {
+                campoNombreUsuarioCompleto.setStyle(null); // Limpia estilos de error
+                errorNombreCompleto.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de dirección en tiempo real
+        campoDireccion.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoDireccion.setStyle("-fx-border-color: red;");
+                errorDireccion.setText("La dirección no puede estar vacía");
+            } else {
+                campoDireccion.setStyle(null); // Limpia estilos de error
+                errorDireccion.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de teléfono en tiempo real
+        campoTelefono.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoTelefono.setStyle("-fx-border-color: red;");
+                errorTelefono.setText("El teléfono debe tener 9 números");
+            } else {
+                campoTelefono.setStyle(null); // Limpia estilos de error
+                errorTelefono.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de correo en tiempo real
+        campoCorreoElectronico.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!esCorreoValido(newValue)) {
+                campoCorreoElectronico.setStyle("-fx-border-color: red;");
+                errorCorreoElectronico.setText("Por favor, introduce un correo válido");
+            } else {
+                campoCorreoElectronico.setStyle(null); // Limpia estilos de error
+                errorCorreoElectronico.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar el campo de contraseña en tiempo real
+        campoContrasena.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.trim().isEmpty()) {
+                campoContrasena.setStyle("-fx-border-color: red;");
+                errorContrasena.setText("La contraseña no puede estar vacía");
+            } else {
+                campoContrasena.setStyle(null); // Limpia estilos de error
+                errorContrasena.setText(""); // Limpia el mensaje
+            }
+        });
+        
+     // Listener para validar que los valores de los campos Contrasena y ConfirmarContrasena son iguales
+        campoConfirmarContrasena.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals(campoContrasena.getText())) {
+                campoConfirmarContrasena.setStyle("-fx-border-color: red;");
+                errorConfirmarContrasena.setText("Las contraseñas no coinciden");
+            } else {
+                campoConfirmarContrasena.setStyle(null); // Limpia estilos de error
+                errorConfirmarContrasena.setText(""); // Limpia el mensaje
+            }
+        });
+    }
 
     // Método que se ejecuta cuando el usuario hace clic en "Registrar"
     @FXML
-    private void registrarUsuario(ActionEvent event) {
-    	String usernameComplet = usernameCompletField.getText();
-    	String direccion = direccionField.getText();
-        String email = emailField.getText().trim();
-        String password = passwordField.getText();
-        String confirmPassword = verifyPasswordField.getText();
-        String telefono = telefonoField.getText();
+    private void registrarUsuario(ActionEvent evento) {
+        String nombreUsuarioCompleto = campoNombreUsuarioCompleto.getText();
+        String direccion = campoDireccion.getText();
+        String correoElectronico = campoCorreoElectronico.getText().trim();
+        String contrasena = campoContrasena.getText();
+        String confirmarContrasena = campoConfirmarContrasena.getText();
+        String telefono = campoTelefono.getText();
         
         // Validar que los campos no estén vacíos
-        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || 
-        		direccion.isEmpty() || usernameComplet.isEmpty() || telefono.isEmpty()) {
-            Alerta.mostrarError("Error de Registro", "Por favor, completa todos los campos.");
+        if (correoElectronico.isEmpty() || contrasena.isEmpty() || confirmarContrasena.isEmpty() || 
+                direccion.isEmpty() || nombreUsuarioCompleto.isEmpty() || telefono.isEmpty()) {
+            errorNombreCompleto.setText("Por favor, completa todos los campos");
             return;
         }
 
-        // Verificar que las contraseñas coinciden
-        if (!password.equals(confirmPassword)) {
-        	 Alerta.mostrarError("Error de Registro", "Las contraseñas no coinciden.");
+        // Verificar que las contraseñas coincidan
+        if (!contrasena.equals(confirmarContrasena)) {
+            Alerta.mostrarError("Error de Registro", "Las contraseñas no coinciden.");
             return;
         }
 
         // Validar que el correo no esté registrado ya en la base de datos
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-//        if (usuarioDAO.obtenerUsuarioPorEmail(email) != null) {
-//        	 Alerta.mostrarError("Error de Registro", "El email ya está registrado.");
-//            return;
-//        }
 
-        // Crear el nuevo lector y lo guarda en la base de datos
-        Lector lector = new Lector(0,0,usernameComplet, direccion, telefono, email,password);
+        // Crear el nuevo lector y guardarlo en la base de datos
+        Lector lector = new Lector(0, 0, nombreUsuarioCompleto, direccion, telefono, correoElectronico, contrasena);
         LectorDAO registro = new LectorDAO();
         
         registro.crearLector(lector);
@@ -86,97 +162,104 @@ public class RegistrarseControlador {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
-   	private void switchtoLogin() throws IOException {
-       	if(SesionUsuario.getInstancia().getIdLector()==null &&
-       			SesionAdmin.getInstancia().getIdAdmin()==null) {
-       		try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
-   		        stage.setScene(new Scene(root));
-   		        stage.setTitle("Iniciar sesión");
-   		        stage.show();
-   		    } catch (IOException e) {
-   		        e.printStackTrace();
-   		    }
-       	} else if(SesionAdmin.getInstancia().getIdAdmin()!=null) {
-       		try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("administracion.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
-   		        stage.setScene(new Scene(root));
-   		        stage.setTitle("Administración");
-   		        stage.show();
-   		    } catch (IOException e) {
-   		        e.printStackTrace();
-   		    }
-   		} else {
-   			try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) userButton.getScene().getWindow();
-   		        stage.setScene(new Scene(root));
-   		        stage.setTitle("Modificar usuario");
-   		        stage.show();
-   		    } catch (IOException e) {
-   		        e.printStackTrace();
-   		    }
-   		}
-   	}
-	
+    private void cambiarAInicioSesion() throws IOException {
+        if (SesionUsuario.getInstancia().getIdLector() == null &&
+                SesionAdmin.getInstancia().getIdAdmin() == null) {
+            try {
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+                Parent raiz = cargador.load();
+                Stage escenario = (Stage) botonUsuario.getScene().getWindow();
+                escenario.setScene(new Scene(raiz));
+                escenario.setTitle("Iniciar sesión");
+                escenario.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (SesionAdmin.getInstancia().getIdAdmin() != null) {
+            try {
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("administracion.fxml"));
+                Parent raiz = cargador.load();
+                Stage escenario = (Stage) botonUsuario.getScene().getWindow();
+                escenario.setScene(new Scene(raiz));
+                escenario.setTitle("Administración");
+                escenario.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("modificarusuario.fxml"));
+                Parent raiz = cargador.load();
+                Stage escenario = (Stage) botonUsuario.getScene().getWindow();
+                escenario.setScene(new Scene(raiz));
+                escenario.setTitle("Modificar usuario");
+                escenario.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @FXML
-   	private void switchToCesta() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
-   			try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("cesta.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) cartButton.getScene().getWindow();
-   		        stage.setScene(new Scene(root));
-   		        stage.setTitle("Cesta");
-   		        stage.show();
-   		    } catch (IOException e) {
-   		        e.printStackTrace();
-   		    }
-   		} else {
-   			Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
-   		}
-   		
-   	}
-	
+    private void cambiarACesta() throws IOException {
+        if (SesionUsuario.getInstancia().getIdLector() != null) {
+            try {
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("cesta.fxml"));
+                Parent raiz = cargador.load();
+                Stage escenario = (Stage) botonCesta.getScene().getWindow();
+                escenario.setScene(new Scene(raiz));
+                escenario.setTitle("Cesta");
+                escenario.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alerta.mostrarError("Error al ir a la cesta", "Primero, tienes que iniciar sesión");
+        }
+    }
+
     @FXML
-   	private void switchToFavorito() throws IOException {
-   		if(SesionUsuario.getInstancia().getIdLector()!=null) {
-   			try {
-   		        FXMLLoader loader = new FXMLLoader(getClass().getResource("favorito.fxml"));
-   		        Parent root = loader.load();
-   		        Stage stage = (Stage) messageButton.getScene().getWindow();
-   		        stage.setScene(new Scene(root));
-   		        stage.setTitle("Favoritos");
-   		        stage.show();
-   		    } catch (IOException e) {
-   		        e.printStackTrace();
-   		    }
-   		} else {
-   			Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
-   		}
-   		
-   	}
-	
-	@FXML
-    private void switchToPagina() throws IOException {
-		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("paginaprincipal.fxml"));
-	        Parent root = loader.load();
-	        Stage stage = (Stage) backButton.getScene().getWindow();
-	        stage.setScene(new Scene(root));
-	        stage.setTitle("Página principal");
-	        stage.show();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+    private void cambiarAFavoritos() throws IOException {
+        if (SesionUsuario.getInstancia().getIdLector() != null) {
+            try {
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("favorito.fxml"));
+                Parent raiz = cargador.load();
+                Stage escenario = (Stage) botonFavoritos.getScene().getWindow();
+                escenario.setScene(new Scene(raiz));
+                escenario.setTitle("Favoritos");
+                escenario.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alerta.mostrarError("Error al ir a favoritos", "Primero, tienes que iniciar sesión");
+        }
+    }
+
+    @FXML
+    private void volverAInicioSesion() throws IOException {
+        try {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("iniciarsesion.fxml"));
+            Parent raiz = cargador.load();
+            Stage escenario = (Stage) botonVolver.getScene().getWindow();
+            escenario.setScene(new Scene(raiz));
+            escenario.setTitle("Iniciar sesión");
+            escenario.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private boolean esCorreoValido(String email) {
+		// Expresión regular básica para validar correos electrónicos
+		return email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+	}
+    
+    private boolean esTelefonoValido(String telefono) {
+        // Expresión regular para validar que el teléfono tiene exactamente 9 dígitos
+        return telefono.matches("^\\d{9}$");
     }
 }
